@@ -11,7 +11,9 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <span>会员中心</span>
+          <router-link to="/vipManage">
+            <span>会员中心</span>
+          </router-link>
         </li>
         <li class="nav-item">
           <span>论文查重流程</span>

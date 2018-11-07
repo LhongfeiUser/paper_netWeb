@@ -37,7 +37,7 @@
   height:35vh;
   padding-top:20px;
   border-top:1px solid #ccc;
-  background-color:#fff;
+  /*background-color:#fff;*/
 
   .row{
     display: flex;

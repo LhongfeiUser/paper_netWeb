@@ -21,16 +21,20 @@ export default new Router({
     },
     {
       path: '/vipManage',
-      redirect: '/vipManage',
-      component: Layout,
+      redirect: '/vipManage/info',
+      component: ()=>import('@/pages/vipManage/index'),
       children:[
         {
-          path:'',
-          component:()=>import('@/pages/vipManage/index')
+          path:'info',
+          component:()=>import('@/pages/vipInfo/index')
         },
         {
-          path:'/vip',
-          component:()=>import('@/pages/vipManage/index')
+          path:'upload',
+          component:()=>import('@/pages/upload_paper/index')
+        },
+        {
+          path:'order',
+          component:()=>import('@/pages/orderList/index')
         }
       ]
     },

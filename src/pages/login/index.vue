@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <div class="bg">
+      <a href="/home"><i class="icon-fanhui" style="width:50px;height:50px;font-size:24px;"></i></a>
       <div class="container justify-content-end" style="display: flex">
         <div class="form row">
           <div class="form-horizontal">
@@ -22,9 +23,9 @@
               <div class="form-group">
                 <button type="button" class="btn btn-primary" @click="login">登录</button>
               </div>
-              <!--<div class="text-right">
+              <div class="text-right">
                 <a href="#">忘记密码？</a>
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
