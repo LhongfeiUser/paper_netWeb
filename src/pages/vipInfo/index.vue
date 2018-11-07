@@ -49,10 +49,9 @@
         this.$refs.avatarInput.click()
       },
       changeImage(e) {
-        var file = e.target.files[0]
+        var file = e.target.files[0];
         var reader = new FileReader()
         var that = this
-        console.log(reader);
         reader.readAsDataURL(file);
         reader.onload = function (e) {
           that.avatar = this.result

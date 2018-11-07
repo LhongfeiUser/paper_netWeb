@@ -7,6 +7,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.js'
 import 'jquery'
 import '@/assets/css/reset.css'
+import '@/assets/css/iconfont.css'
 
 Vue.config.productionTip = false
 
