@@ -63,7 +63,8 @@ export default new Router({
           component:()=>import('@/pages/checkSkillList/index')
         },
         {
-          path:'detail',
+          path:'detail/:id',
+          name:'detail',
           component:()=>import('@/pages/checkSkillDetail/index')
         }
       ]
@@ -79,6 +80,7 @@ export default new Router({
         },
         {
           path:'detail',
+          name:'detail',
           component:()=>import('@/pages/faqDetail/index')
         }
       ]

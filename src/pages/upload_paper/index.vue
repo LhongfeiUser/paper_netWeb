@@ -107,7 +107,6 @@
                   <div class="modal-content">
                     <div class="modal-body">
                       <img src="../../assets/images/footerQr_01.png">
-                      
                     </div>
                   </div>
                 </div>
@@ -115,8 +114,56 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="download">
-          <p>3</p>
+        <div class="tab-pane fade" id="download"  @click="isOrder=false">
+          <div class="form-group ">
+            <label class="control-label">订单编号</label>
+            <input type="text" class="form-control col-sm-4" placeholder="点击橙色字，查看在哪里找到订单号">
+            <button type="button" class="btn btn-outline-warning">查询结果</button>
+          </div>
+          <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)" @click.stop="userClick(1)">【微信】</a>订单编号？</span>
+          <div v-show="isOrder" style="width:200px;"  @click.stop="isOrder=true">
+            <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
+          </div>
+          <div class="line"></div>
+          <div class="notice">
+            <h3>下载报告须知：</h3>
+            <ul>
+              <li>1、刷新结果：点击【查询结果】按钮刷新，请勿刷新页面</li>
+              <li>2、报告等待时间：不同查重系统的检测时间不同，请耐心等待。</li>
+              <li>3、知网系统下载：论文提交成功后40分钟-1个小时左右出结果，23:00后提交的论文请次日早上9:00后来下载报告，提交后请耐心等待，提交后不予退款。</li>
+              <li>4、订单编号格式为：T+20位数字组合格式，输入不要留空格，请勿输入错误格式和错误订单编号。</li>
+              <li>
+                5、查看订单编号有以下3种渠道
+              </li>
+              <li>①微信支付-查看账单-商户单号。</li>
+              <li>②支付宝-朋友-服务提醒（含支付助手）-商户订单号</li>
+              <li>③必过论文公众号-订单状态提醒-订单编号</li>
+              <li>
+                6、所有的报告都需要解压查看，请用最新的解压软件解压
+              </li>
+              <li>
+                7、大部分报告为网页形式，如果无法阅读报告，是因为您浏览器版本过低，或版本不兼容。
+              </li>
+              <li>
+                8、请用最新的浏览器打开阅读（推荐：谷歌浏览器、QQ浏览器、IE9以上浏览器）
+              </li>
+              <li>
+                9、报告下载：整个检测过程系统完全自助检测 ，封闭式运行，无人工干预，每一位用户都有自己独立的订单编号进行检测论文，服务器提供7天论文下载，超过7天则被删除，删除以后将无法恢复，确保您的论文不会被泄露和盗窃。请尽快下载报告到电脑永久保存。
+              </li>
+              <li>
+                10、定稿如何选系统：不同的检测系统，使用不同论文对比库，所以检测结果极少有相同的。您学校用什么系统来审核论文，选择和学校同样的检测系统，检测结果和学校是一样的，不同的检测系统的检测结果是不一样的！
+              </li>
+              <li>
+                11、检测内容的标准：有些学校只测正文，有些测正文和参考文献，有些甚至连声明、致谢都测。学校测的内容一旦有差异，结果就有少许差异。但是如果你提交检测的论文和提交给学校一样，没有任何改动，那么结果是一样的。
+              </li>
+              <li>
+                12、正品检测报告：系统直通检测官网，是从官方下载的报告，支持所有报告验真，若有假冒，全额退款。如有任何的疑问可联系客服解决。
+              </li>
+              <li>
+                13、0相似度是否正常：如检测结果为0，说明官网检测结果也是0，并非未检测，并非不准。只能说明你的论文在该检测系统的比对库里中没有重复的，即使你去官网检测也是这个结果。
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -131,6 +178,12 @@
         single_name:'',
         single_content:'',
         filesList:[],
+        isOrder:false,
+        orderImg:{
+          zfb:require('../../assets/images/head.png'),
+          wx:require('../../assets/images/login_bg.png')
+        },
+        currentNum:''
       }
     },
     created() {
@@ -175,6 +228,12 @@
       more_apply_wx() {
         this.$refs.more_showApply.style.display = 'block'
       },
+
+      //下载报告
+      userClick(num){
+        this.currentNum=num;
+        this.isOrder=true;
+      }
     }
   }
 </script>
@@ -243,7 +302,7 @@
       }
       .tab-content {
         margin-top: 40px;
-        padding-left: 40px;
+        padding:0 40px;
         #single {
           .form-horizontal {
             input{
@@ -352,6 +411,72 @@
               .control-label{
                 margin-right:40px;
                 color:#888;
+              }
+            }
+          }
+          .apply_content{
+            display: flex;
+          }
+          .apply{
+            .apply_way{
+              color:#888;
+            }
+            .more_apply_zfb,.more_apply_wx{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              margin-left:40px;
+              color:#888;
+              cursor: pointer;
+              img{
+                width:60px;
+                height:60px;
+                vertical-align: center;
+                margin-bottom:10px;
+              }
+            }
+          }
+        }
+        #download{
+          color: #888;
+          .form-group{
+            display: flex;
+            align-items: center;
+            .form-control{
+              margin: auto 20px;
+            }
+            .form-control:focus{
+              box-shadow: none;
+            }
+          }
+          span{
+            font-size:14px;
+            display: inline-block;
+            margin:10px 0 20px 80px;
+            a{
+              color:#ffc107;
+            }
+          }
+          .line{
+            width:100%;
+            height:5px;
+            margin:40px auto;
+            background-color: #fff;
+            border-radius:10px;
+          }
+          .notice{
+            margin-top:20px;
+            h3{
+              margin: 10px auto;
+              font-size:18px;
+              color:#000;
+            }
+            ul{
+              padding:0 20px;
+              li{
+                margin:15px auto;
+                font-size:16px;
+                color:orangered;
               }
             }
           }

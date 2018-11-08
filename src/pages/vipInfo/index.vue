@@ -5,10 +5,10 @@
       <span class="vip_datum">资料管理</span>
       <div class="vip_infoContent">
         <div class="vip_img">
-          <img :src="avatar" @click="setAvatar" width="210" height="280">
+          <img :src="avatar" @click="setAvatar" width="200" height="200">
           <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" style="display:none"
                  @change="changeImage($event)" ref="avatarInput">
-          <button @click="setAvatar">上传学生证</button>
+          <span style="color:#888;cursor:pointer;margin-top:10px;text-align: center" @click="setAvatar" >上传学生证</span>
         </div>
         <ul class="personalInfo">
           <li>
@@ -117,6 +117,8 @@
       }
     }
     .vip_card {
+      /*background:url("../../assets/images/info_bg.jpg")no-repeat;*/
+      /*background-size:100% 100%;*/
       border: 1px solid #ccc;
       padding: 40px;
       .vip_datum {
@@ -131,7 +133,7 @@
         margin-bottom: 10px;
       }
       .vip_infoContent {
-        padding: 50px 0 200px 50px;
+        padding: 50px 0 200px;
         border-top: 2px solid #efefef;
         display: flex;
         justify-content: flex-start;
@@ -139,6 +141,9 @@
         .vip_img{
           display: flex;
           flex-direction: column;
+          button:focus{
+            box-shadow: none;
+          }
         }
       }
       .personalInfo {

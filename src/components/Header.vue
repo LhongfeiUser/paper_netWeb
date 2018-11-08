@@ -19,10 +19,14 @@
           <span>论文查重流程</span>
         </li>
         <li class="nav-item">
-          <span>论文查重技巧</span>
+          <router-link to="/skill">
+            <span>论文查重技巧</span>
+          </router-link>
         </li>
         <li class="nav-item">
-          <span>常见问题</span>
+          <router-link to="/faq">
+            <span>常见问题</span>
+          </router-link>
         </li>
         <li class="nav-item">
           <span>学术资讯</span>
