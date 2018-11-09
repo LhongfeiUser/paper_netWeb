@@ -12,7 +12,7 @@
         </li>
         <li class="nav-item">
           <router-link to="/vipManage">
-            <span>会员中心</span>
+            <span>论文查重</span>
           </router-link>
         </li>
         <li class="nav-item">

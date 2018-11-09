@@ -4,21 +4,21 @@
     <main style="display: flex;justify-content: flex-start;align-items: flex-start">
       <div class="aside">
         <ul class="nav flex-column">
-          <li :class="current==='1'?'nav-item item_active':'nav-item'">
+      <!--    <li :class="current==='1'?'nav-item item_active':'nav-item'">
             <router-link to="info?current=1&time=new Date()">
               <span :class="current==='1'?'nav-link active':'nav-link'" @click="getInfo">会员信息</span>
             </router-link>
-          </li>
-          <li :class="current==='2'?'nav-item item_active':'nav-item'">
+          </li>-->
+          <li class="nav-item item_active">
             <router-link to="upload?current=2">
-              <span :class="current==='2'?'nav-link active':'nav-link'" @click="upload">论文查重</span>
+              <span class="nav-link active" @click="upload">论文查重</span>
             </router-link>
           </li>
-          <li :class="current==='3'?'nav-item item_active':'nav-item'">
+       <!--   <li :class="current==='3'?'nav-item item_active':'nav-item'">
             <router-link to="order?current=3">
               <span :class="current==='3'?'nav-link active':'nav-link'" @click="getorderList">订单列表</span>
             </router-link>
-          </li>
+          </li>-->
         </ul>
       </div>
       <div class="vipManage_right">

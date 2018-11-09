@@ -26,7 +26,7 @@
         <li><a href="#download" data-toggle="tab">下载报告</a></li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="single">
+        <div class="tab-pane fade in active" id="single" @click="single_isApply_show=false">
           <form class="form-horizontal" role="form">
             <div class="form-group">
               <label class="control-label">论文题目</label>
@@ -38,6 +38,30 @@
               <label class="control-label">文章作者</label>
               <div class="col-sm-5">
                 <input class="form-control" type="text" maxlength="15" placeholder="作者名字不能超过15个字（*必填）">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class=" control-label">手机验证</label>
+              <div class="col-sm-3">
+                <input class="form-control" type="text" placeholder="请输入收到的验证码">
+              </div>
+              <div class="">
+                <button type="button" class="btn btn-outline-warning" v-show="sendAuthCode" @click="getAuthCode">获取验证码
+                </button>
+                <button type="button" class="btn" v-show="!sendAuthCode" style="cursor:not-allowed;color:#888">
+                  {{auth_time}}重新发送
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class=" control-label">学生证件</label>
+              <div class="col-sm-4">
+                <input class="form-control" v-model="single_studentImgName" type="text" placeholder="请上传学生证">
+              </div>
+              <div class="">
+                <input type="file" ref="single_studentIdUpload" accept="image/gif,image/jpeg,image/jpg,image/png"
+                       style="display: none;" @change="single_getStudentID">
+                <button type="button" class="btn btn-outline-warning" @click="single_studentID">上传</button>
               </div>
             </div>
             <div class="form-group">
@@ -54,19 +78,21 @@
           <div class="apply">
             <span class="apply_way">支付方式</span>
             <div class="apply_content">
-              <div class="apply_zfb" @click="apply_zfb">
+              <div class="apply_zfb" @click.stop="single_apply(0)">
                 <img src="../../assets/images/zhifubao.png">
                 <span>支付宝支付</span>
               </div>
-              <div class="apply_wx" @click="apply_wx">
+              <div class="apply_wx" @click.stop="single_apply(1)">
                 <img src="../../assets/images/wx.png">
                 <span>微信支付</span>
               </div>
-              <div style="display: none;" ref="showApply">666666666</div>
             </div>
           </div>
+          <div v-show="single_isApply_show" style="width:200px" @click.stop="single_isApply_show=true">
+            <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
+          </div>
         </div>
-        <div class="tab-pane fade" id="More_than">
+        <div class="tab-pane fade" id="More_than" @click="more_isApply_show=false">
           <div class="naming_rule">
             <span class="naming_rule_title">命名规则</span>
             <div class="naming_rule_detail">
@@ -74,54 +100,74 @@
               <span class="rule">格式规则：序号_作者姓名_文件标题.doc</span>
               <p>
                 例如：1_小明_信息管理系统的的设计.doc <br>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2_小红_人口增长与可持续发展.doc
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2_小红_人口增长与可持续发展.doc
               </p>
             </div>
           </div>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class=" control-label">学生证件</label>
+              <div class="col-sm-4">
+                <input class="form-control" type="text" placeholder="请上传学生证" v-model="more_studentImgName">
+              </div>
+              <div class="">
+                <input type="file" ref="more_studentIdUpload" accept="image/gif,image/jpeg,image/jpg,image/png" style="display: none;" @change="more_getStudentID">
+                <button type="button" class="btn btn-outline-warning" @click="more_studentID">上传</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class=" control-label">手机验证</label>
+              <div class="col-sm-3">
+                <input class="form-control" type="text" placeholder="请输入收到的验证码">
+              </div>
+              <div class="">
+                <button type="button" class="btn btn-outline-warning" v-show="sendAuthCode" @click="getAuthCode">获取验证码
+                </button>
+                <button type="button" class="btn" v-show="!sendAuthCode" style="cursor:not-allowed;color:#888">
+                  {{auth_time}}重新发送
+                </button>
+              </div>
+            </div>
+          </form>
           <div class="under_detection">
             <div class="form-group">
               <label class="control-label">待检论文</label>
               <div style="margin-right:20px;">
-                <input class="form-control" v-show="isShow"  disabled="disabled" type="text" placeholder="仅支持word文档.doc和docx格式">
-                <div class="upload_success" v-for="(item,index) in filesList"  v-show="!isShow">
+                <input class="form-control" v-show="isShow" disabled="disabled" type="text"
+                       placeholder="仅支持word文档.doc和docx格式">
+                <div class="upload_success" v-for="(item,index) in filesList" v-show="!isShow">
                   <input class="form-control" type="text" :value="item.name"> <i class="iconfont icon-shanchu1" @click="upload_delete(index)"></i>
                 </div>
                 <input ref="more_paperUpload" style="display: none;" type="file" multiple="multiple" @change="getMoreArticle">
               </div>
             </div>
-            <button type="button" class="btn btn-outline-warning" @click="more_upload">上传</button>
+            <button type="button" class="btn btn-outline-warning" @click="more_upload">上传论文</button>
           </div>
           <div class="apply">
             <span class="apply_way">支付方式</span>
             <div class="apply_content">
-              <div class="more_apply_zfb" data-toggle="modal" data-target="#myModal" @click="more_apply_zfb">
+              <div class="more_apply_zfb" data-toggle="modal" @click.stop="more_apply(0)">
                 <img src="../../assets/images/zhifubao.png">
                 <span>支付宝支付</span>
               </div>
-              <div class="more_apply_wx" data-toggle="modal" data-target="#myModal" @click="more_apply_wx">
+              <div class="more_apply_wx" data-toggle="modal" @click.stop="more_apply(1)">
                 <img src="../../assets/images/wx.png">
                 <span>微信支付</span>
               </div>
-              <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <img src="../../assets/images/footerQr_01.png">
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
+          <div v-show="more_isApply_show" @click.stop="more_isApply_show=true">
+            <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
+          </div>
         </div>
-        <div class="tab-pane fade" id="download"  @click="isOrder=false">
+        <div class="tab-pane fade" id="download" @click="isOrder=false">
           <div class="form-group ">
             <label class="control-label">订单编号</label>
             <input type="text" class="form-control col-sm-4" placeholder="点击橙色字，查看在哪里找到订单号">
             <button type="button" class="btn btn-outline-warning">查询结果</button>
           </div>
           <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)" @click.stop="userClick(1)">【微信】</a>订单编号？</span>
-          <div v-show="isOrder" style="width:200px;"  @click.stop="isOrder=true">
+          <div v-show="isOrder" style="width:200px;" @click.stop="isOrder=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
           </div>
           <div class="line"></div>
@@ -148,7 +194,8 @@
                 8、请用最新的浏览器打开阅读（推荐：谷歌浏览器、QQ浏览器、IE9以上浏览器）
               </li>
               <li>
-                9、报告下载：整个检测过程系统完全自助检测 ，封闭式运行，无人工干预，每一位用户都有自己独立的订单编号进行检测论文，服务器提供7天论文下载，超过7天则被删除，删除以后将无法恢复，确保您的论文不会被泄露和盗窃。请尽快下载报告到电脑永久保存。
+                9、报告下载：整个检测过程系统完全自助检测
+                ，封闭式运行，无人工干预，每一位用户都有自己独立的订单编号进行检测论文，服务器提供7天论文下载，超过7天则被删除，删除以后将无法恢复，确保您的论文不会被泄露和盗窃。请尽快下载报告到电脑永久保存。
               </li>
               <li>
                 10、定稿如何选系统：不同的检测系统，使用不同论文对比库，所以检测结果极少有相同的。您学校用什么系统来审核论文，选择和学校同样的检测系统，检测结果和学校是一样的，不同的检测系统的检测结果是不一样的！
@@ -174,71 +221,111 @@
   export default {
     data() {
       return {
-        isShow:true,
-        single_name:'',
-        single_content:'',
-        filesList:[],
-        isOrder:false,
-        orderImg:{
-          zfb:require('../../assets/images/head.png'),
-          wx:require('../../assets/images/login_bg.png')
+        isShow: true,
+        single_studentImgName: '',
+        single_name: '',
+        single_content: '',
+        single_isApply_show:false,
+        more_isApply_show:false,
+        more_studentImgName:'',
+        filesList: [],
+        isOrder: false,
+        orderImg: {
+          zfb: require('../../assets/images/footerQr_01.png'),
+          wx: require('../../assets/images/footerQr_02.png')
         },
-        currentNum:''
+        currentNum: '',
+        sendAuthCode: true,
+        auth_time: 0,
       }
     },
+
     created() {
     },
+
     mounted() {
       $('#myTab a:first').tab('show')
     },
+
     methods: {
       // 单篇上传
-      single_upload() {
-        this.$refs.paperUpload.click();
+      single_studentID() { //学生证上传
+        this.$refs.single_studentIdUpload.click();
       },
-      getArticle(e){
+
+      single_getStudentID(e) { //获取学生证
         let file = e.target.files[0];
         console.log(file);
-        this.single_name=file.name.split('.')[0];
-        this.single_content=file.name
-      },
-      apply_zfb() {
-        this.$refs.showApply.style.display = 'block'
-      },
-      apply_wx() {
-        this.$refs.showApply.style.display = 'block'
+        this.single_studentImgName = file.name
       },
 
+      single_upload() { //单篇文章上传
+        this.$refs.paperUpload.click();
+      },
+
+      getArticle(e) { //获取上传文章
+        let file = e.target.files[0];
+        console.log(file);
+        this.single_name = file.name.split('.')[0];
+        this.single_content = file.name
+      },
+
+      single_apply(num) {
+        this.currentNum = num;
+        this.single_isApply_show=true;
+      },
+
+      getAuthCode: function () {
+        this.sendAuthCode = false;
+        this.auth_time = 60;
+        let auth_timetimer = setInterval(() => {
+          this.auth_time--;
+          if (this.auth_time <= 0) {
+            this.sendAuthCode = true;
+            clearInterval(auth_timetimer);
+          }
+        }, 1000);
+      },
 
       // 多篇上传
-      more_upload(){
+      more_studentID(){
+        this.$refs.more_studentIdUpload.click();
+      },
+      more_getStudentID(e){
+        let file = e.target.files[0];
+        console.log(file);
+        this.more_studentImgName = file.name
+      },
+
+      more_upload() {
         this.$refs.more_paperUpload.click();
       },
-      getMoreArticle(e){
+
+      getMoreArticle(e) {
         let files = e.target.files;
         // console.log(files)
-        this.filesList=files;
+        this.filesList = files;
         this.isShow = false;
       },
-      upload_delete(index){
+
+      upload_delete(index) {
       },
-      more_apply_zfb() {
-        this.$refs.more_showApply.style.display = 'block'
-      },
-      more_apply_wx() {
-        this.$refs.more_showApply.style.display = 'block'
+
+      more_apply(num) {
+        this.currentNum = num;
+        this.more_isApply_show=true;
       },
 
       //下载报告
-      userClick(num){
-        this.currentNum=num;
-        this.isOrder=true;
+      userClick(num) {
+        this.currentNum = num;
+        this.isOrder = true;
       }
     }
   }
 </script>
 
-<style lang="less">
+<style scoped lang="less">
   .upload_paper {
     .system_option {
       h3 {
@@ -283,7 +370,7 @@
         font-size: 14px;
         text-align: left;
       }
-      button:focus{
+      button:focus {
         box-shadow: none;
       }
       .nav-tabs {
@@ -302,11 +389,11 @@
       }
       .tab-content {
         margin-top: 40px;
-        padding:0 40px;
+        padding: 0 40px;
         #single {
           .form-horizontal {
-            input{
-              font-size:16px;
+            input {
+              font-size: 16px;
             }
             .form-group {
               display: flex;
@@ -316,8 +403,9 @@
                 text-align: right;
               }
               .form-control {
-                color: #888;
-                font-size: 16px;
+                color: #aab2bd;
+                font-size: 14px;
+                text-align: left;
               }
               .form-control:focus {
                 box-shadow: none;
@@ -351,132 +439,159 @@
             }
           }
         }
-        #More_than{
-          .naming_rule,.under_detection,.apply{
+        #More_than {
+          .naming_rule, .under_detection, .apply {
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
           }
-          .naming_rule{
-            .naming_rule_title{
-              color:#888;
-              margin-right:40px;
+          .naming_rule {
+            .naming_rule_title {
+              color: #888;
+              margin-right: 40px;
             }
-            .naming_rule_detail{
-              margin-top:10px;
-              color:#555;
-              font-size:16px;
-              span{
+            .naming_rule_detail {
+              margin-top: 10px;
+              color: #555;
+              font-size: 16px;
+              span {
                 display: inline-block;
-                margin:10px auto;
+                margin: 10px auto;
               }
-              .rule{
-                color:red;
+              .rule {
+                color: red;
               }
-              :last-child{
+              :last-child {
                 color: #888;
               }
             }
           }
-          .under_detection{
-            display: flex;
-            flex-direction: column;
-            margin:40px auto;
-            button{
-              margin-left:100px;
+          .form-horizontal {
+            margin-top: 20px;
+            input {
+              font-size: 16px;
             }
-            .form-group{
+            .form-group {
               display: flex;
               align-items: center;
-              .upload_success{
+              .control-label {
+                color: #828282;
+                text-align: right;
+                margin-right: 20px;
+              }
+              .form-control {
+                color: #888;
+                font-size: 16px;
+              }
+              .form-control:focus {
+                box-shadow: none;
+              }
+            }
+          }
+          .under_detection {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+            button {
+              margin-left: 100px;
+            }
+            .form-group {
+              display: flex;
+              align-items: center;
+              .upload_success {
                 position: relative;
-                i{
+                input {
+                  color: #aab2bd;
+                  font-size: 14px;
+                  text-align: left;
+                }
+                i {
                   position: absolute;
-                  top:0;
-                  right:0;
-                  font-size:24px;
-                  color:#555;
+                  top: 0;
+                  right: 0;
+                  font-size: 24px;
+                  color: #555;
                   cursor: pointer;
                 }
               }
-              .form-control{
-                margin:10px auto;
-                padding-right:25px;
-                color:#888;
-                font-size:16px;
+              .form-control {
+                margin: 10px auto;
+                padding-right: 25px;
+                color: #888;
+                font-size: 16px;
               }
-              .form-control:focus{
+              .form-control:focus {
                 box-shadow: none;
               }
-              .control-label{
-                margin-right:40px;
-                color:#888;
+              .control-label {
+                margin-right: 40px;
+                color: #888;
               }
             }
           }
-          .apply_content{
+          .apply_content {
             display: flex;
           }
-          .apply{
-            .apply_way{
-              color:#888;
+          .apply {
+            .apply_way {
+              color: #888;
             }
-            .more_apply_zfb,.more_apply_wx{
+            .more_apply_zfb, .more_apply_wx {
               display: flex;
               flex-direction: column;
               align-items: center;
-              margin-left:40px;
-              color:#888;
+              margin-left: 40px;
+              color: #888;
               cursor: pointer;
-              img{
-                width:60px;
-                height:60px;
+              img {
+                width: 60px;
+                height: 60px;
                 vertical-align: center;
-                margin-bottom:10px;
+                margin-bottom: 10px;
               }
             }
           }
         }
-        #download{
+        #download {
           color: #888;
-          .form-group{
+          .form-group {
             display: flex;
             align-items: center;
-            .form-control{
+            .form-control {
               margin: auto 20px;
             }
-            .form-control:focus{
+            .form-control:focus {
               box-shadow: none;
             }
           }
-          span{
-            font-size:14px;
+          span {
+            font-size: 14px;
             display: inline-block;
-            margin:10px 0 20px 80px;
-            a{
-              color:#ffc107;
+            margin: 10px 0 20px 80px;
+            a {
+              color: #ffc107;
             }
           }
-          .line{
-            width:100%;
-            height:5px;
-            margin:40px auto;
+          .line {
+            width: 100%;
+            height: 5px;
+            margin: 40px auto;
             background-color: #fff;
-            border-radius:10px;
+            border-radius: 10px;
           }
-          .notice{
-            margin-top:20px;
-            h3{
+          .notice {
+            margin-top: 20px;
+            h3 {
               margin: 10px auto;
-              font-size:18px;
-              color:#000;
+              font-size: 18px;
+              color: #000;
             }
-            ul{
-              padding:0 20px;
-              li{
-                margin:15px auto;
-                font-size:16px;
-                color:orangered;
+            ul {
+              padding: 0 20px;
+              li {
+                margin: 15px auto;
+                font-size: 16px;
+                color: orangered;
               }
             }
           }

@@ -294,7 +294,15 @@
 </script>
 
 <style scoped lang="less">
-
+  .header[data-v-61dd7a3d] {
+    margin-bottom: 10px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    opacity: 0.4;
+    color: red;
+  }
   .carousel-item > img {
     width: 100%;
   }
