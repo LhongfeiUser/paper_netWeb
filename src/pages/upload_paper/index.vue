@@ -46,10 +46,10 @@
                 <input class="form-control" type="text" placeholder="请输入收到的验证码">
               </div>
               <div class="">
-                <button type="button" class="btn btn-outline-warning" v-show="sendAuthCode" @click="getAuthCode">获取验证码
+                <button type="button" class="btn btn-outline-warning" v-show="single_authCode" @click="single_getAuthCode">获取验证码
                 </button>
-                <button type="button" class="btn" v-show="!sendAuthCode" style="cursor:not-allowed;color:#888">
-                  {{auth_time}}重新发送
+                <button type="button" class="btn" v-show="!single_authCode" style="cursor:not-allowed;color:#888">
+                  {{single_time}}重新发送
                 </button>
               </div>
             </div>
@@ -79,17 +79,22 @@
             <span class="apply_way">支付方式</span>
             <div class="apply_content">
               <div class="apply_zfb" @click.stop="single_apply(0)">
-                <img src="../../assets/images/zhifubao.png">
+                <img :src="single_isApply_show===false?applyImg.zfb:(currentNum===0?applyImg.zfb_01:applyImg.zfb)">
                 <span>支付宝支付</span>
               </div>
               <div class="apply_wx" @click.stop="single_apply(1)">
-                <img src="../../assets/images/wx.png">
+                <img :src="single_isApply_show===false?applyImg.wx:(currentNum===1?applyImg.wx_01:applyImg.wx)">
                 <span>微信支付</span>
               </div>
             </div>
           </div>
           <div v-show="single_isApply_show" style="width:200px" @click.stop="single_isApply_show=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
+            <div>
+              <span>需支付金额</span>
+              <span>￥188</span>
+            </div>
+            <div></div>
           </div>
         </div>
         <div class="tab-pane fade" id="More_than" @click="more_isApply_show=false">
@@ -121,10 +126,10 @@
                 <input class="form-control" type="text" placeholder="请输入收到的验证码">
               </div>
               <div class="">
-                <button type="button" class="btn btn-outline-warning" v-show="sendAuthCode" @click="getAuthCode">获取验证码
+                <button type="button" class="btn btn-outline-warning" v-show="more_authCode" @click="more_getAuthCode">获取验证码
                 </button>
-                <button type="button" class="btn" v-show="!sendAuthCode" style="cursor:not-allowed;color:#888">
-                  {{auth_time}}重新发送
+                <button type="button" class="btn" v-show="!more_authCode" style="cursor:not-allowed;color:#888">
+                  {{more_time}}重新发送
                 </button>
               </div>
             </div>
@@ -132,13 +137,13 @@
           <div class="under_detection">
             <div class="form-group">
               <label class="control-label">待检论文</label>
-              <div style="margin-right:20px;">
+              <div style="padding-left:15px;">
                 <input class="form-control" v-show="isShow" disabled="disabled" type="text"
                        placeholder="仅支持word文档.doc和docx格式">
                 <div class="upload_success" v-for="(item,index) in filesList" v-show="!isShow">
                   <input class="form-control" type="text" :value="item.name"> <i class="iconfont icon-shanchu1" @click="upload_delete(index)"></i>
                 </div>
-                <input ref="more_paperUpload" style="display: none;" type="file" multiple="multiple" @change="getMoreArticle">
+                <input ref="more_paperUpload" style="display: none;" type="file" accept=".doc,.docx" multiple="multiple" @change="getMoreArticle">
               </div>
             </div>
             <button type="button" class="btn btn-outline-warning" @click="more_upload">上传论文</button>
@@ -147,11 +152,11 @@
             <span class="apply_way">支付方式</span>
             <div class="apply_content">
               <div class="more_apply_zfb" data-toggle="modal" @click.stop="more_apply(0)">
-                <img src="../../assets/images/zhifubao.png">
+                <img :src="more_isApply_show===false?applyImg.zfb:(currentNum===0?applyImg.zfb_01:applyImg.zfb)">
                 <span>支付宝支付</span>
               </div>
               <div class="more_apply_wx" data-toggle="modal" @click.stop="more_apply(1)">
-                <img src="../../assets/images/wx.png">
+                <img :src="more_isApply_show===false?applyImg.wx:(currentNum===1?applyImg.wx_01:applyImg.wx)">
                 <span>微信支付</span>
               </div>
             </div>
@@ -230,13 +235,21 @@
         more_studentImgName:'',
         filesList: [],
         isOrder: false,
+        applyImg:{
+          zfb: require('../../assets/images/zhifubao.png'),
+          zfb_01: require('../../assets/images/zfb_01.png'),
+          wx: require('../../assets/images/wx.png'),
+          wx_01: require('../../assets/images/wx_01.png'),
+        },
         orderImg: {
           zfb: require('../../assets/images/footerQr_01.png'),
           wx: require('../../assets/images/footerQr_02.png')
         },
         currentNum: '',
-        sendAuthCode: true,
-        auth_time: 0,
+        single_authCode: true,
+        more_authCode: true,
+        single_time: 0,
+        more_time: 0,
       }
     },
 
@@ -275,14 +288,14 @@
         this.single_isApply_show=true;
       },
 
-      getAuthCode: function () {
-        this.sendAuthCode = false;
-        this.auth_time = 60;
-        let auth_timetimer = setInterval(() => {
-          this.auth_time--;
-          if (this.auth_time <= 0) {
-            this.sendAuthCode = true;
-            clearInterval(auth_timetimer);
+      single_getAuthCode() {
+        this.single_authCode = false;
+        this.single_time = 60;
+        let single_timetimer = setInterval(() => {
+          this.single_time--;
+          if (this.single_time <= 0) {
+            this.single_authCode = true;
+            clearInterval(single_timetimer);
           }
         }, 1000);
       },
@@ -291,12 +304,24 @@
       more_studentID(){
         this.$refs.more_studentIdUpload.click();
       },
+
       more_getStudentID(e){
         let file = e.target.files[0];
         console.log(file);
         this.more_studentImgName = file.name
       },
 
+      more_getAuthCode() {
+        this.more_authCode = false;
+        this.more_time = 60;
+        let single_timetimer = setInterval(() => {
+          this.more_time--;
+          if (this.more_time <= 0) {
+            this.more_authCode = true;
+            clearInterval(single_timetimer);
+          }
+        }, 1000);
+      },
       more_upload() {
         this.$refs.more_paperUpload.click();
       },
@@ -325,7 +350,7 @@
   }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
   .upload_paper {
     .system_option {
       h3 {
@@ -524,7 +549,7 @@
                 box-shadow: none;
               }
               .control-label {
-                margin-right: 40px;
+                margin-right: 20px;
                 color: #888;
               }
             }

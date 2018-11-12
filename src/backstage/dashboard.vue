@@ -1,0 +1,120 @@
+<template>
+  <div>
+    <el-container class="_container" style="border: 1px solid #eee;">
+      <el-aside class="aside_container" width="200px">
+        <el-menu router
+                 :show-timeout="200"
+                 :default-active="$route.path"
+                 mode="vertical"
+                 background-color="#304156"
+                 text-color="#bfcbd9"
+                 active-text-color="#409EFF">
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>数据管理</span>
+            </template>
+            <el-menu-item index="/backstage/statistic"><i class="el-icon-location"></i>数据统计</el-menu-item>
+            <el-menu-item index="/backstage/statement"><i class="el-icon-location"></i>收支明细</el-menu-item>
+            <el-menu-item index="/backstage/userList"><i class="el-icon-location"></i>用户列表</el-menu-item>
+          </el-submenu>
+          <el-menu-item index="/backstage/withdrawDeposit"><i class="el-icon-location"></i>申请提现</el-menu-item>
+          <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-location"></i>分成设置</el-menu-item>
+          <el-menu-item index="/backstage/generalizeLink"><i class="el-icon-location"></i>推广链接</el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-aside width="200px"></el-aside>
+      <el-container class="main_container">
+        <el-header class="header_container">
+         <h3>代理商管理后台</h3>
+          <el-dropdown style="cursor: pointer;font-size:18px">
+           <span>admin <i class="el-icon-arrow-down" style="margin-right: 15px"></i></span>
+           <el-dropdown-menu slot="dropdown">
+             <el-dropdown-item @click.native="goHome">首页</el-dropdown-item>
+             <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
+           </el-dropdown-menu>
+         </el-dropdown>
+        </el-header>
+        <div style="padding:0 40px 20px 40px;">
+          <transition name="fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
+        </div>
+      </el-container>
+    </el-container>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+      }
+    },
+    methods:{
+      goHome(){
+        alert('1')
+      },
+      logout(){
+        alert('2')
+      }
+    }
+  };
+</script>
+
+<style scoped lang="scss">
+  ._container{
+    position: relative;
+  }
+  ._container:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .aside_container{
+    position: fixed;
+    top:0;
+    left:0;
+    min-height:100vh;
+    background-color:#304156
+  }
+  .main_container{
+    position: relative;
+    background-color: #fff;
+    .header_container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      text-align: left;
+      font-size: 18px;
+      padding: 30px;
+      position: relative;
+      border: 1px solid #ebeef5;
+      color: #303133;
+      -webkit-transition: .3s;
+      transition: .3s;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+      overflow: hidden;
+      margin-bottom:20px;
+    }
+  }
+  .el-submenu .el-menu-item{
+    background-color: #1f2d3d !important;
+  }
+  .el-submenu .el-menu-item:hover{
+    background-color: #001528 !important;
+  }
+  .el-header {
+    color: #333;
+  }
+  .el-aside {
+    color: #333;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+</style>

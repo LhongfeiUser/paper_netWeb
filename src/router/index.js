@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/pages/layout/index'
+import Dashboard from '@/backstage/dashboard'
 
 Vue.use(Router);
 
@@ -79,8 +80,8 @@ export default new Router({
           component:()=>import('@/pages/faqList/index')
         },
         {
-          path:'detail',
-          name:'detail',
+          path:'detail/:id',
+          name:'fqaDetail',
           component:()=>import('@/pages/faqDetail/index')
         }
       ]
@@ -96,21 +97,55 @@ export default new Router({
         },
         {
           path:'detail',
+          name:'academicDetail',
           component:()=>import('@/pages/academicDetail/index')
         }
       ]
     },
-  /*
+    /*代理商后台*/
     {
-      path: 'home/faqList',
-      name: 'faqList',
-      component: ()=>import('@/pages/faqList/index'),
+      path: '/backstage',
+      name: 'statistic',
+      redirect: '/login',
+      component: Dashboard,
+      children:[
+        {
+          path:'',
+          component:()=>import('@/backstage/statistic'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'statistic',
+          component:()=>import('@/backstage/statistic'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'statement',
+          component:()=>import('@/backstage/statement'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'userList',
+          component:()=>import('@/backstage/userList'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'sharedSetting',
+          component:()=>import('@/backstage/sharedSetting'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'withdrawDeposit',
+          component:()=>import('@/backstage/withdrawDeposit'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'generalizeLink',
+          component:()=>import('@/backstage/generalizeLink'),
+          meta: {requireAuth: true}
+        },
+      ]
     },
-    {
-      path: 'home/academicList',
-      name: 'academicList',
-      component: ()=>import('@/pages/academicList/index'),
-    },*/
     {path: '*', redirect: '/', hidden: true},
   ]
 })

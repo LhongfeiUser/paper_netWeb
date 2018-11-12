@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="bg">
-      <a href="/home"><i class="icon-fanhui" style="width:50px;height:50px;font-size:24px;"></i></a>
+      <a href="/home"><i class="iconfont icon-fanhui" style="font-size:26px;position: absolute;top:0;left:10px; color:#fff;"></i></a>
       <div class="container justify-content-end" style="display: flex">
         <div class="form row">
           <div class="form-horizontal">
@@ -69,16 +69,16 @@
         }
       },
       login(){
-        console.log(this.userName,this.password);
         if(this.item){
           this.remember(!this.item)
         }
+        this.$router.push('/backstage')
       }
     }
   }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
   .bg {
     background: url("../../assets/images/login_bg.png") no-repeat;
     background-size: 100% 100%;

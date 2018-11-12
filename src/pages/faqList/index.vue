@@ -9,12 +9,12 @@
         <h3>常见问题</h3>
         <ul class="list_content">
           <li>
-            <router-link :to="{name:'detail',params:{id:num}}">
+            <router-link :to="{name:'fqaDetail',params:{id:1}}">
               中国知网论文查重的报告该如何看？
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'detail', params: { id: num }}">
+            <router-link :to="{ name: 'fqaDetail', params: { id: 2 }}">
               如何查看论文查重报告的详细指标？
             </router-link>
           </li>
@@ -58,7 +58,7 @@
   }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
   .faqList{
     .page-link:focus{
       box-shadow: none;

@@ -32,7 +32,7 @@
   }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 .footer{
   height:35vh;
   padding-top:20px;

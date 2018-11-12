@@ -10,7 +10,7 @@
             </router-link>
           </li>-->
           <li class="nav-item item_active">
-            <router-link to="upload?current=2">
+            <router-link to="upload">
               <span class="nav-link active" @click="upload">论文查重</span>
             </router-link>
           </li>
@@ -54,7 +54,7 @@
   }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
   .vipManage {
     .vipManage_right, .aside {
       font-size: 1rem;

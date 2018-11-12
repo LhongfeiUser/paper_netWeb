@@ -29,7 +29,9 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <span>学术资讯</span>
+          <router-link to="/academic">
+            <span>学术资讯</span>
+          </router-link>
         </li>
       </ul>
       <a href="/login">登录</a>
@@ -49,7 +51,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .header{
     margin-bottom:10px;
   }

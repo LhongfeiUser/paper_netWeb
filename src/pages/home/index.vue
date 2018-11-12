@@ -293,8 +293,8 @@
   }
 </script>
 
-<style scoped lang="less">
-  .header[data-v-61dd7a3d] {
+<style scoped lang="scss">
+  .header{
     margin-bottom: 10px;
     position: absolute;
     top: 0;
@@ -483,7 +483,7 @@
         align-items: center;
         font-size: 1rem;
         color: #000;
-        background-color: rgb(247 238 214);
+        background-color:rgb(247,238,214);
         padding: 30px 40px;
         img {
           width: 10vw;

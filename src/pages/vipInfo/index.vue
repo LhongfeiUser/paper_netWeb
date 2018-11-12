@@ -103,7 +103,7 @@
   }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
   .vipInfo {
     /*padding: 0 40px;*/
     .vip_title {
