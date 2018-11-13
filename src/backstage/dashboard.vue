@@ -12,11 +12,19 @@
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
+              <span>用户管理</span>
+            </template>
+            <el-menu-item index="/backstage/user"><i class="el-icon-location"></i>个人中心</el-menu-item>
+            <el-menu-item index="/backstage/userList"><i class="el-icon-location"></i>用户列表</el-menu-item>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-location"></i>
               <span>数据管理</span>
             </template>
             <el-menu-item index="/backstage/statistic"><i class="el-icon-location"></i>数据统计</el-menu-item>
             <el-menu-item index="/backstage/statement"><i class="el-icon-location"></i>收支明细</el-menu-item>
-            <el-menu-item index="/backstage/userList"><i class="el-icon-location"></i>用户列表</el-menu-item>
+            <el-menu-item index="/backstage/orderDetail"><i class="el-icon-location"></i>订单详情</el-menu-item>
           </el-submenu>
           <el-menu-item index="/backstage/withdrawDeposit"><i class="el-icon-location"></i>申请提现</el-menu-item>
           <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-location"></i>分成设置</el-menu-item>
@@ -37,7 +45,9 @@
         </el-header>
         <div style="padding:0 40px 20px 40px;">
           <transition name="fade" mode="out-in">
-            <router-view></router-view>
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
           </transition>
         </div>
       </el-container>
@@ -53,10 +63,11 @@
     },
     methods:{
       goHome(){
-        alert('1')
+        this.$router.push('/home')
       },
       logout(){
-        alert('2')
+        sessionStorage.clear('token');
+        this.$router.push('/login')
       }
     }
   };

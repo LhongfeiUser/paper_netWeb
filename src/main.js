@@ -14,9 +14,10 @@ import ElementUI from 'element-ui'
 Vue.use(ElementUI);
 
 router.beforeEach((to, from, next)=>{
-
   if(to.meta.requireAuth){
-   if(0){
+    let token = sessionStorage.getItem('token');
+    console.log(token);
+    if(token){
      next();
    }else {
      next({

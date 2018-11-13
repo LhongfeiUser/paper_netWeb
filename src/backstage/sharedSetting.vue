@@ -172,7 +172,6 @@
     },
     methods:{
       compile(row){
-        alert('1');
         this.form = row;
         this.dialogFormVisible = true
       }

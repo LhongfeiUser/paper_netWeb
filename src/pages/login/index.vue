@@ -48,18 +48,18 @@
       this.userName=cookies.get('userName');
       this.password=cookies.get('password');
       this.item=cookies.get('item')
+
     },
     methods:{
-      remember(item){
-        console.log(!item);
+      remember(isRemove){
         if(this.userName&&this.password){
-          if(!item){
+          if(!isRemove){
             cookies.set('userName',this.userName);
             cookies.set('password',this.password);
             cookies.set('item',true);
             /*保存时间*/
             cookies.set('userName',this.userName, { expires: 7, path: '' });
-            cookies.set('password',this.userName, { expires: 7, path: '' });
+            cookies.set('password',this.password, { expires: 7, path: '' });
             cookies.set('item',this.userName, { expires: 7, path: '' });
           }else {
             cookies.remove('userName');
@@ -72,7 +72,13 @@
         if(this.item){
           this.remember(!this.item)
         }
-        this.$router.push('/backstage')
+        console.log(this.userName,this.password);
+        if(this.userName==='1234'&&this.password==='3456'){
+          sessionStorage.setItem('token',1);
+          this.$router.push('/backstage/statistic')
+        }else{
+          this.$message.error('账号或密码错误，请重新输入');
+        }
       }
     }
   }

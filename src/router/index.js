@@ -115,6 +115,11 @@ export default new Router({
           meta: {requireAuth: true}
         },
         {
+          path:'user',
+          component:()=>import('@/backstage/user'),
+          meta: {requireAuth: true}
+        },
+        {
           path:'statistic',
           component:()=>import('@/backstage/statistic'),
           meta: {requireAuth: true}
@@ -142,6 +147,11 @@ export default new Router({
         {
           path:'generalizeLink',
           component:()=>import('@/backstage/generalizeLink'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'orderDetail',
+          component:()=>import('@/backstage/orderDetail'),
           meta: {requireAuth: true}
         },
       ]
