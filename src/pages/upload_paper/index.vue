@@ -41,6 +41,12 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="control-label">手机号码</label>
+              <div class="col-sm-5">
+                <input class="form-control" type="text" maxlength="15" placeholder="请您输入正确手机号">
+              </div>
+            </div>
+            <div class="form-group">
               <label class=" control-label">手机验证</label>
               <div class="col-sm-3">
                 <input class="form-control" type="text" placeholder="请输入收到的验证码">
@@ -67,7 +73,7 @@
             <div class="form-group">
               <label class=" control-label">待检论文</label>
               <div class="col-sm-4">
-                <input class="form-control" v-model="single_content" type="text" placeholder="仅支持word文档.doc和.docx格式">
+                <input class="form-control" disabled v-model="single_content" type="text" placeholder="仅支持word文档.doc和.docx格式">
               </div>
               <div class="">
                 <input type="file" ref="paperUpload" accept=".doc,.docx" style="display: none;" @change="getArticle">
@@ -88,13 +94,22 @@
               </div>
             </div>
           </div>
-          <div v-show="single_isApply_show" style="width:200px" @click.stop="single_isApply_show=true">
+          <div class="StagePayment" v-show="single_isApply_show" @click.stop="single_isApply_show=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
-            <div>
+            <div class="need_payment">
               <span>需支付金额</span>
               <span>￥188</span>
             </div>
-            <div></div>
+            <div class="payment_right">
+              <div :class="currentNum===0?'zfb_bg':'wx_bg'">
+                <img src="../../assets/images/scanCode.png">
+                <span>扫码支付</span>
+              </div>
+              <div>
+                <img src="../../assets/images/falult.png">
+                <span>故障订单处理</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="tab-pane fade" id="More_than" @click="more_isApply_show=false">
@@ -118,6 +133,12 @@
               <div class="">
                 <input type="file" ref="more_studentIdUpload" accept="image/gif,image/jpeg,image/jpg,image/png" style="display: none;" @change="more_getStudentID">
                 <button type="button" class="btn btn-outline-warning" @click="more_studentID">上传</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">手机号码</label>
+              <div class="col-sm-5">
+                <input class="form-control" type="text" maxlength="15" placeholder="请您输入正确的手机号">
               </div>
             </div>
             <div class="form-group">
@@ -161,8 +182,22 @@
               </div>
             </div>
           </div>
-          <div v-show="more_isApply_show" @click.stop="more_isApply_show=true">
+          <div class="StagePayment" v-show="more_isApply_show" @click.stop="more_isApply_show=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
+            <div class="need_payment">
+              <span>需支付金额</span>
+              <span>￥188</span>
+            </div>
+            <div class="payment_right">
+              <div :class="currentNum===0?'zfb_bg':'wx_bg'">
+                <img src="../../assets/images/scanCode.png">
+                <span>扫码支付</span>
+              </div>
+              <div>
+                <img src="../../assets/images/falult.png">
+                <span>故障订单处理</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="tab-pane fade" id="download" @click="isOrder=false">
@@ -280,12 +315,29 @@
         let file = e.target.files[0];
         console.log(file);
         this.single_name = file.name.split('.')[0];
-        this.single_content = file.name
+        this.single_content = file.name;
+        let postData=this.$qs.stringify({
+          file:file
+        });
+        this.axios({
+          url:'/api/upload',
+          method:'post',
+          data:postData,
+          headers:{
+            'Content-Type':'application/x-www-form-urlencoded',
+          },
+        }).then((res)=>{
+          console.log(res);
+        })
       },
 
       single_apply(num) {
-        this.currentNum = num;
-        this.single_isApply_show=true;
+        if(this.single_content!==''){
+          this.currentNum = num;
+          this.single_isApply_show=true;
+        }else {
+          this.$message.error('请先上传论文');
+        }
       },
 
       single_getAuthCode() {
@@ -307,7 +359,6 @@
 
       more_getStudentID(e){
         let file = e.target.files[0];
-        console.log(file);
         this.more_studentImgName = file.name
       },
 
@@ -322,23 +373,41 @@
           }
         }, 1000);
       },
+
       more_upload() {
         this.$refs.more_paperUpload.click();
       },
 
       getMoreArticle(e) {
         let files = e.target.files;
-        // console.log(files)
-        this.filesList = files;
+        console.log(files);
+        for( let n of files){
+          this.filesList.push(n)
+        }
         this.isShow = false;
       },
 
-      upload_delete(index) {
+      upload_delete(dx) {
+        if (isNaN(dx) || dx > this.filesList.length) { return false; }
+        for (let i = 0, n = 0; i < this.filesList.length; i++) {
+          if (this.filesList[i] !== this.filesList[dx]) {
+            this.filesList[n++] = this.filesList[i]
+          }
+        }
+        this.filesList.length -= 1;
+        if(this.filesList.length===0){
+          this.isShow=true;
+        }
+        this.filesList = this.filesList.slice();
       },
 
       more_apply(num) {
-        this.currentNum = num;
-        this.more_isApply_show=true;
+        if(!isShow){
+          this.currentNum = num;
+          this.more_isApply_show=true;
+        }else {
+          this.$message.error('请上传论文');
+        }
       },
 
       //下载报告
@@ -415,6 +484,62 @@
       .tab-content {
         margin-top: 40px;
         padding: 0 40px;
+        .StagePayment{
+          width:500px;
+          height:200px;
+          margin:10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #ffffff;
+          img{
+            width:150px;
+            height:150px;
+            margin-left:30px;
+          }
+          .need_payment{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size:22px;
+            margin-right:80px;
+            span:nth-child(2){
+              color:#f49f00;
+              font-size:24px;
+              font-weight: 500;
+            }
+          }
+          .payment_right{
+            justify-content: flex-end;
+            div{
+              width:100px;
+              height:100px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              img{
+                width:46px;
+                height:46px;
+                vertical-align: center;
+                margin:0;
+              }
+            }
+            .zfb_bg{
+              background-color:#1aa1e6;
+            }
+            .wx_bg{
+              background-color: #55ad23;
+            }
+            div:nth-child(1){
+              color:#fff;
+            }
+            div:nth-child(2){
+              background-color: #d5d5d5;
+            }
+          }
+        }
         #single {
           .form-horizontal {
             input {

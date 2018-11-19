@@ -13,10 +13,8 @@
               中国知网论文查重的报告该如何看？
             </router-link>
           </li>
-          <li>
-            <router-link :to="{ name: 'fqaDetail', params: { id: 2 }}">
-              如何查看论文查重报告的详细指标？
-            </router-link>
+          <li @click="goDetail(2)">
+            如何查看论文查重报告的详细指标？
           </li>
           <li>
             论文查重系统会识别毕业论文中的表格数据吗？
@@ -55,6 +53,31 @@
       }
     },
     components: {Header, Footer},
+    created(){
+      this.getFaqList();
+    },
+    methods:{
+      getFaqList(){
+        let postData=this.$qs.stringify({
+          token:'meichenghuilian20181108',
+          cat_id:2,
+        });
+        this.axios({
+          url:'api/getNewList',
+          method:'post',
+          data:postData,
+          headers:{
+            'Content-Type':'application/x-www-form-urlencoded',
+          },
+        }).then(res=>{
+          console.log(res);
+        }).catch(()=>{
+        })
+      },
+      goDetail(id){
+        this.$router.push(`/faq/detail/${id}`)
+      },
+    }
   }
 </script>
 

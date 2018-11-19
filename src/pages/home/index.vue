@@ -290,6 +290,28 @@
     data() {
       return {}
     },
+    created(){
+      // this.getCate();
+    },
+    methods:{
+      getCate(){
+        let postData=this.$qs.stringify({
+          token:'meichenghuilian20181108',
+        })
+        this.axios({
+          url:'api/getCate',
+          method:'post',
+          data:postData,
+          headers:{
+            'Content-Type':'application/x-www-form-urlencoded',
+          },
+        }).then(res=>{
+          console.log(res);
+        }).catch(()=>{
+
+        })
+      }
+    }
   }
 </script>
 

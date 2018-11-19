@@ -13,7 +13,7 @@
               </div>
               <div class="form-group">
                 <i class="fa fa-lock fa-lg"></i>
-                <input class="form-control required" type="password" placeholder="密码" v-model="password"/>
+                <input class="form-control required" type="password" placeholder="密码" v-model="password" @keyup.13="login"/>
               </div>
               <div class="form-group">
                 <label class="checkbox">
@@ -23,9 +23,9 @@
               <div class="form-group">
                 <button type="button" class="btn btn-primary" @click="login">登录</button>
               </div>
-              <div class="text-right">
-                <a href="#">忘记密码？</a>
-              </div>
+              <!--<div class="text-right">-->
+                <!--<a href="#">忘记密码？</a>-->
+              <!--</div>-->
             </div>
           </div>
         </div>
@@ -36,6 +36,7 @@
 
 <script>
   import cookies from 'js-cookie';
+  import md5 from 'md5'
   export default {
     data(){
       return{
@@ -54,13 +55,10 @@
       remember(isRemove){
         if(this.userName&&this.password){
           if(!isRemove){
-            cookies.set('userName',this.userName);
-            cookies.set('password',this.password);
-            cookies.set('item',true);
             /*保存时间*/
             cookies.set('userName',this.userName, { expires: 7, path: '' });
             cookies.set('password',this.password, { expires: 7, path: '' });
-            cookies.set('item',this.userName, { expires: 7, path: '' });
+            cookies.set('item',this.item, { expires: 7, path: '' });
           }else {
             cookies.remove('userName');
             cookies.remove('password');
@@ -72,13 +70,27 @@
         if(this.item){
           this.remember(!this.item)
         }
-        console.log(this.userName,this.password);
-        if(this.userName==='1234'&&this.password==='3456'){
-          sessionStorage.setItem('token',1);
-          this.$router.push('/backstage/statistic')
-        }else{
-          this.$message.error('账号或密码错误，请重新输入');
-        }
+        let postData = this.$qs.stringify({
+          username:this.userName,
+          password:this.password,
+          token:'meichenghuilian20181108'
+        });
+        this.axios({
+          url:'api/login',
+          method:'post',
+          headers:{
+            'Content-Type':'application/x-www-form-urlencoded',
+          },
+          data:postData,
+        }).then(res=>{
+          console.log(res);
+          if(res.data.code === 200){
+            sessionStorage.setItem('token',1);
+            this.$router.push('/backstage/statistic')
+          }else{
+            this.$message.error('账号或密码错误，请重新输入');
+          }
+        })
       }
     }
   }

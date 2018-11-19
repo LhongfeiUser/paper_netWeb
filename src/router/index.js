@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/pages/layout/index'
+import Layout from '@/App'
 import Dashboard from '@/backstage/dashboard'
 
 Vue.use(Router);

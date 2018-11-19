@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+import qs from 'qs'
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.js'
@@ -12,11 +14,12 @@ import '@/assets/css/iconfont.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI);
+Vue.prototype.axios= axios;
+Vue.prototype.$qs= qs;
 
 router.beforeEach((to, from, next)=>{
   if(to.meta.requireAuth){
     let token = sessionStorage.getItem('token');
-    console.log(token);
     if(token){
      next();
    }else {

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    a{
+      text-decoration: none;
+    }
+    body{
+  /*    background:url("./assets/images/video_pc.png")no-repeat;
+      background-size:100% 100%;*/
+    }
+    .box{
+      margin:80px 30px 30px 30px;
+      font-family: 微软雅黑;
+    }
+    .title{
+      color:#fff;
+      font-weight: normal;
+    }
+    .title h2 a{
+      color:#ff6f00;
+      margin-left:10px;
+      display: none;
+    }
+    .title h5{
+      margin-top:40px;
+      margin-bottom:20px;
+      color:#bfbebf;
+    }
+    .video_box{
+      height:495px;
+      background: #000;
+      display: flex;
+      align-items: flex-start;
+    }
+    ._video{
+      width:75%;
+      height:100%;
+    }
+    .introduce{
+      width:25%;
+      padding:0 35px;
+      margin-top:40px;
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: flex-start;
+      color:#bdbcbc;
+      text-align: left;
+    }
+    .introduce h3{
+      display: inline-block;
+      margin-bottom:30px;
+    }
+    .introduce h3 span{
+      font-size:12px;
+    }
+    .introduce p{
+      line-height: 25px;
+      letter-spacing: 2px;
+      font-size:14px;
+      margin-bottom:80px;
+    }
+    .introduce span{
+      color:#ff6f00;
+      font-size:26px;
+      margin-bottom:65px;
+    }
+    .introduce a{
+      display: inline-block;
+      color:#bdbcbc;
+      width:200px;
+      background-color:#ff6f00;
+      padding:10px 0;
+      border-radius:5px;
+      text-align: center;
+    }
+    .introduce_app{
+      display: none;
+      flex-direction: column;
+      align-items: left;
+      justify-content: flex-start;
+      color:#bdbcbc;
+      text-align: left;
+    }
+    .introduce_app h3{
+      margin:20px 0;
+      color:#000;
+    }
+    .introduce_app h3 span{
+      color:#888;
+      font-size:12px;
+    }
+    .introduce_app p{
+      color:#888;
+      line-height: 25px;
+      letter-spacing: 1px;
+      text-align: justify;
+    }
+    .introduce_app a{
+      display: inline-block;
+      margin-top:20px;
+      color:#fff;
+      width:10em;
+      background-color:#ff6f00;
+      padding:10px 0;
+      border-radius:5px;
+      text-align: center;
+    }
+    .video_date{
+      display: inline-block;
+      color:#bdbcbc;
+      font-size:14px;
+      margin-top:20px;
+    }
+    @media screen and (max-width:520px){
+      .box{
+        margin:0;
+      }
+      .title{
+        background:url("./assets/images/video_pc.png")no-repeat;
+        background-size:100% 100%;
+        padding:22px 27px 10px;
+      }
+      .title h2{
+        font-size:14px;
+      }
+      .title h2 a{
+        display: inline-block;
+      }
+      .title h5{
+        margin:10px 0;
+        font-size:12px;
+      }
+      .video_box{
+        height:40vh;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+      }
+      ._video{
+        width:100%;
+      }
+      .video_date{
+        padding-left:10px;
+      }
+      .introduce{
+        display: none;
+      }
+      .introduce_app{
+        display: flex;
+        padding:0 15px;
+      }
+      .introduce_app{
+        font-size:12px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="title">
+    <h2>阿里巴巴·阿里云大数据时代 <a>￥询问价格</a></h2>
+    <h5> 标签：产品宣传片 互联网 电影级</h5>
+  </div>
+  <div class="video_box">
+    <div class="_video" id='plv_ab745ed4e60f36478f122edcc1962805_a' style="height:100%;"></div>
+    <div class="introduce">
+      <h3>
+        影片简介
+        <span>Project summary</span>
+      </h3>
+      <p>
+        阿里云宣传片基于云计算这样的互联网技术性展示从脚本设计就关注客户。通过阿里云服务为客户所创造的价值，给用户带来的便捷，呈现出阿里云为客户创造无法计算的价值。
+      </p>
+      <span>￥5 ~ 10万</span>
+      <a href="http://proce64de.bj.isitecenter.cn/page78">我要下单</a>
+    </div>
+  </div>
+  <span class="video_date">2018.10.31&nbsp; 11:07:55</span>
+  <div class="introduce_app">
+    <h3>
+      影片简介
+      <span>Project summary</span>
+    </h3>
+    <p>
+      阿里云宣传片基于云计算这样的互联网技术性展示从脚本设计就关注客户。通过阿里云服务为客户所创造的价值，给用户带来的便捷，呈现出阿里云为客户创造无法计算的价值。
+    </p>
+    <a href="http://proce64de.bj.isitecenter.cn/page78">我要下单</a>
+  </div>
+</div>
+<script src='//player.polyv.net/script/polyvplayer.min.js'></script>
+<script>
+  var player = polyvObject('#plv_ab745ed4e60f36478f122edcc1962805_a').videoPlayer({
+    'width': '100%',
+    'height': '100%',
+    'vid': 'ab745ed4e60f36478f122edcc1962805_a',
+    'forceH5': true
+  });
+</script>
+</body>
+</html>
