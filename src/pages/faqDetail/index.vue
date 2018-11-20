@@ -5,7 +5,9 @@
 </template>
 
 <script>
-    export default {
+  import {getFaqDetail} from "@/api/getDetail";
+
+  export default {
         data(){
           return{}
         },
@@ -14,20 +16,12 @@
       },
       methods:{
         getFaqList(){
-          let postData=this.$qs.stringify({
+          const faqDetail={
             token:'meichenghuilian20181108',
             detail_id:2,
-          });
-          this.axios({
-            url:'/api/getNewDetail',
-            method:'post',
-            data:postData,
-            headers:{
-              'Content-Type':'application/x-www-form-urlencoded',
-            },
-          }).then(res=>{
+          };
+          getFaqDetail(faqDetail).then(res=>{
             console.log(res);
-          }).catch((err)=>{
           })
         },
       }

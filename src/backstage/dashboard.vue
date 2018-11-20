@@ -11,24 +11,24 @@
                  active-text-color="#409EFF">
           <el-submenu index="1">
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i class="iconfont icon-navicon-yhgl"></i>
               <span>用户管理</span>
             </template>
-            <el-menu-item index="/backstage/user"><i class="el-icon-location"></i>个人中心</el-menu-item>
-            <el-menu-item index="/backstage/userList"><i class="el-icon-location"></i>用户列表</el-menu-item>
+            <el-menu-item index="/backstage/user"><i class="iconfont icon-gerenzhongxin"></i>个人中心</el-menu-item>
+            <el-menu-item index="/backstage/userList"><i class="iconfont icon-user-list"></i>用户列表</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i class="iconfont icon-shujuguanli"></i>
               <span>数据管理</span>
             </template>
-            <el-menu-item index="/backstage/statistic"><i class="el-icon-location"></i>数据统计</el-menu-item>
-            <el-menu-item index="/backstage/statement"><i class="el-icon-location"></i>收支明细</el-menu-item>
-            <el-menu-item index="/backstage/orderDetail"><i class="el-icon-location"></i>订单详情</el-menu-item>
+            <el-menu-item index="/backstage/statistic"><i class="iconfont icon-icon-test"></i>数据统计</el-menu-item>
+            <el-menu-item index="/backstage/statement"><i class="iconfont icon-shouzhimingxi"></i>收支明细</el-menu-item>
+            <el-menu-item index="/backstage/orderDetail"><i class="iconfont icon-order"></i>订单详情</el-menu-item>
           </el-submenu>
-          <el-menu-item index="/backstage/withdrawDeposit"><i class="el-icon-location"></i>申请提现</el-menu-item>
-          <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-location"></i>分成设置</el-menu-item>
-          <el-menu-item index="/backstage/generalizeLink"><i class="el-icon-location"></i>推广链接</el-menu-item>
+          <el-menu-item index="/backstage/withdrawDeposit"><i class="iconfont icon-tixian"></i>申请提现</el-menu-item>
+          <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-news" style="margin-right:5px!important;"></i>分成设置</el-menu-item>
+          <el-menu-item index="/backstage/generalizeLink"><i class="iconfont icon-share"></i>推广链接</el-menu-item>
         </el-menu>
       </el-aside>
       <el-aside width="200px"></el-aside>
@@ -87,7 +87,11 @@
     top:0;
     left:0;
     min-height:100vh;
-    background-color:#304156
+    background-color:#304156;
+    i{
+      font-size: 18px;
+      margin-right:10px!important;
+    }
   }
   .main_container{
     position: relative;

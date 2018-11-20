@@ -402,7 +402,7 @@
       },
 
       more_apply(num) {
-        if(!isShow){
+        if(!this.isShow){
           this.currentNum = num;
           this.more_isApply_show=true;
         }else {

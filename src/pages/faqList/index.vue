@@ -45,6 +45,7 @@
 <script>
   import Header from '@/components/Header'
   import Footer from '@/components/Footer'
+  import {getListData} from "@/api/getList";
 
   export default {
     data() {
@@ -58,20 +59,12 @@
     },
     methods:{
       getFaqList(){
-        let postData=this.$qs.stringify({
+        const faqData={
           token:'meichenghuilian20181108',
           cat_id:2,
-        });
-        this.axios({
-          url:'api/getNewList',
-          method:'post',
-          data:postData,
-          headers:{
-            'Content-Type':'application/x-www-form-urlencoded',
-          },
-        }).then(res=>{
+        };
+        getListData(faqData).then(res=>{
           console.log(res);
-        }).catch(()=>{
         })
       },
       goDetail(id){

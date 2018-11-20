@@ -36,7 +36,9 @@
 
 <script>
   import cookies from 'js-cookie';
-  import md5 from 'md5'
+  import md5 from 'md5';
+  import {login_req} from "../../api/login";
+
   export default {
     data(){
       return{
@@ -70,23 +72,15 @@
         if(this.item){
           this.remember(!this.item)
         }
-        let postData = this.$qs.stringify({
+        const postData = {
           username:this.userName,
           password:this.password,
           token:'meichenghuilian20181108'
-        });
-        this.axios({
-          url:'api/login',
-          method:'post',
-          headers:{
-            'Content-Type':'application/x-www-form-urlencoded',
-          },
-          data:postData,
-        }).then(res=>{
-          console.log(res);
-          if(res.data.code === 200){
+        };
+        login_req(postData).then(res=>{
+          if(res.code === 200){
             sessionStorage.setItem('token',1);
-            this.$router.push('/backstage/statistic')
+            this.$router.push('/backstage/user')
           }else{
             this.$message.error('账号或密码错误，请重新输入');
           }
