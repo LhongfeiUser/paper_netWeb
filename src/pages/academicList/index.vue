@@ -3,7 +3,7 @@
     <Header></Header>
     <main>
       <aside>
-        <img src="../../assets/images/aside_logo.png">
+        <!--<img src="../../assets/images/aside_logo.png">
         <div style="margin:20px 0 20px 20px;font-size:16px;color:#000;">
           <h3>知网小分解系统 文献库</h3>
         </div>
@@ -20,7 +20,8 @@
           <li>互联网文档资源</li>
           <li>图书资源</li>
           <li>个人比对库</li>
-        </ul>
+        </ul>-->
+        <v_aside></v_aside>
       </aside>
       <div class="academic_list">
         <h3>学术资讯</h3>
@@ -57,13 +58,13 @@
 <script>
   import Header from '@/components/Header'
   import Footer from '@/components/Footer'
-
+  import v_aside from '@/components/v-aside'
   export default {
     data() {
       return {
       }
     },
-    components: {Header, Footer},
+    components: {Header, Footer, v_aside},
   }
 </script>
 
@@ -73,7 +74,7 @@
       display: flex;
       align-items: flex-start;
       aside,.academic_list{
-        margin: 0 10px 10px 20px;
+        margin: 0 10px 10px 0;
         padding: 30px 0;
         border: 1px solid #ebeef5;
         background-color: #fff;
@@ -85,9 +86,11 @@
         overflow: hidden;
       }
       aside{
-        width:20vw;
+        width:18vw;
         background-color: #fff;
-        margin:0 20px 40px;
+        /*margin:0 20px 40px;*/
+        margin-right:30px;
+        padding-bottom:100px;
         ul{
           padding:0 20px;
           li{

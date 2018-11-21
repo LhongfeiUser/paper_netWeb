@@ -3,7 +3,7 @@
     <Header></Header>
     <main>
       <aside>
-        侧边栏
+        <v_aside></v_aside>
       </aside>
       <div class="faqList_list">
         <h3>常见问题</h3>
@@ -30,11 +30,9 @@
           </li>
         </ul>
         <ul class="pagination">
-          <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <li class="page-item disabled"><a class="page-link text-black-50" href="#">上一页</a></li>
+          <li class="page-item" v-for="item in 5" :key="item"><a class="page-link text-black-50" href="#">{{item}}</a></li>
+          <li class="page-item"><a class="page-link text-black-50" href="#">下一页</a></li>
         </ul>
       </div>
     </main>
@@ -45,6 +43,7 @@
 <script>
   import Header from '@/components/Header'
   import Footer from '@/components/Footer'
+  import v_aside from '@/components/v-aside'
   import {getListData} from "@/api/getList";
 
   export default {
@@ -53,7 +52,7 @@
         num:12345,
       }
     },
-    components: {Header, Footer},
+    components: {Header, Footer,v_aside},
     created(){
       this.getFaqList();
     },
@@ -83,7 +82,7 @@
       display: flex;
       align-items: flex-start;
       aside,.faqList_list{
-        margin: 0 10px 10px 20px;
+        margin: 0 10px 10px 0;
         padding: 30px 0;
         border: 1px solid #ebeef5;
         background-color: #fff;
@@ -95,9 +94,10 @@
         overflow: hidden;
       }
       aside{
-        width:20vw;
+        width:18vw;
         background-color: #fff;
-        margin:0 20px;
+        margin-right:30px;
+        padding-bottom:100px;
       }
       .faqList_list{
         padding:40px 80px;

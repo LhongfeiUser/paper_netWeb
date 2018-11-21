@@ -27,7 +27,7 @@
             <el-menu-item index="/backstage/orderDetail"><i class="iconfont icon-order"></i>订单详情</el-menu-item>
           </el-submenu>
           <el-menu-item index="/backstage/withdrawDeposit"><i class="iconfont icon-tixian"></i>申请提现</el-menu-item>
-          <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-news" style="margin-right:5px!important;"></i>分成设置</el-menu-item>
+          <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-news" style="margin-right:5px!important;"></i>我的分成</el-menu-item>
           <el-menu-item index="/backstage/generalizeLink"><i class="iconfont icon-share"></i>推广链接</el-menu-item>
         </el-menu>
       </el-aside>

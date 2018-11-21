@@ -1,6 +1,6 @@
 <template>
   <div class="upload_paper">
-    <div class="system_option">
+    <!--<div class="system_option">
       <h3>检测系统选择</h3>
       <div class="option_content">
         <ul>
@@ -18,7 +18,7 @@
           <li><a href="javascript:void(0)">Gocheck论文检测系统</a></li>
         </ul>
       </div>
-    </div>
+    </div>-->
     <div class="article_upload">
       <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#single" data-toggle="tab">单篇上传</a></li>
@@ -203,8 +203,8 @@
         <div class="tab-pane fade" id="download" @click="isOrder=false">
           <div class="form-group ">
             <label class="control-label">订单编号</label>
-            <input type="text" class="form-control col-sm-4" placeholder="点击橙色字，查看在哪里找到订单号">
-            <button type="button" class="btn btn-outline-warning">查询结果</button>
+            <input type="text" class="form-control col-sm-4" v-model="orderCode" placeholder="点击橙色字，查看在哪里找到订单号">
+            <button type="button" class="btn btn-outline-warning" @click="searchResult">查询结果</button>
           </div>
           <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)" @click.stop="userClick(1)">【微信】</a>订单编号？</span>
           <div v-show="isOrder" style="width:200px;" @click.stop="isOrder=true">
@@ -285,6 +285,7 @@
         more_authCode: true,
         single_time: 0,
         more_time: 0,
+        orderCode:null,
       }
     },
 
@@ -414,6 +415,11 @@
       userClick(num) {
         this.currentNum = num;
         this.isOrder = true;
+      },
+      searchResult(){
+         if(this.orderCode===null){
+           this.$message.error('订单号不能为空');
+         }
       }
     }
   }

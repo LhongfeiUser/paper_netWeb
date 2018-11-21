@@ -4,14 +4,14 @@
     <main>
       <div class="banner">
         <!--轮播图-->
-        <div id="demo" class="carousel slide" data-ride="carousel">
-          <!-- 指示符 -->
+       <!-- <div id="slideShow" class="carousel slide" data-ride="carousel">
+          &lt;!&ndash; 指示符 &ndash;&gt;
           <ul class="carousel-indicators">
-            <li data-target="#demo" data-slide-to="0" class="active"></li>
-            <li data-target="#demo" data-slide-to="1"></li>
-            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#slideShow" data-slide-to="0" class="active"></li>
+            <li data-target="#slideShow" data-slide-to="1"></li>
+            <li data-target="#slideShow" data-slide-to="2"></li>
           </ul>
-          <!-- 轮播图片 -->
+          &lt;!&ndash; 轮播图片 &ndash;&gt;
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
@@ -23,14 +23,19 @@
               <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
             </div>
           </div>
-          <!-- 左右切换按钮 -->
-          <!-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          &lt;!&ndash; 左右切换按钮 &ndash;&gt;
+           <a class="carousel-control-prev" href="#slideShow" data-slide="prev">
              <span class="carousel-control-prev-icon"></span>
            </a>
-           <a class="carousel-control-next" href="#demo" data-slide="next">
+           <a class="carousel-control-next" href="#slideShow" data-slide="next">
              <span class="carousel-control-next-icon"></span>
-           </a>-->
-        </div>
+           </a>
+        </div>-->
+        <el-carousel indicator-position="outside">
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3>{{ item }}</h3>
+          </el-carousel-item>
+        </el-carousel>
         <div class="flow_path">
           <div class="flow_path_title">
             <h2>论文查重流程</h2>
@@ -288,7 +293,9 @@
   export default {
     components: {Header,Footer},
     data() {
-      return {}
+      return {
+        arr:['1','3',]
+      }
     },
     created(){
       // this.getCate();
@@ -316,15 +323,6 @@
 </script>
 
 <style scoped lang="scss">
-  .header{
-    margin-bottom: 10px;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    width: 100%;
-    opacity: 0.4;
-    color: red;
-  }
   .carousel-item > img {
     width: 100%;
   }

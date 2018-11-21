@@ -145,7 +145,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 80px 10px 0;
+    padding: 10px 10px 10px 0;
     /*border: 1px solid #ebeef5;*/
     background-color: #f5f7fa;
     .orderDetail_title {

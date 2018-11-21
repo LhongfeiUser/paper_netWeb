@@ -3,7 +3,7 @@
     <Header></Header>
     <main>
       <aside>
-        侧边栏
+        <v_aside></v_aside>
       </aside>
       <div class="skill_list">
         <h3>论文查重技巧</h3>
@@ -40,13 +40,13 @@
 <script>
   import Header from '@/components/Header'
   import Footer from '@/components/Footer'
-
+  import v_aside from '@/components/v-aside'
   export default {
     data() {
       return {
       }
     },
-    components: {Header, Footer},
+    components: {Header, Footer,v_aside},
   }
 </script>
 
@@ -56,7 +56,7 @@
     display: flex;
     align-items: flex-start;
     aside,.skill_list{
-      margin: 0 10px 10px 20px;
+      margin: 0 10px 10px 0;
       padding: 30px 0;
       border: 1px solid #ebeef5;
       background-color: #fff;
@@ -68,9 +68,10 @@
       overflow: hidden;
     }
     aside{
-      width:20vw;
+      width:18vw;
       background-color: #fff;
-      margin:0 20px;
+      margin-right:30px;
+      padding-bottom:100px;
     }
     .skill_list{
       padding:40px 80px;

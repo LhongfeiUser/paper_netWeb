@@ -46,12 +46,8 @@ service.interceptors.response.use(
     console.log('error');
     console.log(error);
     console.log(JSON.stringify(error));
-
-    let text = JSON.parse(JSON.stringify(error)).response.status === 404
-      ? '404'
-      : '网络异常，请重试';
     Message({
-      message: '响应错误',
+      message: '请求超时',
       type: 'error',
       duration: 2 * 1000
     });
