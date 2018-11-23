@@ -14,7 +14,7 @@
               <i class="iconfont icon-navicon-yhgl"></i>
               <span>用户管理</span>
             </template>
-            <el-menu-item index="/backstage/user"><i class="iconfont icon-gerenzhongxin"></i>个人中心</el-menu-item>
+            <el-menu-item index="/backstage"><i class="iconfont icon-gerenzhongxin"></i>个人中心</el-menu-item>
             <el-menu-item index="/backstage/userList"><i class="iconfont icon-user-list"></i>用户列表</el-menu-item>
           </el-submenu>
           <el-submenu index="2">

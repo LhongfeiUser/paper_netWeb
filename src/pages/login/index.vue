@@ -73,7 +73,7 @@
           this.remember(!this.item)
         }
         sessionStorage.setItem('token',1);
-        this.$router.push('/backstage/user')
+        this.$router.push('/backstage')
         const postData = {
           username:this.userName,
           password:this.password,

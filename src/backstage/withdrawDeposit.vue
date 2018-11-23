@@ -5,7 +5,7 @@
         <span class="el-icon-sold-out"/>
         <h4>申请提现</h4>
       </div>
-      <div class="apply_content">
+      <div class="_apply_content">
         <div class="deposit">
           <span>账户余额</span>
           <span>￥0.00</span>
@@ -69,7 +69,7 @@
 
 <style lang="scss">
   .el-input.el-input--suffix,.el-input{
-    width:30vw;
+    width:20vw;
   }
   .applyForWithdraw{
     width:80vw;
@@ -96,7 +96,7 @@
       font-size:24px;
     }
   }
-  .apply_content{
+  ._apply_content{
     padding-left:10vw;
     .deposit{
       margin:20px 0 20px 1vw;

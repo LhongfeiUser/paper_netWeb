@@ -159,4 +159,7 @@
       }
     }
   }
+  .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner{
+    width:220px;
+  }
 </style>

@@ -24,10 +24,9 @@
     export default {
         data(){
           return{
-
           }
         },
-      components:{Header,Footer,v_aside}
+      components:{Header,Footer, v_aside}
     }
 </script>
 

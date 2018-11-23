@@ -1,11 +1,11 @@
 <template>
     <div class="aside">
       <ul class="nav nav-pills">
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <router-link to="/process" active-class="nav-link active">
             <span>论文查重流程</span>
           </router-link>
-        </li>
+        </li>-->
         <li class="nav-item">
           <router-link to="/skill" active-class="nav-link active">
             <span>论文查重技巧</span>

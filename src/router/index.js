@@ -105,18 +105,18 @@ export default new Router({
     /*代理商后台*/
     {
       path: '/backstage',
-      name: 'statistic',
+      name: 'user',
       redirect: '/login',
       component: Dashboard,
       children:[
         {
           path:'',
-          component:()=>import('@/backstage/statistic'),
+          component:()=>import('@/backstage/user'),
           meta: {requireAuth: true}
         },
         {
-          path:'user',
-          component:()=>import('@/backstage/user'),
+          path:'statistic',
+          component:()=>import('@/backstage/statistic'),
           meta: {requireAuth: true}
         },
         {

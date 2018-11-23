@@ -8,25 +8,8 @@
       <div class="faqList_list">
         <h3>常见问题</h3>
         <ul class="list_content">
-          <li>
-            <router-link :to="{name:'fqaDetail',params:{id:1}}">
-              中国知网论文查重的报告该如何看？
-            </router-link>
-          </li>
-          <li @click="goDetail(2)">
-            如何查看论文查重报告的详细指标？
-          </li>
-          <li>
-            论文查重系统会识别毕业论文中的表格数据吗？
-          </li>
-          <li>
-            论文查重系统抄袭结果为0%，是正常的吗？
-          </li>
-          <li>
-            知网论文查重报告中引用被标红？5点注意事项需改正！
-          </li>
-          <li>
-            论文查重中常见10大问题解答,论文检测查重必读
+          <li v-for="(item,index) in list" :key="index" @click="goDetail(index)">
+            {{item}}
           </li>
         </ul>
         <ul class="pagination">
@@ -49,7 +32,14 @@
   export default {
     data() {
       return {
-        num:12345,
+        list:[
+          '中国知网论文查重的报告该如何看？',
+          '如何查看论文查重报告的详细指标？',
+          '论文查重系统会识别毕业论文中的表格数据吗？',
+          '论文查重系统抄袭结果为0%，是正常的吗？',
+          '知网论文查重报告中引用被标红？5点注意事项需改正！',
+          '论文查重中常见10大问题解答,论文检测查重必读'
+        ]
       }
     },
     components: {Header, Footer,v_aside},
@@ -116,6 +106,7 @@
           }
           li:hover{
             color:orangered;
+            cursor: pointer;
           }
           li{
             margin:20px auto;

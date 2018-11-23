@@ -43,7 +43,7 @@
             <div class="form-group">
               <label class="control-label">手机号码</label>
               <div class="col-sm-5">
-                <input class="form-control" type="text" maxlength="15" placeholder="请您输入正确手机号">
+                <input class="form-control" type="text" v-model="single_phoneCode" maxlength="15" placeholder="请您输入正确手机号">
               </div>
             </div>
             <div class="form-group">
@@ -138,7 +138,7 @@
             <div class="form-group">
               <label class="control-label">手机号码</label>
               <div class="col-sm-5">
-                <input class="form-control" type="text" maxlength="15" placeholder="请您输入正确的手机号">
+                <input class="form-control" type="text" v-model="more_phoneCode" maxlength="11" placeholder="请您输入正确的手机号">
               </div>
             </div>
             <div class="form-group">
@@ -201,7 +201,7 @@
           </div>
         </div>
         <div class="tab-pane fade" id="download" @click="isOrder=false">
-          <div class="form-group ">
+          <div class="form-group">
             <label class="control-label">订单编号</label>
             <input type="text" class="form-control col-sm-4" v-model="orderCode" placeholder="点击橙色字，查看在哪里找到订单号">
             <button type="button" class="btn btn-outline-warning" @click="searchResult">查询结果</button>
@@ -210,47 +210,19 @@
           <div v-show="isOrder" style="width:200px;" @click.stop="isOrder=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
           </div>
-          <div class="line"></div>
-          <div class="notice">
-            <h3>下载报告须知：</h3>
-            <ul>
-              <li>1、刷新结果：点击【查询结果】按钮刷新，请勿刷新页面</li>
-              <li>2、报告等待时间：不同查重系统的检测时间不同，请耐心等待。</li>
-              <li>3、知网系统下载：论文提交成功后40分钟-1个小时左右出结果，23:00后提交的论文请次日早上9:00后来下载报告，提交后请耐心等待，提交后不予退款。</li>
-              <li>4、订单编号格式为：T+20位数字组合格式，输入不要留空格，请勿输入错误格式和错误订单编号。</li>
-              <li>
-                5、查看订单编号有以下3种渠道
-              </li>
-              <li>①微信支付-查看账单-商户单号。</li>
-              <li>②支付宝-朋友-服务提醒（含支付助手）-商户订单号</li>
-              <li>③必过论文公众号-订单状态提醒-订单编号</li>
-              <li>
-                6、所有的报告都需要解压查看，请用最新的解压软件解压
-              </li>
-              <li>
-                7、大部分报告为网页形式，如果无法阅读报告，是因为您浏览器版本过低，或版本不兼容。
-              </li>
-              <li>
-                8、请用最新的浏览器打开阅读（推荐：谷歌浏览器、QQ浏览器、IE9以上浏览器）
-              </li>
-              <li>
-                9、报告下载：整个检测过程系统完全自助检测
-                ，封闭式运行，无人工干预，每一位用户都有自己独立的订单编号进行检测论文，服务器提供7天论文下载，超过7天则被删除，删除以后将无法恢复，确保您的论文不会被泄露和盗窃。请尽快下载报告到电脑永久保存。
-              </li>
-              <li>
-                10、定稿如何选系统：不同的检测系统，使用不同论文对比库，所以检测结果极少有相同的。您学校用什么系统来审核论文，选择和学校同样的检测系统，检测结果和学校是一样的，不同的检测系统的检测结果是不一样的！
-              </li>
-              <li>
-                11、检测内容的标准：有些学校只测正文，有些测正文和参考文献，有些甚至连声明、致谢都测。学校测的内容一旦有差异，结果就有少许差异。但是如果你提交检测的论文和提交给学校一样，没有任何改动，那么结果是一样的。
-              </li>
-              <li>
-                12、正品检测报告：系统直通检测官网，是从官方下载的报告，支持所有报告验真，若有假冒，全额退款。如有任何的疑问可联系客服解决。
-              </li>
-              <li>
-                13、0相似度是否正常：如检测结果为0，说明官网检测结果也是0，并非未检测，并非不准。只能说明你的论文在该检测系统的比对库里中没有重复的，即使你去官网检测也是这个结果。
-              </li>
-            </ul>
-          </div>
+        </div>
+        <div class="line"></div>
+        <div class="rightFooter">
+          <h3 class="rtfooter_til ">论文检测报告须知</h3>
+          <ul>
+            <li><span class="label bg-info">多订单号取报告</span> 如是合并订单检测，填写其中任何一个订单号即可下载。</li>
+            <li><span class="label bg-success">如何修改论文？</span> 可根据报告标红去修改，如报告中含修改秘籍，可以参考。</li>
+            <li><span class="label bg-warning">要严格OR要准确 </span> 严格＝准确，这是对报告结果的认识误区，严格并不一定准确，很多同学喜欢严格，而不问准确性。</li>
+            <li><span class="label bg-danger">0相似度正常吗？</span>如检测结果为0，说明官网检测结果也是0，并非未检测，并非不准。只能说明你的论文在该检测系统的比对库里中没有重复的，即使你去官网检测也是这个结果。</li>
+            <li><span class="label bg-primary">定稿如何选系统</span>不同的检测系统，使用不同论文对比库，所以检测结果极少有相同的。您学校用什么系统来审核论文，选择和学校同样的检测系统，检测结果和学校是一样的，不同的检测系统的检测结果是不一样的！</li>
+            <li><span class="label bg-info">检测内容的标准</span>有些学校只测正文，有些测正文和参考文献，有些甚至连声明、致谢都测。学校测的内容一旦有差异，结果就有少许差异。但是如果你提交检测的论文和提交给学校一样，没有任何改动，那么结果是一样的。</li>
+            <li><span class="label bg-success">正品检测报告！</span>请不要以"准"或"不准"等词语中差评，因为我们的系统直通检测官网，是从官方下载的报告，如有任何的疑问可联系店家解决。</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -258,16 +230,20 @@
 </template>
 
 <script>
+  import {uploadArticle} from "@/api/upload_paper";
+
   export default {
     data() {
       return {
         isShow: true,
         single_studentImgName: '',
+        single_phoneCode:'',
         single_name: '',
         single_content: '',
         single_isApply_show:false,
         more_isApply_show:false,
         more_studentImgName:'',
+        more_phoneCode:'',
         filesList: [],
         isOrder: false,
         applyImg:{
@@ -301,10 +277,23 @@
       single_studentID() { //学生证上传
         this.$refs.single_studentIdUpload.click();
       },
-
       single_getStudentID(e) { //获取学生证
-        let file = e.target.files[0];
-        console.log(file);
+        let file = e.target.files[0],
+            type =file.name.substring(file.name.lastIndexOf('.')),
+            AllImgExt=".jpg|.jpeg|.gif|.png|",
+            upLoadSize = 1024*1024;
+        if(file.name.lastIndexOf('.')===-1){
+           this.$message.warning('路径不正确');
+           return false
+        }
+        if(AllImgExt.indexOf(type+"|")===-1){
+          this.$message.error(type+'格式不支持');
+           return false
+        }
+        if(file.size>upLoadSize){
+          this.$message.error('图片过大，请重新上传');
+          return false;
+        }
         this.single_studentImgName = file.name
       },
 
@@ -317,17 +306,10 @@
         console.log(file);
         this.single_name = file.name.split('.')[0];
         this.single_content = file.name;
-        let postData=this.$qs.stringify({
+        let article={
           file:file
-        });
-        this.axios({
-          url:'/api/upload',
-          method:'post',
-          data:postData,
-          headers:{
-            'Content-Type':'application/x-www-form-urlencoded',
-          },
-        }).then((res)=>{
+        };
+        uploadArticle(article).then(res=>{
           console.log(res);
         })
       },
@@ -342,15 +324,19 @@
       },
 
       single_getAuthCode() {
-        this.single_authCode = false;
-        this.single_time = 60;
-        let single_timetimer = setInterval(() => {
-          this.single_time--;
-          if (this.single_time <= 0) {
-            this.single_authCode = true;
-            clearInterval(single_timetimer);
-          }
-        }, 1000);
+        if(/^1(3|4|5|6|8)\d{9}$/.test(this.single_phoneCode)){
+          this.single_authCode = false;
+          this.single_time = 60;
+          let single_timetimer = setInterval(() => {
+            this.single_time--;
+            if (this.single_time <= 0) {
+              this.single_authCode = true;
+              clearInterval(single_timetimer);
+            }
+          }, 1000);
+        }else {
+           this.$message.error('手机号码有误，请重新输入')
+        }
       },
 
       // 多篇上传
@@ -359,20 +345,39 @@
       },
 
       more_getStudentID(e){
-        let file = e.target.files[0];
+        let file = e.target.files[0],
+          type =file.name.substring(file.name.lastIndexOf('.')),
+          AllImgExt=".jpg|.jpeg|.gif|.png|",
+          upLoadSize = 1024*1024;
+        if(file.name.lastIndexOf('.')===-1){
+          this.$message.warning('路径不正确');
+          return false
+        }
+        if(AllImgExt.indexOf(type+"|")===-1){
+          this.$message.error(type+'格式不支持');
+          return false
+        }
+        if(file.size>upLoadSize){
+          this.$message.error('图片过大，请重新上传');
+          return false;
+        }
         this.more_studentImgName = file.name
       },
 
       more_getAuthCode() {
-        this.more_authCode = false;
-        this.more_time = 60;
-        let single_timetimer = setInterval(() => {
-          this.more_time--;
-          if (this.more_time <= 0) {
-            this.more_authCode = true;
-            clearInterval(single_timetimer);
-          }
-        }, 1000);
+        if(/^1(3|4|5|6|8)\d{9}$/.test(this.more_phoneCode)){
+          this.more_authCode = false;
+          this.more_time = 60;
+          let single_timetimer = setInterval(() => {
+            this.more_time--;
+            if (this.more_time <= 0) {
+              this.more_authCode = true;
+              clearInterval(single_timetimer);
+            }
+          }, 1000);
+        }else {
+          this.$message.error('手机号码有误，请重新输入')
+        }
       },
 
       more_upload() {
@@ -383,9 +388,17 @@
         let files = e.target.files;
         console.log(files);
         for( let n of files){
+          let type = n.name.substring(n.name.lastIndexOf('.')),
+              ArrType ='.doc|.docx|';
+          if(ArrType.indexOf(type+'|')===-1){
+            this.$message.error(type+'文件格式不正确请重新上传');
+            return false
+          }
           this.filesList.push(n)
         }
-        this.isShow = false;
+        if(this.filesList.length>0){
+          this.isShow = false;
+        }
       },
 
       upload_delete(dx) {
@@ -400,6 +413,7 @@
           this.isShow=true;
         }
         this.filesList = this.filesList.slice();
+        console.log(this.filesList);
       },
 
       more_apply(num) {
@@ -465,6 +479,11 @@
       border: 1px solid #efefef;
       background-color: #efefef;
       margin-top: 20px;
+      #myTab{
+        li{
+          font-size:16px;
+        }
+      }
       input::-webkit-input-placeholder {
         color: #aab2bd;
         font-size: 14px;
@@ -489,7 +508,7 @@
       }
       .tab-content {
         margin-top: 40px;
-        padding: 0 40px;
+        padding: 0 40px 20px;
         .StagePayment{
           width:500px;
           height:200px;
@@ -728,26 +747,51 @@
               color: #ffc107;
             }
           }
-          .line {
-            width: 100%;
-            height: 5px;
-            margin: 40px auto;
-            background-color: #fff;
-            border-radius: 10px;
+        }
+        .line {
+          width: 100%;
+          height: 5px;
+          margin: 40px auto;
+          background-color: #fff;
+          border-radius: 10px;
+        }
+        .rightFooter {
+          width: 100%;
+          background: #f8f8f8;
+          padding: 28px 0 95px 0;
+          .rtfooter_til {
+            margin-left: 28px;
+            padding-left: 35px;
+            background: url(../../assets/images/inform.png) left center no-repeat;
+            font-size: 18px;
+            color: #666666;
+            height: 20px;
+            line-height: 20px;
           }
-          .notice {
-            margin-top: 20px;
-            h3 {
-              margin: 10px auto;
-              font-size: 18px;
-              color: #000;
-            }
-            ul {
-              padding: 0 20px;
-              li {
-                margin: 15px auto;
-                font-size: 16px;
-                color: orangered;
+          ul {
+            margin: 25px 0 0 30px;
+            li {
+              color: #878787;
+              font-size: 15px;
+              line-height: 28px;
+              margin-bottom: 10px;
+              padding-left: 160px;
+              padding-right: 7%;
+              position: relative;
+              text-align: justify;
+              span{
+                display: inline-block;
+                width:140px;
+                height: 22px;
+                text-align: center;
+                line-height: 22px;
+                color: #fff;
+                font-size: 14px;
+                border-radius: 5px;
+                padding: 0 13px;
+                margin:0;
+                position: absolute;
+                left: 0;
               }
             }
           }
