@@ -45,7 +45,6 @@ service.interceptors.response.use(
   error => {  //响应错误处理
     console.log('error');
     console.log(error);
-    console.log(JSON.stringify(error));
     Message({
       message: '请求超时',
       type: 'error',

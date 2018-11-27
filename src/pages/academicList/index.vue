@@ -49,6 +49,11 @@
             针对学术打假为原创力提供空间 各国如何进行
           </li>
         </ul>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link text-black-50" href="#">上一页</a></li>
+          <li class="page-item" v-for="item in 1" :key="item"><a class="page-link text-black-50" href="#">{{item}}</a></li>
+          <li class="page-item"><a class="page-link text-black-50" href="#">下一页</a></li>
+        </ul>
       </div>
     </main>
     <Footer></Footer>

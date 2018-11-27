@@ -31,6 +31,11 @@
             写好毕业论文的六个步骤：选题、开题、初稿、修正、查重、辩论
           </li>
         </ul>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link text-black-50" href="#">上一页</a></li>
+          <li class="page-item" v-for="item in 1" :key="item"><a class="page-link text-black-50" href="#">{{item}}</a></li>
+          <li class="page-item"><a class="page-link text-black-50" href="#">下一页</a></li>
+        </ul>
       </div>
     </main>
     <Footer></Footer>

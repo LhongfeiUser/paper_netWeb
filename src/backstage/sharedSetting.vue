@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="proataManage_title">
       <i class="el-icon-setting"></i>
-      <h4>分成设置 - 蒋石文</h4>
+      <h4>我的分成</h4>
     </div>
     <el-table
       :data="tableData"
@@ -10,49 +10,33 @@
       style="width: 100%">
       <el-table-column
         prop="systemType"
-        label="系统类型"
+        label="日期"
         align="center"
         width="100"/>
       <el-table-column
         prop="websitePrice"
-        label="官网售价"
+        label="订单列表"
         align="center"
-        width="100"/>
+        width=""/>
       <el-table-column
         prop="grossProfit"
         label="总利润"
         align="center"
-        width="100"/>
-      <el-table-column
-        prop="subordinateDivide"
-        label="下级分成"
-        align="center"
-        width="100"/>
+        width=""/>
       <el-table-column
         prop="myProfits"
         label="我的利润"
         align="center"
-        width="200"/>
-      <el-table-column
-        prop="subordinateProfits"
-        label="下级利润"
-        align="center"
-        width="200"/>
-      <el-table-column
-        prop="state"
-        label="状态"
-        align="center"
-        width="200"/>
+        width=""/>
       <el-table-column
         prop="remarks"
         label="备注 "
         align="center"
-        width="100"/>
+        width=""/>
       <el-table-column
         fixed="right"
         label="操作"
-        align="center"
-        width="150">
+        align="center">
         <template slot-scope="scope">
           <el-button class="el-button--primary" size="small" @click="compile(scope.row)"><i class="el-icon-edit" style="padding-right:5px;"></i>编辑
           </el-button>
@@ -63,7 +47,7 @@
       :total="1000"
       background
       layout="prev, pager, next"/>
-    <el-dialog :visible.sync="dialogFormVisible" title="分成设置">
+    <el-dialog :visible.sync="dialogFormVisible" title="我的分成">
       <el-form :model="form" label-position="right" style="padding:5px 50px 5px 10px;">
         <el-form-item :label-width="formLabelWidth" label="状态">
           <el-input v-model="form.userType" auto-complete="off"/>

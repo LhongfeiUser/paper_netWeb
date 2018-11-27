@@ -16,6 +16,7 @@
             </template>
             <el-menu-item index="/backstage"><i class="iconfont icon-gerenzhongxin"></i>个人中心</el-menu-item>
             <el-menu-item index="/backstage/userList"><i class="iconfont icon-user-list"></i>用户列表</el-menu-item>
+            <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-news" style="margin-right:5px!important;"></i>我的分成</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -27,8 +28,8 @@
             <el-menu-item index="/backstage/orderDetail"><i class="iconfont icon-order"></i>订单详情</el-menu-item>
           </el-submenu>
           <el-menu-item index="/backstage/withdrawDeposit"><i class="iconfont icon-tixian"></i>申请提现</el-menu-item>
-          <el-menu-item index="/backstage/sharedSetting"><i class="el-icon-news" style="margin-right:5px!important;"></i>我的分成</el-menu-item>
           <el-menu-item index="/backstage/generalizeLink"><i class="iconfont icon-share"></i>推广链接</el-menu-item>
+          <el-menu-item index="/backstage/course"><i class="iconfont icon-jiaocheng"></i>操作教程</el-menu-item>
         </el-menu>
       </el-aside>
       <el-aside width="200px"></el-aside>

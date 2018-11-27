@@ -43,13 +43,13 @@
             <div class="form-group">
               <label class="control-label">手机号码</label>
               <div class="col-sm-5">
-                <input class="form-control" type="text" v-model="single_phoneCode" maxlength="15" placeholder="请您输入正确手机号">
+                <input class="form-control" type="text" v-model="single_phoneCode" maxlength="11" placeholder="请您输入正确手机号">
               </div>
             </div>
             <div class="form-group">
               <label class=" control-label">手机验证</label>
               <div class="col-sm-3">
-                <input class="form-control" type="text" placeholder="请输入收到的验证码">
+                <input class="form-control" type="text" v-model="s_authCode" @burl.prevent=""  placeholder="请输入收到的验证码">
               </div>
               <div class="">
                 <button type="button" class="btn btn-outline-warning" v-show="single_authCode" @click="single_getAuthCode">获取验证码
@@ -144,7 +144,7 @@
             <div class="form-group">
               <label class=" control-label">手机验证</label>
               <div class="col-sm-3">
-                <input class="form-control" type="text" placeholder="请输入收到的验证码">
+                <input class="form-control" type="text" v-model="m_authCode" @burl.prevent="" placeholder="请输入收到的验证码">
               </div>
               <div class="">
                 <button type="button" class="btn btn-outline-warning" v-show="more_authCode" @click="more_getAuthCode">获取验证码
@@ -240,10 +240,12 @@
         single_phoneCode:'',
         single_name: '',
         single_content: '',
+        s_authCode:'',
         single_isApply_show:false,
         more_isApply_show:false,
         more_studentImgName:'',
         more_phoneCode:'',
+        m_authCode:'',
         filesList: [],
         isOrder: false,
         applyImg:{
@@ -298,11 +300,24 @@
       },
 
       single_upload() { //单篇文章上传
-        this.$refs.paperUpload.click();
+        if(1){
+          this.$refs.paperUpload.click();
+        }
       },
 
       getArticle(e) { //获取上传文章
         let file = e.target.files[0];
+        let type = file.name.substring(file.name.lastIndexOf('.')),
+          ArrType ='.doc|.docx|',
+          uploadSize = 10*1024*1024;
+        if(ArrType.indexOf(type+'|')===-1){
+          this.$message.error(type+'文件格式不正确请重新上传');
+          return false
+        }
+        if(file.size>uploadSize){
+          this.$message.error(file.name+'文件超过限制文件大小');
+          return false
+        }
         console.log(file);
         this.single_name = file.name.split('.')[0];
         this.single_content = file.name;
@@ -389,9 +404,14 @@
         console.log(files);
         for( let n of files){
           let type = n.name.substring(n.name.lastIndexOf('.')),
-              ArrType ='.doc|.docx|';
+              ArrType ='.doc|.docx|',
+              uploadSize = 10*1024*1024;
           if(ArrType.indexOf(type+'|')===-1){
             this.$message.error(type+'文件格式不正确请重新上传');
+            return false
+          }
+          if(n.size>uploadSize){
+            this.$message.error(n.name+'文件超过限制文件大小');
             return false
           }
           this.filesList.push(n)

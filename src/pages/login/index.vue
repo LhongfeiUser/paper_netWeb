@@ -135,7 +135,4 @@
   input[type="text"], input[type="password"] {
     padding-left: 26px;
   }
-
-  .checkbox {
-  }
 </style>

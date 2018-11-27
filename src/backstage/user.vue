@@ -23,7 +23,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="save">保存</el-button>
-            <el-button type="danger">取消</el-button>
+            <el-button type="danger">重置</el-button>
           </el-form-item>
         </el-form>
       </div>

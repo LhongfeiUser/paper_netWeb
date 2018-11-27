@@ -112,7 +112,7 @@
       // this.getData();
     },
     methods: {
-      getData() {
+      getData: function () {
         getOrderList().then(res => {
           console.log(res);
           this.orderLists = res.items;

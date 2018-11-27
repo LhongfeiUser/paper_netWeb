@@ -4,14 +4,14 @@
     <main>
       <div class="banner">
         <!--轮播图-->
-       <!-- <div id="slideShow" class="carousel slide" data-ride="carousel">
-          &lt;!&ndash; 指示符 &ndash;&gt;
+        <div id="slideShow" class="carousel slide" data-ride="carousel">
+          <!-- 指示符 -->
           <ul class="carousel-indicators">
             <li data-target="#slideShow" data-slide-to="0" class="active"></li>
             <li data-target="#slideShow" data-slide-to="1"></li>
             <li data-target="#slideShow" data-slide-to="2"></li>
           </ul>
-          &lt;!&ndash; 轮播图片 &ndash;&gt;
+          <!-- 轮播图片 -->
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
@@ -23,19 +23,14 @@
               <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
             </div>
           </div>
-          &lt;!&ndash; 左右切换按钮 &ndash;&gt;
+          <!-- 左右切换按钮 -->
            <a class="carousel-control-prev" href="#slideShow" data-slide="prev">
              <span class="carousel-control-prev-icon"></span>
            </a>
            <a class="carousel-control-next" href="#slideShow" data-slide="next">
              <span class="carousel-control-next-icon"></span>
            </a>
-        </div>-->
-        <el-carousel indicator-position="outside">
-          <el-carousel-item v-for="item in 4" :key="item">
-            <h3>{{ item }}</h3>
-          </el-carousel-item>
-        </el-carousel>
+        </div>
         <div class="flow_path">
           <div class="flow_path_title">
             <h2>论文查重流程</h2>
@@ -301,9 +296,9 @@
     },
     methods:{
       getCate(){
-        let postData=this.$qs.stringify({
+        let postData={
           token:'meichenghuilian20181108',
-        })
+        };
         this.axios({
           url:'api/getCate',
           method:'post',
@@ -314,7 +309,6 @@
         }).then(res=>{
           console.log(res);
         }).catch(()=>{
-
         })
       }
     }

@@ -154,6 +154,11 @@ export default new Router({
           component:()=>import('@/backstage/orderDetail'),
           meta: {requireAuth: true}
         },
+        {
+          path:'course',
+          component:()=>import('@/backstage/course'),
+          meta: {requireAuth: true}
+        }
       ]
     },
     {path: '*', redirect: '/', hidden: true},
