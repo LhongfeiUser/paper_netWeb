@@ -96,7 +96,7 @@ export default new Router({
           component:()=>import('@/pages/academicList/index')
         },
         {
-          path:'detail',
+          path:'detail/:id',
           name:'academicDetail',
           component:()=>import('@/pages/academicDetail/index')
         }

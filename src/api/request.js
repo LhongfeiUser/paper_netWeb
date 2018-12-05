@@ -5,17 +5,22 @@ import { Message} from 'element-ui'
 
 /****** 创建axios实例 ******/
 const service = axios.create({
-  baseURL: process.env.BASE_URL,  // api的base_url
+  baseURL: process.env.BASE_URL,
   timeout: 5000  // 请求超时时间
 });
 
 /****** request拦截器==>对请求参数做处理 ******/
 service.interceptors.request.use(config => {
-  config.method === 'post'
-    ? config.data = qs.stringify({...config.data})
-    : config.params = {...config.params};
-  config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-
+  if(config.method==='post'){
+    config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    if(config.data instanceof FormData){
+      config.headers['Content-Type'] = 'multipart/form-data;boundary';
+    }else {
+      config.data = qs.stringify({...config.data});
+    }
+  }else {
+    config.params = {...config.params};
+  }
   return config;
 }, error => {  //请求错误处理
   Message({
@@ -26,7 +31,6 @@ service.interceptors.request.use(config => {
   Promise.reject(error)
 });
 
-
 /****** respone拦截器==>对响应做处理 ******/
 service.interceptors.response.use(
   response => {  //成功请求到数据
@@ -35,22 +39,19 @@ service.interceptors.response.use(
       return response.data;
     } else{
       Message({
-        message: '请求错误',
+        message: '响应错误',
         type: 'error',
         duration: 2 * 1000
       });
     }
-
   },
   error => {  //响应错误处理
     console.log('error');
-    console.log(error);
     Message({
       message: '请求超时',
       type: 'error',
       duration: 2 * 1000
     });
-
     return Promise.reject(error)
   }
 );

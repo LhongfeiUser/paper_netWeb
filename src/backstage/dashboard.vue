@@ -45,7 +45,7 @@
          </el-dropdown>
         </el-header>
         <div style="padding:0 40px 20px 40px;">
-          <transition name="fade" mode="out-in">
+          <transition name="fade" mode="in-out">
             <keep-alive>
               <router-view></router-view>
             </keep-alive>
@@ -87,6 +87,7 @@
     position: fixed;
     top:0;
     left:0;
+    z-index: 9;
     min-height:100vh;
     background-color:#304156;
     i{

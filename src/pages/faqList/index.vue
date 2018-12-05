@@ -42,7 +42,7 @@
         ]
       }
     },
-    components: {Header, Footer,v_aside},
+    components: {Header, Footer, v_aside},
     created(){
       this.getFaqList();
     },
@@ -53,7 +53,7 @@
           cat_id:2,
         };
         getListData(faqData).then(res=>{
-          console.log(res);
+          console.log(res)
         })
       },
       goDetail(id){

@@ -9,12 +9,12 @@
         <h3>论文查重技巧</h3>
         <ul class="list_content">
           <li>
-            <router-link :to="{name:'detail',params:{id:1}}">
+            <router-link :to="{name:'detail',params:{id:4}}">
              三招最有效论文查重修改技巧
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'detail', params: { id: 2 }}">
+            <router-link :to="{ name: 'detail', params: { id: 5 }}">
               论文查重降低重复率修改技巧的10点建议
             </router-link>
           </li>
@@ -51,7 +51,7 @@
       return {
       }
     },
-    components: {Header, Footer,v_aside},
+    components: {Header, Footer, v_aside},
   }
 </script>
 

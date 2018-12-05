@@ -13,11 +13,11 @@
               </div>
               <div class="form-group">
                 <i class="fa fa-lock fa-lg"></i>
-                <input class="form-control required" type="password" placeholder="密码" v-model="password" @keyup.13="login"/>
+                <input class="form-control required" type="password" @paste.native.capture.prevent="false" placeholder="密码" v-model="password" @keyup.13="login"/>
               </div>
               <div class="form-group">
                 <label class="checkbox">
-                  <input type="checkbox" name="remember" v-model="item" style="width:15px;height:13px;" @click="remember(item)"/>记住我
+                  <input type="checkbox" name="remember" v-model="isRemember" style="width:15px;height:13px;" @click="remember(isRemember)"/>记住我
                 </label>
               </div>
               <div class="form-group">
@@ -42,7 +42,7 @@
   export default {
     data(){
       return{
-        item:false,
+        isRemember:false,
         userName:'',
         password:'',
       }
@@ -50,30 +50,29 @@
     created(){
       this.userName=cookies.get('userName');
       this.password=cookies.get('password');
-      this.item=cookies.get('item')
-
+      this.isRemember=cookies.get('isRemember')
     },
     methods:{
       remember(isRemove){
-        if(this.userName&&this.password){
+       /* if(this.userName&&this.password){
           if(!isRemove){
-            /*保存时间*/
+            /!*保存时间*!/
             cookies.set('userName',this.userName, { expires: 7, path: '' });
             cookies.set('password',this.password, { expires: 7, path: '' });
-            cookies.set('item',this.item, { expires: 7, path: '' });
+            cookies.set('isRemember',this.isRemember, { expires: 7, path: '' });
           }else {
             cookies.remove('userName');
             cookies.remove('password');
-            cookies.remove('item');
+            cookies.remove('isRemember');
           }
-        }
+        }*/
       },
       login(){
-        if(this.item){
-          this.remember(!this.item)
+        if(this.isRemember){
+          this.remember(!this.isRemember)
         }
         sessionStorage.setItem('token',1);
-        this.$router.push('/backstage')
+        this.$router.push('/backstage');
         const postData = {
           username:this.userName,
           password:this.password,
@@ -82,7 +81,7 @@
         login_req(postData).then(res=>{
           if(res.code === 200){
             sessionStorage.setItem('token',1);
-            this.$router.push('/backstage/user')
+            this.$router.push('/backstage')
           }else{
             this.$message.error('账号或密码错误，请重新输入');
           }

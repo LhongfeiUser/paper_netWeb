@@ -1,6 +1,6 @@
 <template>
   <div class="upload_paper">
-    <!--<div class="system_option">
+    <div class="system_option">
       <h3>检测系统选择</h3>
       <div class="option_content">
         <ul>
@@ -18,7 +18,7 @@
           <li><a href="javascript:void(0)">Gocheck论文检测系统</a></li>
         </ul>
       </div>
-    </div>-->
+    </div>
     <div class="article_upload">
       <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#single" data-toggle="tab">单篇上传</a></li>
@@ -31,7 +31,8 @@
             <div class="form-group">
               <label class="control-label">论文题目</label>
               <div class="col-sm-5">
-                <input class="form-control" type="text" maxlength="200" placeholder="论文题目不超过200字（*必填）" v-model="single_name">
+                <input class="form-control" type="text" maxlength="200" placeholder="论文题目不超过200字（*必填）"
+                       v-model="single_name">
               </div>
             </div>
             <div class="form-group">
@@ -43,16 +44,18 @@
             <div class="form-group">
               <label class="control-label">手机号码</label>
               <div class="col-sm-5">
-                <input class="form-control" type="text" v-model="single_phoneCode" maxlength="11" placeholder="请您输入正确手机号">
+                <input class="form-control" type="text" v-model="single_phoneCode" maxlength="11"
+                       placeholder="请您输入正确手机号">
               </div>
             </div>
             <div class="form-group">
               <label class=" control-label">手机验证</label>
               <div class="col-sm-3">
-                <input class="form-control" type="text" v-model="s_authCode" @burl.prevent=""  placeholder="请输入收到的验证码">
+                <input class="form-control" type="text" v-model="s_authCode" @burl.prevent="" placeholder="请输入收到的验证码">
               </div>
               <div class="">
-                <button type="button" class="btn btn-outline-warning" v-show="single_authCode" @click="single_getAuthCode">获取验证码
+                <button type="button" class="btn btn-outline-warning" v-show="single_authCode"
+                        @click="single_getAuthCode">获取验证码
                 </button>
                 <button type="button" class="btn" v-show="!single_authCode" style="cursor:not-allowed;color:#888">
                   {{single_time}}重新发送
@@ -73,7 +76,8 @@
             <div class="form-group">
               <label class=" control-label">待检论文</label>
               <div class="col-sm-4">
-                <input class="form-control" disabled v-model="single_content" type="text" placeholder="仅支持word文档.doc和.docx格式">
+                <input class="form-control" disabled v-model="single_content" type="text"
+                       placeholder="仅支持word文档.doc和.docx格式">
               </div>
               <div class="">
                 <input type="file" ref="paperUpload" accept=".doc,.docx" style="display: none;" @change="getArticle">
@@ -131,14 +135,16 @@
                 <input class="form-control" type="text" placeholder="请上传学生证" v-model="more_studentImgName">
               </div>
               <div class="">
-                <input type="file" ref="more_studentIdUpload" accept="image/gif,image/jpeg,image/jpg,image/png" style="display: none;" @change="more_getStudentID">
+                <input type="file" ref="more_studentIdUpload" accept="image/gif,image/jpeg,image/jpg,image/png"
+                       style="display: none;" @change="more_getStudentID">
                 <button type="button" class="btn btn-outline-warning" @click="more_studentID">上传</button>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label">手机号码</label>
               <div class="col-sm-5">
-                <input class="form-control" type="text" v-model="more_phoneCode" maxlength="11" placeholder="请您输入正确的手机号">
+                <input class="form-control" type="text" v-model="more_phoneCode" maxlength="11"
+                       placeholder="请您输入正确的手机号">
               </div>
             </div>
             <div class="form-group">
@@ -147,7 +153,8 @@
                 <input class="form-control" type="text" v-model="m_authCode" @burl.prevent="" placeholder="请输入收到的验证码">
               </div>
               <div class="">
-                <button type="button" class="btn btn-outline-warning" v-show="more_authCode" @click="more_getAuthCode">获取验证码
+                <button type="button" class="btn btn-outline-warning" v-show="more_authCode" @click="more_getAuthCode">
+                  获取验证码
                 </button>
                 <button type="button" class="btn" v-show="!more_authCode" style="cursor:not-allowed;color:#888">
                   {{more_time}}重新发送
@@ -162,9 +169,11 @@
                 <input class="form-control" v-show="isShow" disabled="disabled" type="text"
                        placeholder="仅支持word文档.doc和docx格式">
                 <div class="upload_success" v-for="(item,index) in filesList" v-show="!isShow">
-                  <input class="form-control" type="text" :value="item.name"> <i class="iconfont icon-shanchu1" @click="upload_delete(index)"></i>
+                  <input class="form-control" type="text" :value="item.name"> <i class="iconfont icon-shanchu1"
+                                                                                 @click="upload_delete(index)"></i>
                 </div>
-                <input ref="more_paperUpload" style="display: none;" type="file" accept=".doc,.docx" multiple="multiple" @change="getMoreArticle">
+                <input ref="more_paperUpload" style="display: none;" type="file" accept=".doc,.docx" multiple="multiple"
+                       @change="getMoreArticle">
               </div>
             </div>
             <button type="button" class="btn btn-outline-warning" @click="more_upload">上传论文</button>
@@ -206,7 +215,8 @@
             <input type="text" class="form-control col-sm-4" v-model="orderCode" placeholder="点击橙色字，查看在哪里找到订单号">
             <button type="button" class="btn btn-outline-warning" @click="searchResult">查询结果</button>
           </div>
-          <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)" @click.stop="userClick(1)">【微信】</a>订单编号？</span>
+          <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)"
+                                                                                          @click.stop="userClick(1)">【微信】</a>订单编号？</span>
           <div v-show="isOrder" style="width:200px;" @click.stop="isOrder=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
           </div>
@@ -218,10 +228,14 @@
             <li><span class="label bg-info">多订单号取报告</span> 如是合并订单检测，填写其中任何一个订单号即可下载。</li>
             <li><span class="label bg-success">如何修改论文？</span> 可根据报告标红去修改，如报告中含修改秘籍，可以参考。</li>
             <li><span class="label bg-warning">要严格OR要准确 </span> 严格＝准确，这是对报告结果的认识误区，严格并不一定准确，很多同学喜欢严格，而不问准确性。</li>
-            <li><span class="label bg-danger">0相似度正常吗？</span>如检测结果为0，说明官网检测结果也是0，并非未检测，并非不准。只能说明你的论文在该检测系统的比对库里中没有重复的，即使你去官网检测也是这个结果。</li>
-            <li><span class="label bg-primary">定稿如何选系统</span>不同的检测系统，使用不同论文对比库，所以检测结果极少有相同的。您学校用什么系统来审核论文，选择和学校同样的检测系统，检测结果和学校是一样的，不同的检测系统的检测结果是不一样的！</li>
-            <li><span class="label bg-info">检测内容的标准</span>有些学校只测正文，有些测正文和参考文献，有些甚至连声明、致谢都测。学校测的内容一旦有差异，结果就有少许差异。但是如果你提交检测的论文和提交给学校一样，没有任何改动，那么结果是一样的。</li>
-            <li><span class="label bg-success">正品检测报告！</span>请不要以"准"或"不准"等词语中差评，因为我们的系统直通检测官网，是从官方下载的报告，如有任何的疑问可联系店家解决。</li>
+            <li><span class="label bg-danger">0相似度正常吗？</span>如检测结果为0，说明官网检测结果也是0，并非未检测，并非不准。只能说明你的论文在该检测系统的比对库里中没有重复的，即使你去官网检测也是这个结果。
+            </li>
+            <li><span class="label bg-primary">定稿如何选系统</span>不同的检测系统，使用不同论文对比库，所以检测结果极少有相同的。您学校用什么系统来审核论文，选择和学校同样的检测系统，检测结果和学校是一样的，不同的检测系统的检测结果是不一样的！
+            </li>
+            <li><span class="label bg-info">检测内容的标准</span>有些学校只测正文，有些测正文和参考文献，有些甚至连声明、致谢都测。学校测的内容一旦有差异，结果就有少许差异。但是如果你提交检测的论文和提交给学校一样，没有任何改动，那么结果是一样的。
+            </li>
+            <li><span class="label bg-success">正品检测报告！</span>请不要以"准"或"不准"等词语中差评，因为我们的系统直通检测官网，是从官方下载的报告，如有任何的疑问可联系店家解决。
+            </li>
           </ul>
         </div>
       </div>
@@ -230,25 +244,26 @@
 </template>
 
 <script>
-  import {uploadArticle} from "@/api/upload_paper";
+  import {uploadArticle, getAuth} from "@/api/upload_paper";
 
   export default {
     data() {
       return {
         isShow: true,
         single_studentImgName: '',
-        single_phoneCode:'',
+        single_phoneCode: '',
         single_name: '',
         single_content: '',
-        s_authCode:'',
-        single_isApply_show:false,
-        more_isApply_show:false,
-        more_studentImgName:'',
-        more_phoneCode:'',
-        m_authCode:'',
+        s_authCode: '',
+        single_isApply_show: false,
+        isAuthCode: false,
+        more_isApply_show: false,
+        more_studentImgName: '',
+        more_phoneCode: '',
+        m_authCode: '',
         filesList: [],
         isOrder: false,
-        applyImg:{
+        applyImg: {
           zfb: require('../../assets/images/zhifubao.png'),
           zfb_01: require('../../assets/images/zfb_01.png'),
           wx: require('../../assets/images/wx.png'),
@@ -263,13 +278,12 @@
         more_authCode: true,
         single_time: 0,
         more_time: 0,
-        orderCode:null,
+        orderCode: null,
       }
     },
 
     created() {
     },
-
     mounted() {
       $('#myTab a:first').tab('show')
     },
@@ -281,67 +295,75 @@
       },
       single_getStudentID(e) { //获取学生证
         let file = e.target.files[0],
-            type =file.name.substring(file.name.lastIndexOf('.')),
-            AllImgExt=".jpg|.jpeg|.gif|.png|",
-            upLoadSize = 1024*1024;
-        if(file.name.lastIndexOf('.')===-1){
-           this.$message.warning('路径不正确');
-           return false
+          type = file.name.substring(file.name.lastIndexOf('.')),
+          AllImgExt = ".jpg|.jpeg|.gif|.png|",
+          upLoadSize = 1024 * 1024;
+        if (file.name.lastIndexOf('.') === -1) {
+          this.$message.warning('路径不正确');
+          return false
         }
-        if(AllImgExt.indexOf(type+"|")===-1){
-          this.$message.error(type+'格式不支持');
-           return false
+        if (AllImgExt.indexOf(type + "|") === -1) {
+          this.$message.error(type + '格式不支持');
+          return false
         }
-        if(file.size>upLoadSize){
+        if (file.size > upLoadSize) {
           this.$message.error('图片过大，请重新上传');
           return false;
         }
-        this.single_studentImgName = file.name
+        this.single_studentImgName = file.name;
+        let formdata = new FormData();
+        formdata.append('file', file);
+        uploadArticle(formdata).then(res => {
+          console.log(res);
+        })
       },
 
       single_upload() { //单篇文章上传
-        if(1){
+        if (1) {//this.isAuthCode
           this.$refs.paperUpload.click();
+        } else {
+          this.$message.error('请填写正确手机验证码');
         }
       },
 
       getArticle(e) { //获取上传文章
         let file = e.target.files[0];
         let type = file.name.substring(file.name.lastIndexOf('.')),
-          ArrType ='.doc|.docx|',
-          uploadSize = 10*1024*1024;
-        if(ArrType.indexOf(type+'|')===-1){
-          this.$message.error(type+'文件格式不正确请重新上传');
+          ArrType = '.doc|.docx|',
+          uploadSize = 10 * 1024 * 1024;
+        if (ArrType.indexOf(type + '|') === -1) {
+          this.$message.error(type + '文件格式不正确请重新上传');
           return false
         }
-        if(file.size>uploadSize){
-          this.$message.error(file.name+'文件超过限制文件大小');
+        if (file.size > uploadSize) {
+          this.$message.error(file.name + '文件超过限制文件大小');
           return false
         }
         console.log(file);
         this.single_name = file.name.split('.')[0];
         this.single_content = file.name;
-        let article={
-          file:file
-        };
-        uploadArticle(article).then(res=>{
-          console.log(res);
+        let formdata = new FormData();
+        formdata.append('file', file);
+        uploadArticle(formdata).then(res => {
+          if (res) {
+            this.$message.success('上传成功');
+          }
         })
       },
 
-      single_apply(num) {
-        if(this.single_content!==''){
+      single_apply(num) { //支付
+        if (this.single_content !== '') {
           this.currentNum = num;
-          this.single_isApply_show=true;
-        }else {
+          this.single_isApply_show = true;
+        } else {
           this.$message.error('请先上传论文');
         }
       },
 
-      single_getAuthCode() {
-        if(/^1(3|4|5|6|8)\d{9}$/.test(this.single_phoneCode)){
+      single_getAuthCode() { //获取手机验证
+        if (/^1(3|4|5|6|8)\d{9}$/.test(this.single_phoneCode)) {
           this.single_authCode = false;
-          this.single_time = 60;
+          this.single_time = 30;
           let single_timetimer = setInterval(() => {
             this.single_time--;
             if (this.single_time <= 0) {
@@ -349,30 +371,33 @@
               clearInterval(single_timetimer);
             }
           }, 1000);
-        }else {
-           this.$message.error('手机号码有误，请重新输入')
+          getAuth({phone_num: this.single_phoneCode}).then(res => {
+            console.log(res.auth);
+          })
+        } else {
+          this.$message.error('手机号码有误，请重新输入')
         }
       },
 
       // 多篇上传
-      more_studentID(){
+      more_studentID() {
         this.$refs.more_studentIdUpload.click();
       },
 
-      more_getStudentID(e){
+      more_getStudentID(e) {
         let file = e.target.files[0],
-          type =file.name.substring(file.name.lastIndexOf('.')),
-          AllImgExt=".jpg|.jpeg|.gif|.png|",
-          upLoadSize = 1024*1024;
-        if(file.name.lastIndexOf('.')===-1){
+          type = file.name.substring(file.name.lastIndexOf('.')),
+          AllImgExt = ".jpg|.jpeg|.gif|.png|",
+          upLoadSize = 1024 * 1024;
+        if (file.name.lastIndexOf('.') === -1) {
           this.$message.warning('路径不正确');
           return false
         }
-        if(AllImgExt.indexOf(type+"|")===-1){
-          this.$message.error(type+'格式不支持');
+        if (AllImgExt.indexOf(type + "|") === -1) {
+          this.$message.error(type + '格式不支持');
           return false
         }
-        if(file.size>upLoadSize){
+        if (file.size > upLoadSize) {
           this.$message.error('图片过大，请重新上传');
           return false;
         }
@@ -380,9 +405,9 @@
       },
 
       more_getAuthCode() {
-        if(/^1(3|4|5|6|8)\d{9}$/.test(this.more_phoneCode)){
+        if (/^1(3|4|5|6|8)\d{9}$/.test(this.more_phoneCode)) {
           this.more_authCode = false;
-          this.more_time = 60;
+          this.more_time = 30;
           let single_timetimer = setInterval(() => {
             this.more_time--;
             if (this.more_time <= 0) {
@@ -390,7 +415,7 @@
               clearInterval(single_timetimer);
             }
           }, 1000);
-        }else {
+        } else {
           this.$message.error('手机号码有误，请重新输入')
         }
       },
@@ -401,61 +426,73 @@
 
       getMoreArticle(e) {
         let files = e.target.files;
-        console.log(files);
-        for( let n of files){
+        let formdata = new FormData();
+        for (let n of files) {
           let type = n.name.substring(n.name.lastIndexOf('.')),
-              ArrType ='.doc|.docx|',
-              uploadSize = 10*1024*1024;
-          if(ArrType.indexOf(type+'|')===-1){
-            this.$message.error(type+'文件格式不正确请重新上传');
+            ArrType = '.doc|.docx|',
+            uploadSize = 10 * 1024 * 1024;
+          if (ArrType.indexOf(type + '|') === -1) {
+            this.$message.error(type + '文件格式不正确请重新上传');
             return false
           }
-          if(n.size>uploadSize){
-            this.$message.error(n.name+'文件超过限制文件大小');
+          if (n.size > uploadSize) {
+            this.$message.error(n.name + '文件超过限制文件大小');
             return false
           }
-          this.filesList.push(n)
+          this.filesList.push(n);
+          formdata.append('file', n);
         }
-        if(this.filesList.length>0){
+        if (this.filesList.length > 0) {
           this.isShow = false;
+          uploadArticle(formdata).then(res => {
+            if(res){
+              this.$message.success('上传成功');
+              this.$refs.more_paperUpload.value=null;
+            }
+          })
         }
       },
 
       upload_delete(dx) {
-        if (isNaN(dx) || dx > this.filesList.length) { return false; }
+        if (isNaN(dx) || dx > this.filesList.length) {
+          return false;
+        }
         for (let i = 0, n = 0; i < this.filesList.length; i++) {
           if (this.filesList[i] !== this.filesList[dx]) {
             this.filesList[n++] = this.filesList[i]
           }
         }
         this.filesList.length -= 1;
-        if(this.filesList.length===0){
-          this.isShow=true;
+        if (this.filesList.length === 0) {
+          this.isShow = true;
         }
         this.filesList = this.filesList.slice();
         console.log(this.filesList);
       },
 
       more_apply(num) {
-        if(!this.isShow){
+        if (!this.isShow) {
           this.currentNum = num;
-          this.more_isApply_show=true;
-        }else {
+          this.more_isApply_show = true;
+        } else {
           this.$message.error('请上传论文');
         }
       },
-
       //下载报告
       userClick(num) {
         this.currentNum = num;
         this.isOrder = true;
       },
-      searchResult(){
-         if(this.orderCode===null){
-           this.$message.error('订单号不能为空');
-         }
+      searchResult() {
+        if (this.orderCode === null) {
+          this.$message.error('订单号不能为空');
+          return false
+        }
+        this.$alert(' <a href="http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg" download="w3logo">下载保存</a>', 'HTML 片段', {
+          dangerouslyUseHTMLString: true
+        });
       }
-    }
+    },
   }
 </script>
 
@@ -499,9 +536,9 @@
       border: 1px solid #efefef;
       background-color: #efefef;
       margin-top: 20px;
-      #myTab{
-        li{
-          font-size:16px;
+      #myTab {
+        li {
+          font-size: 16px;
         }
       }
       input::-webkit-input-placeholder {
@@ -529,58 +566,58 @@
       .tab-content {
         margin-top: 40px;
         padding: 0 40px 20px;
-        .StagePayment{
-          width:500px;
-          height:200px;
-          margin:10px;
+        .StagePayment {
+          width: 500px;
+          height: 200px;
+          margin: 10px;
           display: flex;
           justify-content: space-between;
           align-items: center;
           background: #ffffff;
-          img{
-            width:150px;
-            height:150px;
-            margin-left:30px;
+          img {
+            width: 150px;
+            height: 150px;
+            margin-left: 30px;
           }
-          .need_payment{
+          .need_payment {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size:22px;
-            margin-right:80px;
-            span:nth-child(2){
-              color:#f49f00;
-              font-size:24px;
+            font-size: 22px;
+            margin-right: 80px;
+            span:nth-child(2) {
+              color: #f49f00;
+              font-size: 24px;
               font-weight: 500;
             }
           }
-          .payment_right{
+          .payment_right {
             justify-content: flex-end;
-            div{
-              width:100px;
-              height:100px;
+            div {
+              width: 100px;
+              height: 100px;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              img{
-                width:46px;
-                height:46px;
+              img {
+                width: 46px;
+                height: 46px;
                 vertical-align: center;
-                margin:0;
+                margin: 0;
               }
             }
-            .zfb_bg{
-              background-color:#1aa1e6;
+            .zfb_bg {
+              background-color: #1aa1e6;
             }
-            .wx_bg{
+            .wx_bg {
               background-color: #55ad23;
             }
-            div:nth-child(1){
-              color:#fff;
+            div:nth-child(1) {
+              color: #fff;
             }
-            div:nth-child(2){
+            div:nth-child(2) {
               background-color: #d5d5d5;
             }
           }
@@ -799,9 +836,9 @@
               padding-right: 7%;
               position: relative;
               text-align: justify;
-              span{
+              span {
                 display: inline-block;
-                width:140px;
+                width: 140px;
                 height: 22px;
                 text-align: center;
                 line-height: 22px;
@@ -809,7 +846,7 @@
                 font-size: 14px;
                 border-radius: 5px;
                 padding: 0 13px;
-                margin:0;
+                margin: 0;
                 position: absolute;
                 left: 0;
               }

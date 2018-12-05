@@ -72,7 +72,7 @@
     width:20vw;
   }
   .applyForWithdraw{
-    width:80vw;
+    /*width:80vw;*/
     border:1px solid #ebeef5;
     padding-bottom:20vh;
     .save_btn{

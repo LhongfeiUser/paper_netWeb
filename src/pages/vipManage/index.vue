@@ -80,6 +80,7 @@
       position: relative;
       border: 1px solid #ebeef5;
       background-color: #fff;
+      /*background-image: linear-gradient(20deg, #614E9F 30%, #2C63AD 70%);*/
       color: #888;
       -webkit-transition: .3s;
       transition: .3s;
@@ -88,7 +89,7 @@
       overflow: hidden;
     }
     .vipManage_right {
-      width: 85vw;
+      width: 85%;
       padding: 30px 40px;
     }
     .aside {
@@ -109,7 +110,7 @@
         color: #fff;
         margin: auto 25px;
       }*/
-      width:20vw;
+      width:15%;
       background-color: #fff;
       margin:0 20px 40px;
       ul{
