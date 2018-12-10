@@ -45,7 +45,7 @@
          </el-dropdown>
         </el-header>
         <div style="padding:0 40px 20px 40px;">
-          <transition name="fade" mode="in-out">
+          <transition name="fade" mode="out-in">
             <keep-alive>
               <router-view></router-view>
             </keep-alive>
@@ -129,7 +129,7 @@
     color: #333;
   }
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .5s;
+    transition: opacity .3s;
   }
   .fade-enter, .fade-leave-to {
     opacity: 0;

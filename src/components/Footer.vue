@@ -1,28 +1,17 @@
 <template>
   <div class="footer">
-    <div class="container">
-      <ul class="row">
-        <li class="col-md-4">
-          <div> <img src="../assets/images/footerLogo_02.png"></div>
-          <span>湖南省出版物发行协会</span>
-          <span>科研诚信建设工作委员会</span>
-          <div style="display: flex;flex-direction: column;line-height: 20px;">
-            <span>长沙升华数字技术有限公司</span>
-            <span style="font-size:14px;">Changsha Sheng Hua Digital Technology Co.Ltd</span>
-          </div>
-        </li>
-        <li class="col-md-4">
-          <span>联系人：胡忠菊董事长 18975869797 / 贾婷经理 18975864411（同微信号码）</span>
-          <span>公司座机：0731-82221754</span>
-          <span>wenxianjiance@126.com</span>
-          <span>联系地址：湖南省长沙市岳麓街道麓山南路中南大学本部</span>
-        </li>
-        <li class="col-md-4" style="display:flex;flex-direction: row">
-          <div style="margin-right:20px; margin-left:10px;"><img src="../assets/images/footerQr_01.png"></div>
-          <div><img src="../assets/images/footerQr_02.png"></div>
-        </li>
-      </ul>
+    <div class="footer_left">
+      <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo1_lp79.png" width="200">
+      <span><b>湘ICP备17138594号-1</b></span>
+      <span>Copyright © 2016-2017 Lifesonic All Right Reserved</span>
+      <span>诚信论文版权所有</span>
     </div>
+    <ul class="footer_right">
+      <li>联系我们：210-8064819</li>
+      <li>QQ 号 码 :3395087314</li>
+      <li>企业邮箱：wenxianjiance@126.com</li>
+      <li>公司地址：湖南长沙市岳麓区岳麓街道麓山南路001号27栋103</li>
+    </ul>
   </div>
 </template>
 
@@ -33,21 +22,26 @@
 </script>
 
 <style scoped lang="scss">
-.footer{
-  height:35vh;
-  padding-top:20px;
-  border-top:1px solid #ccc;
-  /*background-color:#fff;*/
-
-  .row{
+  .footer{
+    padding: 40px 80px 60px;
     display: flex;
     align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 16px;
+    color:#5a5a5a;
+    border-top:1px solid #dcdee2;
+    font-family: 微软雅黑;
+    .footer_left{
+      margin-right:70px;
+      display: flex;
+      flex-direction: column;
+      line-height: 40px;
+      span{
+        margin-left:10px;
+      }
+    }
+    .footer_right{
+      line-height: 40px;
+    }
   }
-  .col-md-4{
-    display: flex;
-    flex-direction: column;
-    line-height:30px;
-
-  }
-}
 </style>

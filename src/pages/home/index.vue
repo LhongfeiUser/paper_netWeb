@@ -101,13 +101,14 @@
           </li>
         </ul>
       </div>
+
       <div class="system">
         <div class="title">
           <h3>合作单位检测系统</h3>
           <span>COOPERATIVE UNIT DETECTION SYSTEM</span>
         </div>
         <div class="system_module">
-          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg" alt="">
+          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg">
           <div class="module_content">
             <h4>知网检测系统</h4>
             <div>
@@ -158,6 +159,7 @@
           </ul>
         </div>
       </div>
+
       <div class="advantage">
         <div class="title">
           <h3>论文网优势</h3>
@@ -204,6 +206,7 @@
           </ul>
         </div>
       </div>
+
       <div class="article">
         <ul class="tabs">
           <li :class="isTabs===0?'tabs_active':''" @click="isTabs=0">论文查重技巧</li>
@@ -212,15 +215,15 @@
         </ul>
         <ul class="tabs_content">
           <li v-show="isTabs===0">
-           <div class="article_box" v-for="(item,index) in 3" :key="item" @click="goArticleDetail(index,'skill')">
-             <div class="article_title">
-                 <h4>图片拼接、设计漏洞，又一位学术大佬论文造</h4>
-                 <span>2018-11-21</span>
-               </div>
-             <span class="article_content">
+            <div class="article_box" v-for="(item,index) in 3" :key="item" @click="goArticleDetail(index,'skill')">
+              <div class="article_title">
+                <h4>图片拼接、设计漏洞，又一位学术大佬论文造</h4>
+                <span>2018-11-21</span>
+              </div>
+              <span class="article_content">
               近日，某旧书网被毕业生举报，有不法商家在售卖高校博士学位论文。登录该网站进行关键字搜索，会弹出4000多条贩售信息，其中的论文来自全国诸多高校，不乏知名学府。
             </span>
-           </div>
+            </div>
           </li>
           <li v-show="isTabs===1">
             <div class="article_box" v-for="(item,index) in 3" :key="item" @click="goArticleDetail(index,'faq')">
@@ -230,7 +233,7 @@
               </div>
               <span class="article_content">
               近日，某旧书网被毕业生举报，有不法商家在售卖高校博士学位论文。登录该网站进行关键字搜索，会弹出4000多条贩售信息，其中的论文来自全国诸多高校，不乏知名学府。
-            </span>
+              </span>
             </div>
           </li>
           <li v-show="isTabs===2">
@@ -241,23 +244,24 @@
               </div>
               <span class="article_content">
               近日，某旧书网被毕业生举报，有不法商家在售卖高校博士学位论文。登录该网站进行关键字搜索，会弹出4000多条贩售信息，其中的论文来自全国诸多高校，不乏知名学府。
-            </span>
+              </span>
             </div>
           </li>
         </ul>
-        <marquee behavior="scroll" bgcolor="#fff" >
-          <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用...</span>
-        </marquee>
       </div>
+      <marquee behavior="scroll" bgcolor="#fff">
+        <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用...</span>
+      </marquee>
     </main>
     <Footer></Footer>
   </div>
 </template>
 <script>
   import Footer from '@/components/Footer'
+  import Header from '@/components/Header'
 
   export default {
-    components: {Footer},
+    components: {Header, Footer},
     data() {
       return {
         current: 0,
@@ -304,11 +308,11 @@
           'http://pmo78af5a.pic41.websiteonline.cn/upload/2_52i8.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png'
         ],
-        isTabs:0,
+        isTabs: 0,
       }
     },
-    methods:{
-      goArticleDetail(id,name){
+    methods: {
+      goArticleDetail(id, name) {
         this.$router.push(`/${name}/detail/${id}`)
       }
     }
@@ -437,6 +441,7 @@
         align-items: center;
         justify-content: space-between;
         color: #fff;
+        font-size: 14px;
         background-image: linear-gradient(20deg, #614E9F 15%, #2C63AD 85%);
         border-radius: 8px;
         padding: 0 30px;
@@ -447,7 +452,8 @@
           border-radius: 8px;
         }
         .module_content {
-          margin-right: 200px;
+          margin-right: 50px;
+          width: 600px;
           line-height: 30px;
           strong {
             font-weight: 500;
@@ -557,48 +563,48 @@
         }
       }
     }
-    .article{
+    .article {
       background-color: #fff;
       padding: 60px 80px 60px;
-      ul.tabs{
+      ul.tabs {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-bottom:3px solid #1754A5;
-        li{
-          width:33.33%;
+        border-bottom: 3px solid #1754A5;
+        li {
+          width: 33.33%;
           line-height: 55px;
-          font-size:18px;
+          font-size: 18px;
           text-align: center;
-          cursor:pointer;
+          cursor: pointer;
         }
-        .tabs_active{
+        .tabs_active {
           background-color: #1754a5;
-          color:#fff;
+          color: #fff;
         }
       }
-      ul.tabs_content{
-        li{
-          margin-top:35px;
-          color:#5A5A5A;
-          .article_box{
-            margin:40px 15px;
+      ul.tabs_content {
+        li {
+          margin-top: 35px;
+          color: #5A5A5A;
+          .article_box {
+            margin: 40px 15px;
             cursor: pointer;
-            .article_title{
+            .article_title {
               display: flex;
               justify-content: space-between;
               align-items: center;
-              font-size:18px;
-              margin-bottom:10px;
-              span{
+              font-size: 18px;
+              margin-bottom: 10px;
+              span {
                 font-family: SimSun;
                 font-size: 14px;
                 color: #acacac;
               }
             }
-            .article_content{
-              width:60%;
-              font-size:12px;
+            .article_content {
+              width: 60%;
+              font-size: 12px;
               /*overflow: hidden;*/
               /*text-overflow: ellipsis;*/
               /*display: -webkit-box;*/
@@ -613,14 +619,16 @@
 
   /*动画效果*/
 
-  .slide-fade-enter-active,.slide-fade-leave-active {
+  .slide-fade-enter-active, .slide-fade-leave-active {
     transition: all .5s;
   }
-  .slide-fade-enter{
+
+  .slide-fade-enter {
     transform: translateY(-60px);
     opacity: 0;
   }
-  .slide-fade-leave-to{
+
+  .slide-fade-leave-to {
     transform: translateY(60px);
     opacity: 0;
   }

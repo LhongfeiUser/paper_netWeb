@@ -1,8 +1,10 @@
 <template>
   <div class="header">
-      <nav class="navbar navbar-light bg-white">
+      <nav class="navbar navbar-light">
         <router-link class="navbar-brand" to="/">
-          <img src="../assets/images/logo.png" width="200" height="30" alt="">
+          <!--<img src="../assets/images/logo.png" width="200" height="30" alt="">-->
+          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140">
+          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/1231.png" width="165">
         </router-link>
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -33,6 +35,11 @@
           <li class="nav-item">
             <router-link to="/academic" active-class="nav-link active">
               <span>学术资讯</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login" active-class="nav-link active">
+              <span>登录</span>
             </router-link>
           </li>
         </ul>
@@ -75,6 +82,9 @@
 <style scoped lang="scss">
   .header {
     margin-bottom: 10px;
+    nav{
+      background-color:#2b85e4;
+    }
   }
 
   .navbar {
@@ -90,16 +100,17 @@
   .nav-item {
     margin: auto 2vw;
     a{
-      color:#000;
+      /*color:#000;*/
+      color:#fff;
       font-size:16px;
     }
     a:hover{
-      color:#ffc107;
+      /*color:#ffc107;*/
     }
   }
 
   .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background: #fff !important;
+    background-color:#2b85e4;
     color:#ffc107;
     border:1px solid #ffc107;
   }

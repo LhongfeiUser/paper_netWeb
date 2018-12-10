@@ -7,7 +7,6 @@ let mutipartMiddeware = mutipart();
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 
-
 //单篇论文上传
 app.post('/upload/single_upload',mutipartMiddeware,(req,res)=>{
   console.log(req.files);
