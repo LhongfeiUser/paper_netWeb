@@ -8,8 +8,8 @@
       <div class="faqList_list">
         <h3>常见问题</h3>
         <ul class="list_content">
-          <li v-for="(item,index) in list" :key="index" @click="goDetail(index)">
-            {{item}}
+          <li v-for="(item,index) in lists" :key="index" @click="goDetail(item.id)">
+            {{item.title}}
           </li>
         </ul>
         <ul class="pagination">
@@ -39,21 +39,28 @@
           '论文查重系统抄袭结果为0%，是正常的吗？',
           '知网论文查重报告中引用被标红？5点注意事项需改正！',
           '论文查重中常见10大问题解答,论文检测查重必读'
-        ]
+        ],
+        lists:[],
+        cat_id:null,
       }
     },
     components: {Header, Footer, v_aside},
     created(){
+      this.cat_id=this.$route.query.list_id;
       this.getFaqList();
     },
     methods:{
       getFaqList(){
         const faqData={
           token:'meichenghuilian20181108',
-          cat_id:2,
+          cat_id:this.cat_id,
         };
         getListData(faqData).then(res=>{
-          console.log(res)
+          if(res.code===200){
+            this.lists=res.msg;
+          }else {
+            this.$message.error(res.msg)
+          }
         })
       },
       goDetail(id){
@@ -84,14 +91,14 @@
         overflow: hidden;
       }
       aside{
-        width:18vw;
+        width:18%;
         background-color: #fff;
         margin-right:30px;
         padding-bottom:100px;
       }
       .faqList_list{
         padding:40px 80px;
-        width:80vw;
+        width:85%;
         background-color: #fff;
         h3{
           font-size:24px;

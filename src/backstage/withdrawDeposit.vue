@@ -9,7 +9,7 @@
         <div class="deposit">
           <span>账户余额</span>
           <span>￥0.00</span>
-          <span @click="gg()">提现</span>
+          <span @click="deposit()">提现</span>
         </div>
         <el-form :label-position="labelPosition" :model="formLabelAlign" label-width="80px">
           <el-form-item label="提现方式">
@@ -22,10 +22,10 @@
             </el-select>
           </el-form-item>
           <el-form-item label="提现账户">
-            <el-input v-model="formLabelAlign.region"/>
+            <el-input v-model="formLabelAlign.type"/>
           </el-form-item>
           <el-form-item label="提现姓名">
-            <el-input v-model="formLabelAlign.type"/>
+            <el-input v-model="formLabelAlign.name"/>
           </el-form-item>
         </el-form>
       </div>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+  import {withdraw} from "../api/backstageApi/withdraw";
+
   export default {
     data() {
       return {
@@ -46,66 +48,81 @@
           region: '',
           type: ''
         },
-        options: [{
-          value: '选项1',
-          label: '支付宝'
-        }, {
-          value: '选项2',
-          label: '银行卡'
-        }, {
-          value: '选项3',
-          label: '微信'
-        }],
+        options:
+          [{
+            value: '0',
+            label: '支付宝'
+          }, {
+            value: '1',
+            label: '银行卡'
+          }, {
+            value: '2',
+            label: '微信'
+          }],
         value: '支付宝'
       };
     },
-    methods:{
-      gg(){
-        alert('提现成功')
+    methods: {
+      deposit() {
+        let reqData = {
+          token: 'meichenghuilian20181108',
+          member_id: 3,
+          get_money_name: 3,
+          get_money_accout: 3,
+          price: 3,
+        };
+        withdraw(reqData).then(res => {
+          if(res){
+            this.$message.success('提现成功');
+          }
+        });
       }
     }
   }
 </script>
 
 <style lang="scss">
-  .el-input.el-input--suffix,.el-input{
-    width:20vw;
+  .el-input.el-input--suffix, .el-input {
+    width: 20vw;
   }
-  .applyForWithdraw{
+
+  .applyForWithdraw {
     /*width:80vw;*/
-    border:1px solid #ebeef5;
-    padding-bottom:20vh;
-    .save_btn{
-      background-color:#f5f7fa;
+    border: 1px solid #ebeef5;
+    padding-bottom: 20vh;
+    .save_btn {
+      background-color: #f5f7fa;
       margin: 20px;
-      height:60px;
+      height: 60px;
       line-height: 60px;
-      .el-button{
-        margin-left:15vw;
+      .el-button {
+        margin-left: 15vw;
       }
     }
   }
-  .apply_title{
+
+  .apply_title {
     display: flex;
     justify-content: flex-start;
-    align-items:center;
-    background-color:#f5f7fa;
-    color:#606266;
-    span{
-      margin:auto 1vw;
-      font-size:24px;
+    align-items: center;
+    background-color: #f5f7fa;
+    color: #606266;
+    span {
+      margin: auto 1vw;
+      font-size: 24px;
     }
   }
-  ._apply_content{
-    padding-left:10vw;
-    .deposit{
-      margin:20px 0 20px 1vw;
-      span:nth-child(2){
-        margin:auto 15px;
+
+  ._apply_content {
+    padding-left: 10vw;
+    .deposit {
+      margin: 20px 0 20px 1vw;
+      span:nth-child(2) {
+        margin: auto 15px;
       }
-      span:nth-child(3){
-        color:#67c23A;
-        cursor:pointer;
+      span:nth-child(3) {
+        color: #67c23A;
+        cursor: pointer;
       }
     }
   }

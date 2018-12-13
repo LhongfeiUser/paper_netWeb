@@ -73,14 +73,14 @@
       overflow: hidden;
     }
     aside{
-      width:18vw;
+      width:18%;
       background-color: #fff;
       margin-right:30px;
       padding-bottom:100px;
     }
     .skill_list{
       padding:40px 80px;
-      width:80vw;
+      width:85%;
       background-color: #fff;
       h3{
         font-size:24px;

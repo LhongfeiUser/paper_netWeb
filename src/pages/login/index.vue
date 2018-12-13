@@ -71,19 +71,18 @@
         if(this.isRemember){
           this.remember(!this.isRemember)
         }
-        sessionStorage.setItem('token',1);
-        this.$router.push('/backstage');
         const postData = {
           username:this.userName,
           password:this.password,
           token:'meichenghuilian20181108'
         };
         login_req(postData).then(res=>{
+          console.log(res);
           if(res.code === 200){
             sessionStorage.setItem('token',1);
             this.$router.push('/backstage')
           }else{
-            this.$message.error('账号或密码错误，请重新输入');
+            this.$message.error(res.msg);
           }
         })
       }

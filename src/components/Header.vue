@@ -28,7 +28,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/faq" active-class="nav-link active">
+            <router-link :to="{path:'/faq', query:{list_id:2}}" active-class="nav-link active">
               <span>常见问题</span>
             </router-link>
           </li>
@@ -44,34 +44,12 @@
           </li>
         </ul>
       </nav>
-   <!-- <el-menu
-      router
-      :default-active='$route.path'
-      class="el-menu-demo"
-      mode="horizontal"
-      @select="handleSelect"
-      background-color="#fff"
-      text-color="#000"
-      active-text-color="#f49f00">
-      <el-menu-item index="/">
-        <img src="../assets/images/logo.png" width="200" height="30" alt="">
-      </el-menu-item>
-      <el-menu-item index="/home">首页</el-menu-item>
-      <el-menu-item index="/vipManage/upload">论文查重</el-menu-item>
-      <el-menu-item index="/">论文查重流程</el-menu-item>
-      <el-menu-item index="/skill">论文查重技巧</el-menu-item>
-      <el-menu-item index="/faq">常见问题</el-menu-item>
-      <el-menu-item index="/academic">学术资讯</el-menu-item>
-      <el-menu-item index="/login">登录</el-menu-item>
-    </el-menu>-->
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
-        current: 1,
-        zz:'1'
       }
     },
     methods: {
@@ -82,11 +60,8 @@
 <style scoped lang="scss">
   .header {
     margin-bottom: 10px;
-    nav{
-      background-color:#2b85e4;
-    }
+    background-color:#2b85e4;
   }
-
   .navbar {
     padding: 1.5rem 1rem;
   }
@@ -110,7 +85,7 @@
   }
 
   .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background-color:#2b85e4;
+    background-color:inherit;
     color:#ffc107;
     border:1px solid #ffc107;
   }

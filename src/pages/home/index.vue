@@ -1,63 +1,32 @@
 <template>
   <div class="home">
-    <header>
-      <nav>
-        <div class="logo">
-          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140">
-          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/1231.png" width="165">
+    <Header></Header>
+    <div id="banner" class="carousel slide" data-ride="carousel">
+      <!-- 指示符 -->
+      <ul class="carousel-indicators">
+        <li data-target="#banner" data-slide-to="0" class="active"></li>
+        <li data-target="#banner" data-slide-to="1"></li>
+        <li data-target="#banner" data-slide-to="2"></li>
+      </ul>
+      <!-- 轮播图片 -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/345_skjr.png" width="atuo" height="520"
+               style="margin-left:-25%;">
         </div>
-        <ul>
-          <li>
-            <router-link to="/home">
-              <span>首页</span>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/vipManage/upload">
-              <span>论文查重</span>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/skill">
-              <span>论文查重技巧</span>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/faq">
-              <span>常见问题</span>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/academic">
-              <span>学术咨询</span>
-            </router-link>
-          </li>
-        </ul>
-      </nav>
-      <div id="banner" class="carousel slide" data-ride="carousel">
-        <!-- 指示符 -->
-        <ul class="carousel-indicators">
-          <li data-target="#banner" data-slide-to="0" class="active"></li>
-          <li data-target="#banner" data-slide-to="1"></li>
-          <li data-target="#banner" data-slide-to="2"></li>
-        </ul>
-        <!-- 轮播图片 -->
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/345_skjr.png" width="atuo" height="520"
-                 style="margin-left:-25%;">
-          </div>
-          <div class="carousel-item">
-            <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/234_ykrp.png" width="atuo" height="520"
-                 style="margin-left:-25%;">
-          </div>
-          <div class="carousel-item">
-            <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/22_g24d.png" width="atuo" height="520"
-                 style="margin-left:-25%;">
-          </div>
+        <div class="carousel-item">
+          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/234_ykrp.png" width="atuo" height="520"
+               style="margin-left:-25%;">
+        </div>
+        <div class="carousel-item">
+          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/22_g24d.png" width="atuo" height="520"
+               style="margin-left:-25%;">
         </div>
       </div>
-    </header>
+    </div>
+    <marquee behavior="scroll" bgcolor="#fff">
+      <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用...</span>
+    </marquee>
     <main>
       <div class="flow">
         <div class="title">
@@ -107,56 +76,8 @@
           <h3>合作单位检测系统</h3>
           <span>COOPERATIVE UNIT DETECTION SYSTEM</span>
         </div>
-        <div class="system_module">
-          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg">
-          <div class="module_content">
-            <h4>知网检测系统</h4>
-            <div>
-              <strong>使用范围：</strong>
-              高校硕士、博士、在职研究生论文查重检测
-            </div>
-            <div>
-              <strong>产品说明：</strong>
-              独有《学术论文联合对比库》，支持官网验证，硕博定稿前必查
-            </div>
-            <div class="S_versions_box">
-              <strong>版本选择：</strong>
-              <span :class="current===index?'S_versions_content':''" @click="current=index"
-                    v-for="(item,index) in S_versions" :key="item">{{item}}</span>
-            </div>
-          </div>
-          <ul class="detect">
-            <transition name="slide-fade" mode="out-in">
-              <li v-if="current===index" v-for="(i,index) in 6" :key="i">
-                <span>
-                  <strong>28{{index}}.00</strong>元/篇
-                </span>
-                <button class="btn">立即检测</button>
-              </li>
-            </transition>
-          </ul>
-        </div>
-        <div class="system_module" v-for="(item,index) in system_module">
-          <img :src="item.module_img">
-          <div class="module_content">
-            <h4>{{item.detecting_system}}</h4>
-            <div>
-              <strong>使用范围：</strong>
-              {{item.range}}
-            </div>
-            <div>
-              <strong>产品说明：</strong>
-              {{item.products}}
-            </div>
-          </div>
-          <ul class="detect">
-            <li>
-              <span>
-                <strong>{{item.price}}</strong>元/千字符
-              </span>
-              <button class="btn">立即检测</button>
-            </li>
-          </ul>
+        <div v-for="item in system_module">
+          <selection_model :selectionData="item"></selection_model>
         </div>
       </div>
 
@@ -249,9 +170,6 @@
           </li>
         </ul>
       </div>
-      <marquee behavior="scroll" bgcolor="#fff">
-        <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用...</span>
-      </marquee>
     </main>
     <Footer></Footer>
   </div>
@@ -259,35 +177,54 @@
 <script>
   import Footer from '@/components/Footer'
   import Header from '@/components/Header'
+  import selection_model from './models/selection_model'
 
   export default {
-    components: {Header, Footer},
+    components: {Header,selection_model,Footer},
     data() {
       return {
-        current: 0,
-        S_versions: ['硕博VIP5.1', '本科PMLC', '期刊', '人事版', '科研版', '图书专著版'],
+        current: [],
         system_module: [
+          {
+            module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg',
+            detecting_system: '知网检测系统',
+            range: '高校硕士、博士、在职研究生论文查重检测',
+            products: '独有《学术论文联合对比库》，支持官网验证，硕博定稿前必查',
+            S_versions: ['硕博VIP5.1', '本科PMLC', '期刊', '人事版', '科研版', '图书专著版'],
+            price: ['280', '222', '331', '433', '111', '323'],
+          },
+          {
+            module_img: 'http://www.lunwenjc.com/Uploads/Content/2017-08-18/59965b22bb567.png',
+            detecting_system: 'Turnitin国际版论文查重系统',
+            range: '适用于美洲、澳洲、香港、韩国等国家留学生或发表投稿使用。',
+            products: 'Turnitin国际版领先全球的防范剽窃与提供丰富反馈的技术',
+            S_versions: ['大学论文', '学位论文', '会议论文', '期刊论文', '毕业论文', '硕博论文'],
+            price: ['1.00', '2.00', '3.00', '4.00', '5.00', '6.00'],
+          },
           {
             module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_1.jpg',
             detecting_system: '万方数据检测系统',
             range: '全科可查，查重产品优势为医学学科',
             products: '中国科学技术部下属企业研发而成，全程自动检测，性价比高',
-            price: '2.00',
+            S_versions: [],
+            price: ['2.00'],
           },
           {
             module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/2222.png',
             detecting_system: '超星大雅检测系统',
             range: '有图书专著，对比资源全',
             products: '有图书专著对比资源全，价格相对较低，全程自助检测',
-            price: '2.00',
+            S_versions: [],
+            price: ['2.00'],
           },
           {
             module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_3.jpg',
             detecting_system: '维普数据检测系统',
             range: '可测中英文，查重范围广',
             products: '有图书专著对比资源全，价格相对较低，全程自助检测',
-            price: '2.40',
-          }
+            S_versions: [],
+            price: ['2.00'],
+          },
         ],
         sc: [
           'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
@@ -314,8 +251,8 @@
     methods: {
       goArticleDetail(id, name) {
         this.$router.push(`/${name}/detail/${id}`)
-      }
-    }
+      },
+    },
   }
 </script>
 
@@ -323,52 +260,24 @@
   .home {
     font-family: Microsoft YaHei;
     color: rgb(0, 0, 0);
-  }
-
-  header {
     position: relative;
-    nav {
-      position: absolute;
-      top: 0;
-      z-index: 2;
-      padding: 15px 20px 0;
-      width: 100%;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .logo {
-        img {
-          height: 50px;
-          vertical-align: center;
-        }
-      }
-      ul {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        li {
-          margin: 20px;
-          span {
-            color: #fff;
-          }
-          a:hover {
-            color: #fff;
-          }
-        }
-      }
+  }
+  .header{
+    position: absolute!important;
+    z-index: 2;
+    width:100%;
+    background-color:inherit!important;
+  }
+  #banner {
+    .carousel-indicators li {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
     }
-    #banner {
-      .carousel-indicators li {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-      }
-      .carousel-item {
-        height: 520px !important;
-        img {
-          height: 100%;
-        }
+    .carousel-item {
+      height: 520px !important;
+      img {
+        height: 100%;
       }
     }
   }
@@ -474,10 +383,12 @@
             }
           }
         }
-        ul.detect {
+        .detect {
           li {
+            min-width: 128px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             span {
               strong {
                 font-size: 28px;
@@ -489,6 +400,7 @@
               background-color: inherit;
               border: 1px solid #fff;
               color: #fff;
+              width: 100% !important;
             }
             .btn:hover {
               background-color: rgba(255, 87, 0, 1);
@@ -617,20 +529,13 @@
     }
   }
 
-  /*动画效果*/
-
-  .slide-fade-enter-active, .slide-fade-leave-active {
-    transition: all .5s;
+  @media screen and (min-width: 1440px) {
+    #banner {
+      .carousel-item {
+        img {
+          margin-left: 0 !important;
+        }
+      }
+    }
   }
-
-  .slide-fade-enter {
-    transform: translateY(-60px);
-    opacity: 0;
-  }
-
-  .slide-fade-leave-to {
-    transform: translateY(60px);
-    opacity: 0;
-  }
-
 </style>

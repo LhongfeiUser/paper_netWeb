@@ -116,6 +116,9 @@
       margin-bottom:20px;
     }
   }
+  .el-dropdown-menu__item{
+    white-space: nowrap;
+  }
   .el-submenu .el-menu-item{
     background-color: #1f2d3d !important;
   }

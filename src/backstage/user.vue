@@ -74,7 +74,7 @@
 <style lang="scss" scoped>
   .dashboard {
     &-container {
-      width: 60vw;
+      width: 60%;
       margin: 30px auto;
     }
     &-text {
