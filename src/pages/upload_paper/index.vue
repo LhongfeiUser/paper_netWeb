@@ -38,8 +38,7 @@
             <input type="text" class="form-control col-sm-4" v-model="orderCode" placeholder="点击橙色字，查看在哪里找到订单号">
             <button type="button" class="btn btn-outline-warning" @click="searchResult">查询结果</button>
           </div>
-          <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)"
-                                                                                          @click.stop="userClick(1)">【微信】</a>订单编号？</span>
+          <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)" @click.stop="userClick(1)">【微信】</a>订单编号？</span>
           <div v-show="isOrder" style="width:200px;" @click.stop="isOrder=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
           </div>
@@ -71,6 +70,8 @@
       }
     },
     created() {
+      let generalizeUrl =window.location.href;
+      sessionStorage.setItem('generalizeUrl',generalizeUrl)
     },
     mounted() {
       $('#myTab a:first').tab('show')

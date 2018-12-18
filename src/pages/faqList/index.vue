@@ -7,7 +7,8 @@
       </aside>
       <div class="faqList_list">
         <h3>常见问题</h3>
-        <ul class="list_content">
+        <div v-if="isData" v-loading="isData" style="height:80px;width:100%;"></div>
+        <ul v-else class="list_content">
           <li v-for="(item,index) in lists" :key="index" @click="goDetail(item.id)">
             {{item.title}}
           </li>
@@ -32,34 +33,30 @@
   export default {
     data() {
       return {
-        list:[
-          '中国知网论文查重的报告该如何看？',
-          '如何查看论文查重报告的详细指标？',
-          '论文查重系统会识别毕业论文中的表格数据吗？',
-          '论文查重系统抄袭结果为0%，是正常的吗？',
-          '知网论文查重报告中引用被标红？5点注意事项需改正！',
-          '论文查重中常见10大问题解答,论文检测查重必读'
-        ],
         lists:[],
         cat_id:null,
+        isData:false,
       }
     },
     components: {Header, Footer, v_aside},
     created(){
       this.cat_id=this.$route.query.list_id;
-      this.getFaqList();
+      this.getFaqList(this.cat_id);
     },
     methods:{
-      getFaqList(){
+      getFaqList(id){
+        this.isData=true;
         const faqData={
           token:'meichenghuilian20181108',
-          cat_id:this.cat_id,
+          cat_id:id,
         };
         getListData(faqData).then(res=>{
           if(res.code===200){
             this.lists=res.msg;
+            this.isData=false;
           }else {
-            this.$message.error(res.msg)
+            this.$message.error(res.msg);
+            this.isData=false;
           }
         })
       },
@@ -120,6 +117,7 @@
             font-size:18px;
             border-bottom:1px dashed #b9b9b9 ;
             padding-bottom:20px;
+            cursor: pointer;
             a:hover{
               color:orangered;
             }

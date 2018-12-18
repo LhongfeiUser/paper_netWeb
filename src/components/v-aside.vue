@@ -7,17 +7,17 @@
           </router-link>
         </li>-->
         <li class="nav-item">
-          <router-link to="/skill" active-class="nav-link active">
+          <router-link :to="{path:'/skill', query:{list_id:1}}" active-class="nav-link active">
             <span>论文查重技巧</span>
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/faq" active-class="nav-link active">
+          <router-link :to="{path:'/faq', query:{list_id:2}}" active-class="nav-link active">
             <span>常见问题</span>
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/academic" active-class="nav-link active">
+          <router-link :to="{path:'/academic', query:{list_id:3}}" active-class="nav-link active">
             <span>学术资讯</span>
           </router-link>
         </li>
@@ -27,6 +27,16 @@
 
 <script>
     export default {
+      data(){
+        return{
+        }
+      },
+
+      created(){
+
+      },
+
+      methods:{},
     }
 </script>
 

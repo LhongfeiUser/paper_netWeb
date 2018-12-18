@@ -18,6 +18,7 @@
           <input
             class="form-control"
             type="text" maxlength="15"
+            v-model="single_author"
             placeholder="作者名字不能超过15个字（*必填）">
         </div>
       </div>
@@ -77,13 +78,15 @@
         <button type="button" class="btn btn-outline-warning" @click="upload_sure">确定提交</button>
       </div>
     </form>
-    <Apply_model></Apply_model>
+    <Apply_model :stu_id="stu_id" :info="order_info"></Apply_model>
   </div>
 </template>
 
 <script>
+
   import {uploadArticle, studentID, student_info, getAuth} from "@/api/upload_paper";
   import Apply_model from './apply_model'
+
   export default {
     components:{Apply_model},
     data() {
@@ -95,6 +98,11 @@
         s_authCode: '',
         single_authCode: true,
         single_time: 0,
+        single_author:null,
+        lunwen_id:null,
+        card_id:null,
+        order_info:null,
+        stu_id:null,
       }
     },
     methods: {
@@ -125,6 +133,8 @@
         formdata.append('status', 'file');
         studentID(formdata).then(res => {
           if (res) {
+            console.log(res);
+            this.card_id=res.card_id;
             this.$message.success('学生证上传成功')
           }
         })
@@ -156,10 +166,11 @@
         let formdata = new FormData();
         formdata.append('file', file);
         formdata.append('status', 'file');
-        // formdata.append('stu_id', 1);
         uploadArticle(formdata).then(res => {
           if (res) {
             console.log(res);
+            this.order_info=res.order.info;
+            this.lunwen_id=res.lunwen_id;
             this.$message.success('论文上传成功');
           }
         })
@@ -186,15 +197,18 @@
 
       upload_sure() {
         let infoData = {
-          title: 1,
-          author: 1,
-          tel: '15270830827',
-          student_card_id: 1,
-          not_lunwen_id: 1,
+          title: this.single_name,
+          author: this.single_author,
+          tel: this.single_phoneCode,
+          student_card_id: this.card_id,
+          not_lunwen_id: this.lunwen_id,
         };
         student_info(infoData).then(res => {
-          if (res) {
-            console.log(res);
+          if (res&&res.code===200) {
+            this.stu_id=res.stu_id;
+            this.$message.success('学生信息提交成功');
+          }else {
+            this.$message.error(res.msg)
           }
         })
       },

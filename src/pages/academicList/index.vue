@@ -25,28 +25,10 @@
       </aside>
       <div class="academic_list">
         <h3>学术资讯</h3>
-        <ul class="academic_content">
-          <li>
-            <router-link :to="{name:'academicDetail',params:{id:1}}">
-              大学毕业生所必须了解和掌握的文献综述与科学论文
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'academicDetail', params: { id: 2 }}">
-              浅谈turnitin文献相似度检测系统及其应用 - 香港大学
-            </router-link>
-          </li>
-          <li>
-            国外大学是如何利用Turnitin杜绝学术抄袭的
-          </li>
-          <li>
-            什么是原创、伪原创、抄袭，三者有什么关系?
-          </li>
-          <li>
-            中华人民共和国教育部令第40号:高等学校预防与处理学术不端行为办法
-          </li>
-          <li>
-            针对学术打假为原创力提供空间 各国如何进行
+        <div v-if="isData" v-loading="isData" style="height:80px;width:100%;"></div>
+        <ul v-else class="list_content">
+          <li v-for="(item,index) in lists" :key="index" @click="goDetail(item.id)">
+            {{item.title}}
           </li>
         </ul>
         <ul class="pagination">
@@ -64,12 +46,42 @@
   import Header from '@/components/Header'
   import Footer from '@/components/Footer'
   import v_aside from '@/components/v-aside'
+  import {getListData} from "@/api/getList";
+
   export default {
     data() {
       return {
+        lists:[],
+        cat_id:null,
+        isData:false,
       }
     },
     components: {Header, Footer, v_aside},
+    created(){
+      this.cat_id=this.$route.query.list_id;
+      this.getacademicList(this.cat_id);
+    },
+    methods:{
+      getacademicList(id){
+        this.isData=true;
+        const faqData={
+          token:'meichenghuilian20181108',
+          cat_id:id,
+        };
+        getListData(faqData).then(res=>{
+          if(res.code===200){
+            this.lists=res.msg;
+            this.isData=false;
+          }else {
+            this.$message.error(res.msg);
+            this.isData=false;
+          }
+        })
+      },
+      goDetail(id){
+        this.$router.push(`/academic/detail/${id}`)
+      },
+    }
   }
 </script>
 
@@ -113,7 +125,7 @@
           border-bottom:1px #e8e8e8 solid;
           padding-bottom:10px;
         }
-        .academic_content{
+        .list_content{
           counter-reset: sectioncounter;
           li:before{
             content: counter(sectioncounter) "、";
@@ -127,6 +139,7 @@
             font-size:18px;
             border-bottom:1px dashed #b9b9b9 ;
             padding-bottom:20px;
+            cursor: pointer;
             a:hover{
               color:orangered;
             }

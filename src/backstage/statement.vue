@@ -36,6 +36,8 @@
 </template>
 
 <script>
+  import {getstatement} from '@/api/backstageApi/backstage'
+
   export default {
     name:'Statement',
     data(){
@@ -46,14 +48,17 @@
       }
     },
     created(){
-      // this.getData();
+       this.getstatementData();
     },
     methods:{
-      getData(){
-        getInCome().then((res)=>{
-          console.log(res);
-          this.inComeLists = res.items;
-          this.num = res.items.length;
+      getstatementData(){
+        let statementData={
+          agent_id:1,
+        };
+        getstatement(statementData).then((res)=>{
+          if(res){
+            console.log(res);
+          }
           this.changePage(1);
         })
       },

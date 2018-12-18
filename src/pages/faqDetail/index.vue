@@ -2,7 +2,7 @@
   <div class="detail">
     <Header></Header>
     <main>
-      <h2>中国知网论文查重的报告该如何看？</h2>
+      <h2 v-if="content_arr">{{content_arr.title}}</h2>
       <div class="detail-other">
         <a @click="detail_prev">上一篇：如何查看论文查重报告的详细指标？</a>
         <a @click="detail_next">下一篇：论文查重系统抄袭结果为0%，是正常的吗？</a>
@@ -58,32 +58,43 @@
     data() {
       return {
         detail_id:null,
-        content_arr:null,
+        content_arr:[],
       }
     },
+
     created() {
       this.detail_id=this.$route.params.id;
       this.getFaqDetailData(this.detail_id)
     },
+
     methods: {
-      detail_prev(){
-        let next_id =parseInt(this.detail_id)-1;
+
+      detail_prev(){ //上一页
+        let next_id =this.detail_id=parseInt(this.detail_id)-1;
+        if(next_id<0){
+          next_id=this.detail_id=0;
+          return this.$message.info('已经是第一篇文章了')
+        }
         this.getFaqDetailData(next_id);
         this.$router.push(`/faq/detail/${next_id}`)
       },
-      detail_next(){
+
+      detail_next(){ //下一页
         let next_id =this.detail_id=parseInt(this.detail_id)+1;
+        if(next_id>9){
+          next_id=this.detail_id=9;
+          return this.$message.info('已经是最后一篇文章了')
+        }
         this.getFaqDetailData(next_id);
         this.$router.push(`/faq/detail/${next_id}`)
       },
+
       getFaqDetailData(id) {
-        console.log(id);
         const faqDetail = {
           token: 'meichenghuilian20181108',
           detail_id: id,
         };
         getFaqDetail(faqDetail).then(res => {
-          console.log(res);
           if(res.code===200){
             this.content_arr=res.msg;
           }else {

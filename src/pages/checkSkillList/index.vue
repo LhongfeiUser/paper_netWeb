@@ -7,28 +7,10 @@
       </aside>
       <div class="skill_list">
         <h3>论文查重技巧</h3>
-        <ul class="list_content">
-          <li>
-            <router-link :to="{name:'detail',params:{id:4}}">
-             三招最有效论文查重修改技巧
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'detail', params: { id: 5 }}">
-              论文查重降低重复率修改技巧的10点建议
-            </router-link>
-          </li>
-          <li>
-            论文查重前必看四大误区，查重效率提升
-          </li>
-          <li>
-            论文写作速成手册：更快速的通过论文查重
-          </li>
-          <li>
-            毕业论文检测、毕业论文查重修改过关技巧
-          </li>
-          <li>
-            写好毕业论文的六个步骤：选题、开题、初稿、修正、查重、辩论
+        <div v-if="isData" v-loading="isData" style="height:80px;width:100%;"></div>
+        <ul v-else class="list_content">
+          <li v-for="(item,index) in lists" :key="index" @click="goDetail(item.id)">
+            {{item.title}}
           </li>
         </ul>
         <ul class="pagination">
@@ -46,12 +28,42 @@
   import Header from '@/components/Header'
   import Footer from '@/components/Footer'
   import v_aside from '@/components/v-aside'
+  import {getListData} from "@/api/getList";
+
   export default {
     data() {
       return {
+        lists:[],
+        cat_id:null,
+        isData:false,
       }
     },
     components: {Header, Footer, v_aside},
+    created(){
+      this.cat_id=this.$route.query.list_id;
+      this.getskillList(this.cat_id);
+    },
+    methods:{
+      getskillList(id){
+        this.isData=true;
+        const faqData={
+          token:'meichenghuilian20181108',
+          cat_id:id,
+        };
+        getListData(faqData).then(res=>{
+          if(res.code===200){
+            this.lists=res.msg;
+            this.isData=false;
+          }else {
+            this.$message.error(res.msg);
+            this.isData=false;
+          }
+        })
+      },
+      goDetail(id){
+        this.$router.push(`/skill/detail/${id}`)
+      },
+    }
   }
 </script>
 
@@ -101,6 +113,7 @@
           font-size:18px;
           border-bottom:1px dashed #b9b9b9 ;
           padding-bottom:20px;
+          cursor: pointer;
           a:hover{
             color:orangered;
           }

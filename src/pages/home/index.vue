@@ -127,49 +127,7 @@
           </ul>
         </div>
       </div>
-
-      <div class="article">
-        <ul class="tabs">
-          <li :class="isTabs===0?'tabs_active':''" @click="isTabs=0">论文查重技巧</li>
-          <li :class="isTabs===1?'tabs_active':''" @click="isTabs=1">常见问题</li>
-          <li :class="isTabs===2?'tabs_active':''" @click="isTabs=2">学术资讯</li>
-        </ul>
-        <ul class="tabs_content">
-          <li v-show="isTabs===0">
-            <div class="article_box" v-for="(item,index) in 3" :key="item" @click="goArticleDetail(index,'skill')">
-              <div class="article_title">
-                <h4>图片拼接、设计漏洞，又一位学术大佬论文造</h4>
-                <span>2018-11-21</span>
-              </div>
-              <span class="article_content">
-              近日，某旧书网被毕业生举报，有不法商家在售卖高校博士学位论文。登录该网站进行关键字搜索，会弹出4000多条贩售信息，其中的论文来自全国诸多高校，不乏知名学府。
-            </span>
-            </div>
-          </li>
-          <li v-show="isTabs===1">
-            <div class="article_box" v-for="(item,index) in 3" :key="item" @click="goArticleDetail(index,'faq')">
-              <div class="article_title">
-                <h4>图片拼接、设计漏洞，又一位学术大佬论文造</h4>
-                <span>2018-11-22</span>
-              </div>
-              <span class="article_content">
-              近日，某旧书网被毕业生举报，有不法商家在售卖高校博士学位论文。登录该网站进行关键字搜索，会弹出4000多条贩售信息，其中的论文来自全国诸多高校，不乏知名学府。
-              </span>
-            </div>
-          </li>
-          <li v-show="isTabs===2">
-            <div class="article_box" v-for="(item,index) in 3" :key="item" @click="goArticleDetail(index,'academic')">
-              <div class="article_title">
-                <h4>图片拼接、设计漏洞，又一位学术大佬论文造</h4>
-                <span>2018-11-23</span>
-              </div>
-              <span class="article_content">
-              近日，某旧书网被毕业生举报，有不法商家在售卖高校博士学位论文。登录该网站进行关键字搜索，会弹出4000多条贩售信息，其中的论文来自全国诸多高校，不乏知名学府。
-              </span>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <end_article></end_article>
     </main>
     <Footer></Footer>
   </div>
@@ -178,9 +136,10 @@
   import Footer from '@/components/Footer'
   import Header from '@/components/Header'
   import selection_model from './models/selection_model'
+  import end_article from './models/end_article'
 
   export default {
-    components: {Header,selection_model,Footer},
+    components: {Header, selection_model, end_article, Footer},
     data() {
       return {
         current: [],
@@ -245,13 +204,9 @@
           'http://pmo78af5a.pic41.websiteonline.cn/upload/2_52i8.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png'
         ],
-        isTabs: 0,
       }
     },
     methods: {
-      goArticleDetail(id, name) {
-        this.$router.push(`/${name}/detail/${id}`)
-      },
     },
   }
 </script>
@@ -262,12 +217,14 @@
     color: rgb(0, 0, 0);
     position: relative;
   }
-  .header{
-    position: absolute!important;
+
+  .header {
+    position: absolute !important;
     z-index: 2;
-    width:100%;
-    background-color:inherit!important;
+    width: 100%;
+    background-color: inherit !important;
   }
+
   #banner {
     .carousel-indicators li {
       width: 15px;
@@ -471,58 +428,6 @@
             width: 17%;
             height: auto;
             margin: 20px auto
-          }
-        }
-      }
-    }
-    .article {
-      background-color: #fff;
-      padding: 60px 80px 60px;
-      ul.tabs {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 3px solid #1754A5;
-        li {
-          width: 33.33%;
-          line-height: 55px;
-          font-size: 18px;
-          text-align: center;
-          cursor: pointer;
-        }
-        .tabs_active {
-          background-color: #1754a5;
-          color: #fff;
-        }
-      }
-      ul.tabs_content {
-        li {
-          margin-top: 35px;
-          color: #5A5A5A;
-          .article_box {
-            margin: 40px 15px;
-            cursor: pointer;
-            .article_title {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              font-size: 18px;
-              margin-bottom: 10px;
-              span {
-                font-family: SimSun;
-                font-size: 14px;
-                color: #acacac;
-              }
-            }
-            .article_content {
-              width: 60%;
-              font-size: 12px;
-              /*overflow: hidden;*/
-              /*text-overflow: ellipsis;*/
-              /*display: -webkit-box;*/
-              /*-webkit-line-clamp: 1;*/
-              /*-webkit-box-orient: vertical;*/
-            }
           }
         }
       }

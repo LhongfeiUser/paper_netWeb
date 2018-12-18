@@ -1,76 +1,86 @@
 <template>
-    <div class="apply_box" @click="isApply_show=false">
-      <div class="apply">
-        <span class="apply_way">支付方式</span>
-        <div class="apply_content">
-          <div class="more_apply_zfb" data-toggle="modal" @click.stop="isApply(0)">
-            <img :src="isApply_show?(isImg===0?applyImg.zfb_01:applyImg.zfb):applyImg.zfb">
-            <span>支付宝支付</span>
-          </div>
-          <div class="more_apply_wx" data-toggle="modal" @click.stop="isApply(1)">
-            <img :src="isApply_show?(isImg===1?applyImg.wx_01:applyImg.wx):applyImg.wx">
-            <span>微信支付</span>
-          </div>
+  <div class="apply_box" @click="isApply_show=false">
+    <div class="apply">
+      <span class="apply_way">支付方式</span>
+      <div class="apply_content">
+        <div class="more_apply_zfb" data-toggle="modal" @click.stop="isApply(0)">
+          <img :src="isApply_show?(isImg===0?applyImg.zfb_01:applyImg.zfb):applyImg.zfb">
+          <span>支付宝支付</span>
         </div>
-      </div>
-      <div class="StagePayment" v-show="isApply_show">
-        <img :src="orderImg">
-        <div class="need_payment">
-          <span>需支付金额</span>
-          <span>￥188</span>
-        </div>
-        <div class="payment_right">
-          <div :class="isImg===0?'zfb_bg':'wx_bg'">
-            <img src="../../../assets/images/scanCode.png">
-            <span>扫码支付</span>
-          </div>
-          <div>
-            <img src="../../../assets/images/falult.png">
-            <span>故障订单处理</span>
-          </div>
+        <div class="more_apply_wx" data-toggle="modal" @click.stop="isApply(1)">
+          <img :src="isApply_show?(isImg===1?applyImg.wx_01:applyImg.wx):applyImg.wx">
+          <span>微信支付</span>
         </div>
       </div>
     </div>
+    <div class="StagePayment" v-show="isApply_show">
+      <img :src="orderImg" v-if="orderImg">
+      <div v-else style="width: 150px;height:150px;text-align: center;line-height: 150px;">正在加载...</div>
+      <div class="need_payment">
+        <span>需支付金额</span>
+        <span>￥{{price}}</span>
+      </div>
+      <div class="payment_right">
+        <div :class="isImg===0?'zfb_bg':'wx_bg'">
+          <img src="../../../assets/images/scanCode.png">
+          <span>扫码支付</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/falult.png">
+          <span>故障订单处理</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
   import {getQrcode} from "@/api/upload_paper";
-    export default {
-        data(){
-          return{
-            isApply_show:false,
-            isImg:null,
-            applyImg: {
-              zfb: require('../../../assets/images/zhifubao.png'),
-              zfb_01: require('../../../assets/images/zfb_01.png'),
-              wx: require('../../../assets/images/wx.png'),
-              wx_01: require('../../../assets/images/wx_01.png'),
-            },
-            orderImg:'',
-          }
+
+  export default {
+    data() {
+      return {
+        isApply_show: false,
+        isImg: null,
+        applyImg: {
+          zfb: require('../../../assets/images/zhifubao.png'),
+          zfb_01: require('../../../assets/images/zfb_01.png'),
+          wx: require('../../../assets/images/wx.png'),
+          wx_01: require('../../../assets/images/wx_01.png'),
         },
-      methods:{
-        isApply(num){
-          this.isApply_show=true;
-          this.isImg=num;
-          let qrcodeData={
-            agent_id:1,
-            url:window.location.href,
+        orderImg: '',
+        price:0 ,
+      }
+    },
+    props: ['info','stu_id'],
+    created(){
+    },
+    methods: {
+      isApply(num) {
+        if(this.stu_id){
+          this.isApply_show = true;
+          this.isImg = num;
+          this.price=this.info.price;
+          let qrcodeData = {
+            agent_id: this.info.id,
+            url: sessionStorage.getItem('generalizeUrl'),
           };
-          getQrcode(qrcodeData).then(res=>{
-            if(res){
+          getQrcode(qrcodeData).then(res => {
+            if (res) {
               console.log(res);
-              this.orderImg='http://zhangyucheng.51vip.biz:25743/'+res.path;
+              this.orderImg = res.path;
             }
           })
-
+        }else {
+          this.$message.info('请提交论文相关信息')
         }
       }
     }
+  }
 </script>
 
 <style scoped lang="scss">
-  .apply_box{
+  .apply_box {
     .StagePayment {
       width: 500px;
       height: 200px;

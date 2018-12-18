@@ -77,7 +77,6 @@
           token:'meichenghuilian20181108'
         };
         login_req(postData).then(res=>{
-          console.log(res);
           if(res.code === 200){
             sessionStorage.setItem('token',1);
             this.$router.push('/backstage')

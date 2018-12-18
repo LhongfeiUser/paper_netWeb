@@ -48,6 +48,7 @@
 </template>
 
 <script>
+  import {getuserList} from '@/api/backstageApi/backstage'
   export default {
     data() {
       return {
@@ -97,6 +98,21 @@
             zip: 200333
           }]
       }
+    },
+    created(){
+      this.userList();
+    },
+    methods:{
+      userList(){
+        let userListData={
+          agent_id:1,
+        };
+        getuserList(userListData).then(res=>{
+          if(res){
+            console.log(res);
+          }
+        })
+      }
     }
   }
 </script>
@@ -111,7 +127,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 80px 10px 0;
+    padding: 10px 10px 10px 0;
     /*border: 1px solid #ebeef5;*/
     background-color: #f5f7fa;
     .userList_title {

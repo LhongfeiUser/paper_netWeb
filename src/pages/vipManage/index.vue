@@ -3,23 +3,6 @@
     <Header></Header>
     <main style="display: flex;justify-content: flex-start;align-items: flex-start">
       <div class="aside">
-        <!--<ul class="nav flex-column">
-          <li :class="current==='1'?'nav-item item_active':'nav-item'">
-            <router-link to="info?current=1&time=new Date()">
-              <span :class="current==='1'?'nav-link active':'nav-link'" @click="getInfo">会员信息</span>
-            </router-link>
-          </li>
-          <li class="nav-item item_active">
-            <router-link to="upload">
-              <span class="nav-link active" @click="upload">论文查重</span>
-            </router-link>
-          </li>
-          <li :class="current==='3'?'nav-item item_active':'nav-item'">
-            <router-link to="order?current=3">
-              <span :class="current==='3'?'nav-link active':'nav-link'" @click="getorderList">订单列表</span>
-            </router-link>
-          </li>
-        </ul>-->
         <img src="../../assets/images/aside_logo.png">
         <div style="margin:20px 0 20px 20px;font-size:16px;color:#000;">
           <h3>知网小分解系统 文献库</h3>
@@ -54,20 +37,10 @@
   export default {
     data() {
       return {
-        current: '1'
       }
     },
     components: {Header, Footer},
     methods: {
-      getInfo() {
-       this.current='1'
-      },
-      upload() {
-        this.current = '2'
-      },
-      getorderList() {
-        this.current = '3'
-      }
     }
   }
 </script>

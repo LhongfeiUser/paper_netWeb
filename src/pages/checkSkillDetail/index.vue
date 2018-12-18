@@ -1,79 +1,155 @@
 <template>
-  <div class="skillDetail">
+  <div class="detail">
     <Header></Header>
     <main>
-      <h3 class="text-center text-dark">三招最有效论文查重修改技巧</h3>
-      <a href="javascript:void(0)">上一篇：论文查重降低重复率修改技巧的10点建议</a>
-      <article class="text-justify">
-        <h3>三招最有效论文查重修改技巧</h3>
-        <p>论文查重重复率如何降低对于有些同学来说，是一个大问题，那么是否有简单有效的论文查重修改技巧？必过论文网查重整理了一份论文查重修改技巧的文章，提供一些论文查重修改技巧方面的参考，欢迎查看。</p>
-        <p>修改技巧一，论文抄袭检测系统最好能够和你现在所用的论文查重系统保持一致，这样，自己的论文检测结果就不会和学校的论文检测结果相差太大，最多只是一点点的“误差”。如果贸然选择检测系统，一旦和学校的不一致，那就极有可能造成论文重复比的结果数据不一样。</p>
-        <p>修改技巧二，明确学校的要求。比如，学校对论文的格式要求，如果在检测之后再对论文格式进行大改动，很可能会影响到检测结果。因为论文抄袭检测系统对论文的抄袭是根据其阀值的设置，而格式的改变必定会改变原来的阀值。还有就是，学校要求论文的重合率是多少?例如，学校的要求是重复比低于20%的话，而你的论文检测结果在远在10%以下，一般即使再经检测都没问题的。如果是15%，而你的论文检测结果是14%的话，就必须进行修改。
+      <h2 v-if="content_arr">{{content_arr.title}}</h2>
+      <div class="detail-other">
+        <a @click="detail_prev">上一篇：如何查看论文查重报告的详细指标？</a>
+        <a @click="detail_next">下一篇：论文查重系统抄袭结果为0%，是正常的吗？</a>
+      </div>
+      <div class="detail_content" v-html="content_arr.content">
+        <p>
+          1、首先看 总-xx% 的截图文件，学位论文检测系统是整篇上传，如果没有这个文件肯定不是学位论文检测系统检测的。
         </p>
         <p>
-          修改技巧三，这也是最重要的一点。检测报告出来后，该如何降低重复比。
-        </p>
-        <p>下面就说说几点有效的技巧：</p>
-        <p>
-        1.最基本的是，你必须要能够看懂自己的论文检测报告。明确哪些内容需要修改。一般来说，红色部分都涉嫌严重抄袭，最好全部改换掉，第一次修改，要尽可能地修改，以降低重复比。
+          （1）截图上面有VIP（或TMLC）的标志，说明是用VIP版本检测的。
         </p>
         <p>
-        2.假如不担心论文的字数不够的话，可以将检测到的论文对应报告，适当删掉一部分重复内容，这种做法的好处就是可以快速降低重复率，又不需要花大量时间去进行修改和调整。
+          （2）上部左侧有文章及作者信息，还有总文字复制比和总重合字数。大部分学校基本只看总文字复制比这个指标，具体要求各个学校不同，一般5%-30%。
         </p>
         <p>
-        3.如果是报告中红色字体的论文内容，如果只是简单地调换和打乱顺序，或者只修改三两个字词的话，第二遍检测仍然是重合的。这种做法毫无作用。如果是一段论述性的内容，可以给它添加引用，如果不想添加引用符号的话，就要自己手动重写，用同义句，但是每个字词都要尽量减少重复。
+          （3）上部中间偏是参考文献字数，系统会自动识别文章末尾的参考文献，如能识别就会单独放在这里，不参与检测。
         </p>
         <p>
-        4.翻译繁体资料或者外文资料。如果这份资料别人没有大量使用过的话，翻译过来是可以降低抄袭比的。但是不要直接逐字逐句地翻译。因为这样的翻译也等同于抄袭。最好的方法就是，翻译出来之后再换成自己的话来述写一遍，表达出同样的意思即可。一次直接的翻译然后就把内容放进论文里面的话，会存在很大的风险。一是原作者可能会发现你的论文并找上门来;二是虽然论文查重系统无法检测出来，但是如果恰好有人要审查你的论文，也很容易“露馅”。
+          （4）截图下部是各段落的抄袭比例，系统会识别文章的大纲目录，如果能被正确识别就会按照章节进行分段，否则会自动分段。
         </p>
         <p>
-        5.如果你的论文文字足够，可以将部分文字转变成图形图片。因为论文检测系统是无法检测图片里面的文字内容的。详细的步骤是要先对该部分的文字进行整行的剪切，然后把剪切的内容选择性粘贴，然后在原位置粘贴[选择“图片(windows图元文件)”]。但是文字转化图片这种方式并不适合大量使用，因为这往往会造成整篇论文字数的迅速减少。
+          （5）总文字复制比由各段落复制比加权平均得来。
         </p>
         <p>
-        6.如果你引用了某篇文献的很多内容，可以将这部分内容的顺序调乱，然后进行小幅度的修改。由于这个办法一般无法让这整个段的内容都变成零重复率的，所以重复的内容仍然是要注明是引用内容比较好。
+          2、然后看文本复制检测报告单，这个是系统自动导出的检测报告，并非手工拼凑。
         </p>
         <p>
-        7.将文字变成表格。论文检测系统对表格内容的检测，远远不如对文段的重复比检测辨别能力强。因此，可以将文字，特别是分类的资料数据进行叙述，尽量换掉原文的字词，用同义词代替，这样也等于将内容文字修改了一遍。做表格还有一个好处就是让论文的表述形式看起来变得更丰富多彩了。
+          （1）最上部是文章及作者信息，总复制比以及比对库范围等内容。
         </p>
         <p>
-        总之，论文查重修改必须认真谨慎，要迅速有效地降低重复率，就要掌握修改方法，同时不要忘了，必须保证论文质量。
+          （2）然后是文章及段落抄袭率概要，此部分对应总截图文件。
         </p>
-      </article>
+        <p>
+          （3）接着就是各段落的详细检测报告，包括被抄袭文献的信息，并且系统识别出来的抄袭的文字会被标红处理，您只要修改红字就可以了。
+        </p>
+        <p>
+          3、其他检测报告可供您参考，会告诉您那句话抄袭了哪篇文章，作者是谁、文献来源是哪里以及发表时间。蓝色显示的字体可以链接到系统入口，这个可以鉴别检测系统的真伪。
+        </p>
+      </div>
     </main>
+    <!--<Article_detail :detail_id='detail_id' @ee="getFaqList"></Article_detail>-->
     <Footer></Footer>
   </div>
 </template>
 
 <script>
-  import Header from '@/components/Header'
-  import Footer from '@/components/Footer'
-
+  import {getFaqDetail} from "@/api/getDetail";
+  import Header from "@/components/Header"
+  import Footer from "@/components/Footer"
+  import Article_detail from "@/components/articleDetail"
   export default {
+    components:{Header,Article_detail,Footer},
     data() {
-      return {}
+      return {
+        detail_id:null,
+        content_arr:[],
+      }
     },
-    components: {Header, Footer},
+
     created() {
+      this.detail_id=this.$route.params.id;
+      this.getFaqDetailData(this.detail_id)
     },
-    methods: {}
+
+    methods: {
+
+      detail_prev(){ //上一页
+        let next_id =this.detail_id=parseInt(this.detail_id)-1;
+        if(next_id<0){
+          next_id=this.detail_id=0;
+          return this.$message.info('已经是第一篇文章了')
+        }
+        this.getFaqDetailData(next_id);
+        this.$router.push(`/faq/detail/${next_id}`)
+      },
+
+      detail_next(){ //下一页
+        let next_id =this.detail_id=parseInt(this.detail_id)+1;
+        if(next_id>9){
+          next_id=this.detail_id=9;
+          return this.$message.info('已经是最后一篇文章了')
+        }
+        this.getFaqDetailData(next_id);
+        this.$router.push(`/faq/detail/${next_id}`)
+      },
+
+      getFaqDetailData(id) {
+        console.log(id);
+        const faqDetail = {
+          token: 'meichenghuilian20181108',
+          detail_id: id,
+        };
+        getFaqDetail(faqDetail).then(res => {
+          console.log(res);
+          if(res.code===200){
+            this.content_arr=res.msg;
+          }else {
+            this.$message.error(res.msg);
+          }
+        })
+      },
+    }
   }
 </script>
 
 <style scoped lang="scss">
-  .skillDetail {
-    main {
-      background-color: #fff;
-      padding: 40px 80px;
-      text-align: justify;
-      .text-center {
-        font-size: 22px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #888;
+  main{
+    background:#fff;
+    padding:0 40px 80px;
+    h2{
+      text-align: center;
+      padding:20px 0;
+      font-size: 22px;
+      color: #424242;
+      border-bottom: 1px #e8e8e8 solid;
+    }
+    .detail-other{
+      text-align: center;
+      padding-top: 20px;
+      a{
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px;
+        width: 30%;
+        color: #f5a543;
+        cursor: pointer;
       }
-      article{
-        p{
-          text-indent:2em;
-        }
+      a:hover{
+        color:#f5a543;
+      }
+    }
+    .detail_content{
+      margin-left:25px;
+      margin-right:25px;
+      p{
+        text-align: left;
+        margin-top: 18px;
+        margin-bottom: 0;
+        line-height: 1.8;
+        font-size: 16px;
+        white-space: normal;
+        padding: 0;
+        color: rgb(34, 34, 34);
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Helvetica Neue", Arial, sans-serif;
+        background-color: rgb(255, 255, 255)
       }
     }
   }

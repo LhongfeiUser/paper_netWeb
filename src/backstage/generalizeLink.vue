@@ -19,9 +19,9 @@
         </div>
         <div class="generalizeLink_count QR_code">
           <div class="QR_codeDownload">
-            <img src="../assets/images/footerQr_02.png" width="100vw" height="100vw">
+            <img :src="qrImg" width="100vw" height="100vw">
             <el-button type="primary" size="mini">
-              <a href="blob:http://localhost:9528/37131432-c10f-4633-a455-e9e6acf4a677" download="二维码">下载保存</a>
+              <span @click="downloadqrImg">下载保存</span>
             </el-button>
           </div>
           <div class="QR_code_content">
@@ -39,7 +39,12 @@
         <div class="generalizeLink_count poster">
           <div class="poster_create">
             <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540196843851&di=c82b7bb81919a0b8462506efb9b3682b&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F140314%2F11-140314110FcI.jpg" width="100vw" height="100vw">
-            <el-button type="primary" size="mini">一键生成</el-button>
+            <el-button type="primary" size="mini" @click="dialogVisible = true">一键生成</el-button>
+            <el-dialog
+              :visible.sync="dialogVisible"
+              width="30%">
+              <poster :imgurl="qrImg"></poster>
+            </el-dialog>
           </div>
           <p style="text-align: justify;line-height:5vh;">
             此海报内容为【毕业论文免费查重】，已内嵌您的专属二维码，您可以直接一键生成推广海报，下载保存，将海报发到朋友圈、qq空间，微信群、qq群等。用户直接扫码，或者用户直接转发后扫码，系统已经识别用户ID，永久定位在您的名下，不管现在成交或者将来成交，都属于您的用户，都有分成。
@@ -75,15 +80,40 @@
 </template>
 
 <script>
+  import {getQrcode} from '@/api/backstageApi/backstage'
+  import poster from '@/backstage/poster'
   export default {
     data(){
       return{
-
+        qrImg:null,
+        dialogVisible:false,
       }
+    },
+    components:{poster},
+    created(){
+      this.getQrcodeData();
     },
     methods:{
       hh(){
         alert('1')
+      },
+      downloadqrImg(){
+        let a = document.createElement("a");
+        a.href = this.qrImg;
+        a.download = "drcQrcode";
+      },
+      getQrcodeData(){
+        console.log(sessionStorage.getItem('generalizeUrl'));
+        let qrcodeData={
+          url:sessionStorage.getItem('generalizeUrl'),
+          agent_id:1,
+        };
+        getQrcode(qrcodeData).then(res=>{
+          if(res){
+            console.log(res);
+            this.qrImg=res.path;
+          }
+        })
       }
     }
   }

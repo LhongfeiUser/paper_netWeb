@@ -79,6 +79,7 @@
 </template>
 
 <script>
+  import {getorderDetail} from '@/api/backstageApi/backstage'
 
   export default {
     name: "OrderDetails",
@@ -108,16 +109,21 @@
         orderLists: null,
       }
     },
+
     created() {
-      // this.getData();
+      this.getData();
     },
+
     methods: {
-      getData: function () {
-        getOrderList().then(res => {
-          console.log(res);
-          this.orderLists = res.items;
+      getData() {
+        let orderData = {
+          order_id: 38
+        };
+        getorderDetail(orderData).then(res => {
+          if (res) {
+            console.log(res);
+          }
           this.changePage(1);
-          this.num = res.items.length;
         })
       },
       changePage(page) {
@@ -159,7 +165,8 @@
       }
     }
   }
-  .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner{
-    width:220px;
+
+  .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
+    width: 220px;
   }
 </style>

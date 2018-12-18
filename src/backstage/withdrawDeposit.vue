@@ -107,6 +107,7 @@
     align-items: center;
     background-color: #f5f7fa;
     color: #606266;
+    padding:12px 0;
     span {
       margin: auto 1vw;
       font-size: 24px;

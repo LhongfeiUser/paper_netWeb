@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://zhangyucheng.51vip.biz:25743',//http://zhangyucheng.51vip.biz:25743
+        target: 'http://lunwen.alibabaphp.com',//http://zhangyucheng.51vip.biz:25743
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

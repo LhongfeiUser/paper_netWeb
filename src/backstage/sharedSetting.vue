@@ -12,7 +12,7 @@
         prop="systemType"
         label="日期"
         align="center"
-        width="100"/>
+        width=""/>
       <el-table-column
         prop="websitePrice"
         label="订单列表"
@@ -33,15 +33,15 @@
         label="备注 "
         align="center"
         width=""/>
-      <el-table-column
+      <!--<el-table-column
         fixed="right"
         label="操作"
         align="center">
         <template slot-scope="scope">
-          <el-button class="el-button--primary" size="small" @click="compile(scope.row)"><i class="el-icon-edit" style="padding-right:5px;"></i>编辑
+          <el-button class="el-button&#45;&#45;primary" size="small" @click="compile(scope.row)"><i class="el-icon-edit" style="padding-right:5px;"></i>编辑
           </el-button>
         </template>
-      </el-table-column>
+      </el-table-column>-->
     </el-table>
     <el-pagination
       :total="1000"
@@ -83,6 +83,7 @@
 </template>
 
 <script>
+  import {getprofitSharing} from '@/api/backstageApi/backstage'
   export default {
     data() {
       return {
@@ -154,10 +155,23 @@
         },
       }
     },
+    created(){
+      this.getshareData();
+    },
     methods:{
-      compile(row){
+     /* compile(row){
         this.form = row;
         this.dialogFormVisible = true
+      },*/
+      getshareData(){
+        let shareData={
+          agent_id:1,
+        };
+        getprofitSharing(shareData).then(res=>{
+          if(res){
+            console.log(res);
+          }
+        })
       }
     }
   }
