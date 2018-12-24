@@ -149,7 +149,6 @@
           formdata.append('file', n);
         }
         formdata.append('status', 'file');
-        console.log(formdata.get('file'));
         if (this.filesList.length > 0) {
           this.isShow = false;
           uploadArticle(formdata).then(res => {
@@ -168,7 +167,7 @@
         }
         for (let i = 0, n = 0; i < this.filesList.length; i++) {
           if (this.filesList[i] !== this.filesList[dx]) {
-            this.filesList[n++] = this.filesList[i]
+            this.filesList[n++] = this.filesList[i];
           }
         }
         this.filesList.length -= 1;

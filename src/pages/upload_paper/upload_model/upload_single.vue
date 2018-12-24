@@ -198,10 +198,10 @@
       upload_sure() {
         let infoData = {
           title: this.single_name,
-          author: this.single_author,
           tel: this.single_phoneCode,
           student_card_id: this.card_id,
           not_lunwen_id: this.lunwen_id,
+          author: this.single_author,
         };
         student_info(infoData).then(res => {
           if (res&&res.code===200) {

@@ -9,22 +9,22 @@
       border
       style="width: 100%">
       <el-table-column
-        prop="systemType"
+        prop="create_time"
         label="日期"
         align="center"
         width=""/>
       <el-table-column
-        prop="websitePrice"
+        prop="id"
         label="订单列表"
         align="center"
         width=""/>
       <el-table-column
-        prop="grossProfit"
+        prop="price"
         label="总利润"
         align="center"
         width=""/>
       <el-table-column
-        prop="myProfits"
+        prop="profitSharing"
         label="我的利润"
         align="center"
         width=""/>
@@ -89,62 +89,7 @@
       return {
         dialogFormVisible: false,
         input: '',
-        tableData: [
-          {
-            systemType: '2016-05-03',
-            websitePrice: '王小虎',
-            grossProfit: '上海',
-            subordinateDivide: '普陀区',
-            myProfits: '上海市普陀区金沙江路 1518 弄',
-            state: 200333,
-            subordinateProfits:'1',
-            remarks:''
-          },{
-            systemType: '2016-05-03',
-            websitePrice: '王小虎',
-            grossProfit: '上海',
-            subordinateDivide: '普陀区',
-            myProfits: '上海市普陀区金沙江路 1518 弄',
-            state: 200333,
-            subordinateProfits:'',
-            remarks:''
-          },{
-            systemType: '2016-05-03',
-            websitePrice: '王小虎',
-            grossProfit: '上海',
-            subordinateDivide: '普陀区',
-            myProfits: '上海市普陀区金沙江路 1518 弄',
-            state: 200333,
-            subordinateProfits:'',
-            remarks:''
-          },{
-            systemType: '2016-05-03',
-            websitePrice: '王小虎',
-            grossProfit: '上海',
-            subordinateDivide: '普陀区',
-            myProfits: '上海市普陀区金沙江路 1518 弄',
-            state: 200333,
-            subordinateProfits:'',
-            remarks:''
-          },{
-            systemType: '2016-05-03',
-            websitePrice: '王小虎',
-            grossProfit: '上海',
-            subordinateDivide: '普陀区',
-            myProfits: '上海市普陀区金沙江路 1518 弄',
-            state: 200333,
-            subordinateProfits:'',
-            remarks:''
-          },{
-            systemType: '2016-05-03',
-            websitePrice: '王小虎',
-            grossProfit: '上海',
-            subordinateDivide: '普陀区',
-            myProfits: '上海市普陀区金沙江路 1518 弄',
-            state: 200333,
-            subordinateProfits:'',
-            remarks:''
-          },],
+        tableData: [],
         formLabelWidth: '120px',
         form: {
           name: '',
@@ -170,6 +115,7 @@
         getprofitSharing(shareData).then(res=>{
           if(res){
             console.log(res);
+            this.tableData=res.order_lists;
           }
         })
       }

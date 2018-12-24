@@ -7,7 +7,7 @@
       <div class="dashboard-text">
         <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
           <el-form-item label="用户名">
-            <el-input v-model="formLabelAlign.userName"></el-input>
+            <el-input disabled v-model="formLabelAlign.userName"></el-input>
           </el-form-item>
           <el-form-item label="昵 称">
             <el-input v-model="formLabelAlign.nickName"></el-input>
@@ -23,7 +23,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="save">保存</el-button>
-            <el-button type="danger">重置</el-button>
+            <el-button type="danger" @click="getinfoData">重置</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -31,7 +31,7 @@
   </div>
 </template>
 <script>
-
+  import {revision_info,getUserInfo} from '@/api/backstageApi/backstage'
   export default {
     data() {
       return {
@@ -46,7 +46,9 @@
         current: 1
       }
     },
-    computed: {},
+    created(){
+      this.getinfoData();
+    },
     methods: {
       save() {
         this.$confirm('您确定要修改以上内容？', '提示', {
@@ -54,10 +56,21 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          // 发送请求
-          this.$message({
-            type: 'success',
-            message: '修改成功!'
+          let infoData ={
+            username:this.formLabelAlign.userName,
+            password:this.formLabelAlign.password,
+            token:'meichenghuilian20181108',
+            wxnickname:this.formLabelAlign.nickName,
+            email:this.formLabelAlign.email,
+            telphone:this.formLabelAlign.phone
+          };
+          revision_info(infoData).then(res=>{
+            if(res&&res.code===200){
+              console.log(res);
+              this.$message.success('修改成功')
+            }else {
+              this.$message.error(res.msg)
+            }
           });
         }).catch(() => {
           // this.$router.go(0);
@@ -66,6 +79,22 @@
             message: '已取消修改'
           });
         });
+      },
+      getinfoData(){
+        let infoData={
+          agent_id:10,
+          token:'meichenghuilian20181108'
+        };
+        getUserInfo(infoData).then(res=>{
+          if(res){
+            this.formLabelAlign.userName=res.data.username;
+            this.formLabelAlign.nickName=res.data.wxnickname;
+            this.formLabelAlign.password=res.data.password;
+            this.formLabelAlign.email=res.data.email;
+            this.formLabelAlign.telphone=res.data.telphone;
+            console.log(res);
+          }
+        })
       }
     }
   }

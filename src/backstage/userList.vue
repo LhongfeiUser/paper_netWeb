@@ -12,8 +12,7 @@
     </div>
     <el-table
       :data="tableData3"
-      border
-      style="width:100%">
+      border>
       <el-table-column
         prop="date"
         label="ID"
@@ -43,6 +42,7 @@
     <el-pagination
       :total="1000"
       background
+      @current-change="changPage"
       layout="prev, pager, next"/>
   </div>
 </template>
@@ -112,6 +112,9 @@
             console.log(res);
           }
         })
+      },
+      changPage(page){
+
       }
     }
   }

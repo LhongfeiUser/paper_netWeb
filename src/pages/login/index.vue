@@ -54,18 +54,19 @@
     },
     methods:{
       remember(isRemove){
-       /* if(this.userName&&this.password){
-          if(!isRemove){
-            /!*保存时间*!/
-            cookies.set('userName',this.userName, { expires: 7, path: '' });
-            cookies.set('password',this.password, { expires: 7, path: '' });
-            cookies.set('isRemember',this.isRemember, { expires: 7, path: '' });
-          }else {
-            cookies.remove('userName');
-            cookies.remove('password');
-            cookies.remove('isRemember');
-          }
-        }*/
+        console.log(isRemove);
+        /* if(this.userName&&this.password){
+           if(!isRemove){
+             /!*保存时间*!/
+             cookies.set('userName',this.userName, { expires: 7, path: '' });
+             cookies.set('password',this.password, { expires: 7, path: '' });
+             cookies.set('isRemember',this.isRemember, { expires: 7, path: '' });
+           }else {
+             cookies.remove('userName');
+             cookies.remove('password');
+             cookies.remove('isRemember');
+           }
+         }*/
       },
       login(){
         if(this.isRemember){
@@ -78,6 +79,7 @@
         };
         login_req(postData).then(res=>{
           if(res.code === 200){
+            console.log(res);
             sessionStorage.setItem('token',1);
             this.$router.push('/backstage')
           }else{

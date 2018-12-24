@@ -52,9 +52,8 @@
   import {getFaqDetail} from "@/api/getDetail";
   import Header from "@/components/Header"
   import Footer from "@/components/Footer"
-  import Article_detail from "@/components/articleDetail"
   export default {
-    components:{Header,Article_detail,Footer},
+    components:{Header,Footer},
     data() {
       return {
         detail_id:null,
@@ -76,7 +75,7 @@
           return this.$message.info('已经是第一篇文章了')
         }
         this.getFaqDetailData(next_id);
-        this.$router.push(`/faq/detail/${next_id}`)
+        this.$router.push(`/skill/detail/${next_id}`)
       },
 
       detail_next(){ //下一页
@@ -86,7 +85,7 @@
           return this.$message.info('已经是最后一篇文章了')
         }
         this.getFaqDetailData(next_id);
-        this.$router.push(`/faq/detail/${next_id}`)
+        this.$router.push(`/skill/detail/${next_id}`)
       },
 
       getFaqDetailData(id) {

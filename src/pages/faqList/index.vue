@@ -9,14 +9,14 @@
         <h3>常见问题</h3>
         <div v-if="isData" v-loading="isData" style="height:80px;width:100%;"></div>
         <ul v-else class="list_content">
-          <li v-for="(item,index) in lists" :key="index" @click="goDetail(item.id)">
+          <li v-for="(item,index) in list" :key="index" @click="goDetail(item.id)">
             {{item.title}}
           </li>
         </ul>
-        <ul class="pagination">
-          <li class="page-item disabled"><a class="page-link text-black-50" href="#">上一页</a></li>
-          <li class="page-item" v-for="item in 1" :key="item"><a class="page-link text-black-50" href="#">{{item}}</a></li>
-          <li class="page-item"><a class="page-link text-black-50" href="#">下一页</a></li>
+        <ul class="pagination pagination-sm">
+          <li class="page-item"><a class="page-link text-black-50" href="javascript:void(0)" @click="changePage(page-1)">上一页</a></li>
+          <li :class="item===page?'page-item active':'page-item'" v-for="item in len" :key="item"><a class="page-link text-black-50" href="javascript:void(0)" @click="changePage(page)">{{item}}</a></li>
+          <li class="page-item"><a class="page-link text-black-50" href="javascript:void(0)" @click="changePage(page+1)">下一页</a></li>
         </ul>
       </div>
     </main>
@@ -33,9 +33,12 @@
   export default {
     data() {
       return {
+        list:[],
         lists:[],
         cat_id:null,
         isData:false,
+        page:1,
+        len:1,
       }
     },
     components: {Header, Footer, v_aside},
@@ -53,6 +56,7 @@
         getListData(faqData).then(res=>{
           if(res.code===200){
             this.lists=res.msg;
+            this.changePage(1);
             this.isData=false;
           }else {
             this.$message.error(res.msg);
@@ -63,6 +67,23 @@
       goDetail(id){
         this.$router.push(`/faq/detail/${id}`)
       },
+      changePage(page){
+        if(page<1){
+          this.$message.info('已经是第一页了');
+          page=1;
+        }
+        if(this.lists.length>6){
+          this.len=Math.ceil(this.list.length/6);
+          if(page>this.len){
+            this.$message.info('已经是最后一页了');
+            page=this.len;
+          }
+        }else {
+          this.len=page=1;
+        }
+        this.page=page;
+        this.list=this.lists.slice((page-1)*6,page*6)
+      }
     }
   }
 </script>

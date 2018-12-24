@@ -8,6 +8,24 @@ export const withdraw = data => {
   })
 };
 
+//获取个人用户信息
+export const getUserInfo = data => {
+  return service({
+    url: 'get_userinfo',
+    method: 'post',
+    data
+  })
+};
+
+//修改个人用户信息
+export const revision_info = data => {
+  return service({
+    url: 'update_userinfo',
+    method: 'post',
+    data
+  })
+};
+
 //代理商用户列表
 export const getuserList = data => {
   return service({

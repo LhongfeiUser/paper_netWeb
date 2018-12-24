@@ -7,7 +7,7 @@
         <a @click="detail_prev">上一篇：如何查看论文查重报告的详细指标？</a>
         <a @click="detail_next">下一篇：论文查重系统抄袭结果为0%，是正常的吗？</a>
       </div>
-      <div class="detail_content" v-html="content_arr.content">
+      <div v-if="content_arr" class="detail_content" v-html="content_arr.content">
         <p>
           1、首先看 总-xx% 的截图文件，学位论文检测系统是整篇上传，如果没有这个文件肯定不是学位论文检测系统检测的。
         </p>
@@ -43,7 +43,6 @@
         </p>
       </div>
     </main>
-    <!--<Article_detail :detail_id='detail_id' @ee="getFaqList"></Article_detail>-->
     <Footer></Footer>
   </div>
 </template>
@@ -52,9 +51,8 @@
   import {getFaqDetail} from "@/api/getDetail";
   import Header from "@/components/Header"
   import Footer from "@/components/Footer"
-  import Article_detail from "@/components/articleDetail"
   export default {
-    components:{Header,Article_detail,Footer},
+    components:{Header,Footer},
     data() {
       return {
         detail_id:null,
