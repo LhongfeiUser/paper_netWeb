@@ -57,6 +57,7 @@
 </template>
 
 <script>
+  import cookies from 'js-cookie';
   export default {
     data() {
       return {
@@ -67,7 +68,9 @@
         this.$router.push('/home')
       },
       logout(){
-        sessionStorage.clear('token');
+        sessionStorage.clear('isLogin');
+        cookies.remove('isRemember');
+        cookies.remove('agent_id',);
         this.$router.push('/login')
       }
     }

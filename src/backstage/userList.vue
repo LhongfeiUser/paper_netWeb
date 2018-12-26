@@ -106,6 +106,8 @@
       userList(){
         let userListData={
           agent_id:1,
+          page:3,
+          size:1,
         };
         getuserList(userListData).then(res=>{
           if(res){

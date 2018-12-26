@@ -21,7 +21,8 @@
           <div class="QR_codeDownload">
             <img :src="qrImg" width="100vw" height="100vw">
             <el-button type="primary" size="mini">
-              <span @click="downloadqrImg">下载保存</span>
+              <!--<span @click="downloadqrImg">下载保存</span>-->
+              <a :href="baseload" download="wc.png">下载保存</a>
             </el-button>
           </div>
           <div class="QR_code_content">
@@ -38,7 +39,9 @@
         </div>
         <div class="generalizeLink_count poster">
           <div class="poster_create">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540196843851&di=c82b7bb81919a0b8462506efb9b3682b&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F140314%2F11-140314110FcI.jpg" width="100vw" height="100vw">
+            <img
+              src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540196843851&di=c82b7bb81919a0b8462506efb9b3682b&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F140314%2F11-140314110FcI.jpg"
+              width="100vw" height="100vw">
             <el-button type="primary" size="mini" @click="dialogVisible = true">一键生成</el-button>
             <el-dialog
               :visible.sync="dialogVisible"
@@ -60,7 +63,7 @@
           <span>
             自费印刷（不可以报销）：提供印刷素材
             <el-button type="primary" size="mini">
-              <a href="../../assets/images/QR_code.png" download="印刷素材">素材下载</a>
+              <a href="../assets/images/QR_code.png" download="印刷素材">素材下载</a>
             </el-button>
           </span>
           <span>
@@ -82,114 +85,117 @@
 <script>
   import {getQrcode} from '@/api/backstageApi/backstage'
   import poster from '@/backstage/poster'
+
   export default {
-    data(){
-      return{
-        qrImg:null,
-        dialogVisible:false,
+    data() {
+      return {
+        qrImg: null,
+        dialogVisible: false,
+        baseload:null,
       }
     },
-    components:{poster},
-    created(){
+    components: {poster},
+    created() {
       this.getQrcodeData();
     },
-    methods:{
-      hh(){
+    methods: {
+      hh() {
         alert('1')
       },
-      downloadqrImg(){
+      downloadqrImg() {
         let a = document.createElement("a");
         a.href = this.qrImg;
         a.download = "drcQrcode";
       },
-      getQrcodeData(){
+      getQrcodeData() {
         console.log(sessionStorage.getItem('generalizeUrl'));
-        let qrcodeData={
-          url:sessionStorage.getItem('generalizeUrl'),
-          agent_id:1,
+        let qrcodeData = {
+          url: sessionStorage.getItem('generalizeUrl'),
+          agent_id: 1,
         };
-        getQrcode(qrcodeData).then(res=>{
-          if(res){
+        getQrcode(qrcodeData).then(res => {
+          if (res) {
             console.log(res);
-            this.qrImg=res.path;
+            this.qrImg = res.path;
+            this.baseload=res.base64;
           }
         })
-      }
+      },
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .generalizeLink{
-    .generalizeLink_item{
-      border:1px solid #f9f6f1;
-      margin-bottom:20px;
-      background-color:#f9f9f9;
-      border-radius:10px;
-      .generalizeLink_title{
+  .generalizeLink {
+    .generalizeLink_item {
+      border: 1px solid #f9f6f1;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      .generalizeLink_title {
         display: flex;
         justify-content: flex-start;
-        align-items:center;
-        background-color:#f9f0e2;
-        height:5vh;
-        padding:20px;
-        span{
-          margin-right:5px;
+        align-items: center;
+        background-color: #f9f0e2;
+        height: 5vh;
+        padding: 20px;
+        span {
+          margin-right: 5px;
         }
       }
-      .generalizeLink_count{
+      .generalizeLink_count {
         display: flex;
         flex-direction: column;
-        padding:20px;
-        color:#606266;
+        padding: 20px;
+        color: #606266;
       }
-      .link{
-        line-height:6vh;
-        span{
+      .link {
+        line-height: 6vh;
+        span {
           display: inline-block;
-          padding:0 10px;
+          padding: 0 10px;
           margin-bottom: 10px;
         }
-        :first-child{
-          a{
-            color:blue;
+        :first-child {
+          a {
+            color: blue;
           }
         }
-        :nth-last-child(1){
-          a{
-            color:#fff;
-          }
-        }
-      }
-      .QR_code{
-        flex-direction: row;
-        justify-content: flex-start;
-        .QR_codeDownload{
-          margin-right:5vw;
-          display:flex;
-          align-items:center;
-          justify-content:flex-start;
-          img{
-            margin-right:10px;
-          }
-        }
-        .QR_code_content{
-          line-height:8vh;
-          span{
-            display:block;
+        :nth-last-child(1) {
+          a {
+            color: #fff;
           }
         }
       }
-      .poster{
+      .QR_code {
         flex-direction: row;
         justify-content: flex-start;
-        .poster_create{
-          margin-right:5vw;
-          display:flex;
-          align-items:center;
-          justify-content:flex-start;
-          img{
-            margin-right:10px;
+        .QR_codeDownload {
+          margin-right: 5vw;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          img {
+            margin-right: 10px;
+          }
+        }
+        .QR_code_content {
+          line-height: 8vh;
+          span {
+            display: block;
+          }
+        }
+      }
+      .poster {
+        flex-direction: row;
+        justify-content: flex-start;
+        .poster_create {
+          margin-right: 5vw;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          img {
+            margin-right: 10px;
           }
         }
       }

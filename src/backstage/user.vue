@@ -40,14 +40,14 @@
           userName: '清风扬',
           nickName: '绿波漾',
           password: '666',
-          email: '1667@126.com',
-          phone: '16601053721'
+          email: '1777@126.com',
+          phone: '15501053721'
         },
-        current: 1
       }
     },
     created(){
-      this.getinfoData();
+      let {agent_id} =this.$route.query;
+      this.getinfoData(agent_id);
     },
     methods: {
       save() {
@@ -80,9 +80,9 @@
           });
         });
       },
-      getinfoData(){
+      getinfoData(agent_id){
         let infoData={
-          agent_id:10,
+          agent_id:agent_id,
           token:'meichenghuilian20181108'
         };
         getUserInfo(infoData).then(res=>{
