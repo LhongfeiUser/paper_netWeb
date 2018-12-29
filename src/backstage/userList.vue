@@ -11,15 +11,15 @@
       </div>
     </div>
     <el-table
-      :data="tableData3"
+      :data="tableData"
       border>
       <el-table-column
-        prop="date"
+        prop="id"
         label="ID"
         align="center"
         width=""/>
       <el-table-column
-        prop="name"
+        prop="author"
         label="用户"
         align="center"
         width=""/>
@@ -34,13 +34,14 @@
         align="center"
         width=""/>
       <el-table-column
-        prop="zip"
+        prop="create_time"
         label="时间"
         align="center"
         width=""/>
     </el-table>
     <el-pagination
-      :total="1000"
+      :total="count"
+      :page-size="1"
       background
       @current-change="changPage"
       layout="prev, pager, next"/>
@@ -53,76 +54,36 @@
     data() {
       return {
         input: '',
-        tableData3: [
-          {
-            date: '2016-05-03',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-02',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            province: '上海',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-01',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-08',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }, {
-            date: '2016-05-06',
-            name: '1',
-            province: '2',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }]
+        tableData: [],
+        count:0,
       }
     },
     created(){
-      this.userList();
+      this.userList(1);
     },
     methods:{
-      userList(){
+      userList(page){
         let userListData={
-          agent_id:1,
-          page:3,
+          agent_id:1,//sessionStorage.getItem('agent_id'),
+          page:page,
           size:1,
         };
         getuserList(userListData).then(res=>{
           if(res){
             console.log(res);
+            this.count=res.count;
+            this.tableData=res.user_lists;
           }
         })
       },
       changPage(page){
-
+        this.userList(page)
       }
     }
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .el-pagination {
     text-align: end;
     margin-top: 5vh;

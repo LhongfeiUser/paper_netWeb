@@ -42,11 +42,11 @@
             <img
               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540196843851&di=c82b7bb81919a0b8462506efb9b3682b&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F140314%2F11-140314110FcI.jpg"
               width="100vw" height="100vw">
-            <el-button type="primary" size="mini" @click="dialogVisible = true">一键生成</el-button>
+            <el-button type="primary" size="mini" @click="builder">一键生成</el-button>
             <el-dialog
               :visible.sync="dialogVisible"
               width="30%">
-              <poster :imgurl="qrImg"></poster>
+              <poster ref="posterChild"></poster>
             </el-dialog>
           </div>
           <p style="text-align: justify;line-height:5vh;">
@@ -102,13 +102,7 @@
       hh() {
         alert('1')
       },
-      downloadqrImg() {
-        let a = document.createElement("a");
-        a.href = this.qrImg;
-        a.download = "drcQrcode";
-      },
       getQrcodeData() {
-        console.log(sessionStorage.getItem('generalizeUrl'));
         let qrcodeData = {
           url: sessionStorage.getItem('generalizeUrl'),
           agent_id: 1,
@@ -121,6 +115,12 @@
           }
         })
       },
+      builder(){
+        this.dialogVisible = true;
+        this.$nextTick(()=>{
+          this.$refs.posterChild.draw(this.baseload)
+        });
+      }
     }
   }
 </script>

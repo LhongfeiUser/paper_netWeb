@@ -62,6 +62,15 @@ export const getstatement = data => {
   })
 };
 
+//代理商操作教程
+export const operation = data => {
+  return service({
+    url: 'get_operation_list',
+    method: 'post',
+    data
+  })
+};
+
 //推广链接二维码二维码
 export const getQrcode = data => {
   return service({

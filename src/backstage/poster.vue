@@ -1,32 +1,38 @@
 <template>
   <div class="poster">
-    <canvas ref="posterCanvas" style="background-color: orangered;width:200px;height:200px"></canvas>
+    <canvas ref="posterCanvas" style="background-color: inherit;width:200px;height:200px"></canvas>
+    <a :href="posterImg" download="wj.png">下载</a>
   </div>
 </template>
 
 <script>
   export default {
     data() {
-      return {}
-    },
-    props: ['imgurl'],
-    mounted() {
-      this.draw(this.imgurl);
+      return {
+        posterImg:'',
+      }
     },
     methods: {
+      jj(){
+        console.log(this.$refs.saveImg);
+        this.$refs.saveImg.execCommand('saveAs');
+      },
       draw(url) {
         let c = this.$refs.posterCanvas;
         let ctx = c.getContext('2d');
         let img = new Image();
-        // img.crossOrigin = "Anonymous";
-        img.src = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540196843851&di=c82b7bb81919a0b8462506efb9b3682b&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F140314%2F11-140314110FcI.jpg';
-        ctx.drawImage(img, 0, 0, 300, 200);
-        let img2 = new Image();
-        // img2.crossOrigin = "Anonymous";
-        console.log(url);
-        img2.src = url;
-        ctx.drawImage(img2, 200, 0, 100, 50);
-        // console.log(c.toDataURL());
+        let that =this;
+        img.src = require('../assets/images/timg.jpg');
+        img.onload=function () {
+          ctx.drawImage(img, 0, 0, 300, 300);
+          let img2 = new Image();
+          // img2.crossOrigin = "Anonymous";
+          img2.src = url;
+          img2.onload =function(){
+            ctx.drawImage(img2, 240, 0, 60, 60);
+            that.posterImg =c.toDataURL("image/png",1);
+          };
+        };
       }
     }
   }

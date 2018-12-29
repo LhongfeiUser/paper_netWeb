@@ -23,7 +23,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="save">保存</el-button>
-            <el-button type="danger" @click="getinfoData">重置</el-button>
+            <el-button type="danger" @click="getinfoData(user_id)">重置</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -32,6 +32,7 @@
 </template>
 <script>
   import {revision_info,getUserInfo} from '@/api/backstageApi/backstage'
+  import cookies from 'js-cookie';
   export default {
     data() {
       return {
@@ -43,11 +44,12 @@
           email: '1777@126.com',
           phone: '15501053721'
         },
+        user_id:'',
       }
     },
     created(){
-      let {agent_id} =this.$route.query;
-      this.getinfoData(agent_id);
+      this.user_id=cookies.get('agent_id');
+      this.getinfoData(this.user_id);
     },
     methods: {
       save() {

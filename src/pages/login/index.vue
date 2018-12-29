@@ -40,7 +40,6 @@
 
 <script>
   import cookies from 'js-cookie';
-  // import md5 from 'md5';
   import {login_req} from "../../api/login";
 
   export default {
@@ -76,13 +75,14 @@
           password: this.password,
           token: 'meichenghuilian20181108'
         };
+        sessionStorage.setItem('isLogin', 1);
+        this.$router.push('/backstage');
         login_req(postData).then(res => {
           if (res.code === 200) {
-            console.log(res);
             this.agent_id = res.data.id;
             cookies.set('agent_id', this.agent_id, {expires: 7, path: ''});
             sessionStorage.setItem('isLogin', 1);
-            this.$router.push('/backstage?agent_id=' + this.agent_id)
+            this.$router.push('/backstage')
           } else {
             this.$message.error(res.msg);
           }

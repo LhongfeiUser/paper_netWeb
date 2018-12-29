@@ -17,7 +17,11 @@
         prop="name"
         label="文章标题"
         align="center"
-        width=""/>
+        width="">
+        <template slot-scope="scope">
+          <a href="https://www.baidu.com" style="color: #2c63ad">{{scope.row.name}}</a>
+        </template>
+     </el-table-column>
       <el-table-column
         prop="province"
         label="文章类型"
@@ -50,13 +54,15 @@
         width=""/>
     </el-table>
     <el-pagination
-      :total="100"
+      :total="10"
       background
       layout="prev, pager, next"/>
   </div>
 </template>
 
 <script>
+  import {operation} from "../api/backstageApi/backstage";
+
   export default {
     data() {
       return {
@@ -111,6 +117,22 @@
             address: '上海市普陀区金沙江路 1518 弄',
             zip: 200333
           }]
+      }
+    },
+    created(){
+      this.getoperation();
+    },
+    methods:{
+      getoperation(){
+        let operationData={
+          title:'',
+          token:'meichenghuilian20181108'
+        };
+        operation(operationData).then(res=>{
+          if(res){
+            console.log(res);
+          }
+        })
       }
     }
   }

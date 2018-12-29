@@ -59,33 +59,37 @@
             value: '2',
             label: '微信'
           }],
-        value: '支付宝'
+        value: '',
       };
     },
     methods: {
       deposit() {
+        console.log(this.value);
         let reqData = {
           token: 'meichenghuilian20181108',
           member_id: 3,
-          get_money_name: 3,
-          get_money_accout: 3,
+          get_money_name: this.formLabelAlign.name,
+          get_money_accout: this.value,
           price: 3,
         };
         withdraw(reqData).then(res => {
           if(res){
+            console.log(res);
             this.$message.success('提现成功');
           }
         });
-      }
+      },
     }
   }
 </script>
 
-<style lang="scss">
+<style  lang="scss">
   .el-input.el-input--suffix, .el-input {
     width: 20vw;
   }
-
+  .app-container .el-form-item{
+    width:40%;
+  }
   .applyForWithdraw {
     /*width:80vw;*/
     border: 1px solid #ebeef5;

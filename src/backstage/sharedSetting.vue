@@ -44,9 +44,10 @@
       </el-table-column>-->
     </el-table>
     <el-pagination
-      :total="1000"
+      :total="count"
       background
-      layout="prev, pager, next"/>
+      layout="prev, pager, next"
+      @current-change="changPage"/>
     <el-dialog :visible.sync="dialogFormVisible" title="我的分成">
       <el-form :model="form" label-position="right" style="padding:5px 50px 5px 10px;">
         <el-form-item :label-width="formLabelWidth" label="状态">
@@ -98,19 +99,22 @@
           their: '',
           id: '',
         },
+        count:1,
       }
     },
     created(){
-      this.getshareData();
+      this.getshareData(1);
     },
     methods:{
      /* compile(row){
         this.form = row;
         this.dialogFormVisible = true
       },*/
-      getshareData(){
+      getshareData(page){
         let shareData={
           agent_id:1,
+          page:page,
+          size:1,
         };
         getprofitSharing(shareData).then(res=>{
           if(res){
@@ -118,6 +122,9 @@
             this.tableData=res.order_lists;
           }
         })
+      },
+      changPage(page){
+        this.getshareData(page)
       }
     }
   }

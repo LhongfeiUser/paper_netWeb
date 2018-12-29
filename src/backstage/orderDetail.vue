@@ -132,7 +132,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style scoped lang="scss">
   .el-select {
     margin-right: 5px;
   }
