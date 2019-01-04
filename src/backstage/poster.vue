@@ -13,18 +13,14 @@
       }
     },
     methods: {
-      jj(){
-        console.log(this.$refs.saveImg);
-        this.$refs.saveImg.execCommand('saveAs');
-      },
       draw(url) {
         let c = this.$refs.posterCanvas;
         let ctx = c.getContext('2d');
         let img = new Image();
         let that =this;
-        img.src = require('../assets/images/timg.jpg');
+        img.src = require('../assets/images/lwcc.jpg');
         img.onload=function () {
-          ctx.drawImage(img, 0, 0, 300, 300);
+          ctx.drawImage(img, 0, 0, 300, 100);
           let img2 = new Image();
           // img2.crossOrigin = "Anonymous";
           img2.src = url;

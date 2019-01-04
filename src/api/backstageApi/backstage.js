@@ -34,7 +34,14 @@ export const getuserList = data => {
     data
   })
 };
-
+//代理商订单列表
+export const orderList = data => {
+  return service({
+    url: 'get_agent_order_lists',
+    method: 'post',
+    data
+  })
+};
 //代理商订单详情
 export const getorderDetail = data => {
   return service({

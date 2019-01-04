@@ -137,12 +137,11 @@
   import Header from '@/components/Header'
   import selection_model from './models/selection_model'
   import end_article from './models/end_article'
-
   export default {
     components: {Header, selection_model, end_article, Footer},
     data() {
       return {
-        current: [],
+        category: [],
         system_module: [
           {
             module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg',
@@ -205,6 +204,10 @@
           'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png'
         ],
       }
+    },
+    created(){
+    },
+    methods:{
     },
   }
 </script>

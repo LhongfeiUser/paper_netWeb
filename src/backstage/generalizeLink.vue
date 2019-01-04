@@ -109,7 +109,6 @@
         };
         getQrcode(qrcodeData).then(res => {
           if (res) {
-            console.log(res);
             this.qrImg = res.path;
             this.baseload=res.base64;
           }

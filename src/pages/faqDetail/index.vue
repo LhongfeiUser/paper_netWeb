@@ -1,11 +1,10 @@
 <template>
   <div class="detail">
-    <Header></Header>
     <main>
       <h2 v-if="content_arr">{{content_arr.title}}</h2>
       <div class="detail-other">
-        <a @click="detail_prev">上一篇：如何查看论文查重报告的详细指标？</a>
-        <a @click="detail_next">下一篇：论文查重系统抄袭结果为0%，是正常的吗？</a>
+        <a @click="detail_prev">上一篇</a>
+        <a @click="detail_next">下一篇</a>
       </div>
       <div v-if="content_arr" class="detail_content" v-html="content_arr.content">
         <p>
@@ -43,16 +42,12 @@
         </p>
       </div>
     </main>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
   import {getFaqDetail} from "@/api/getDetail";
-  import Header from "@/components/Header"
-  import Footer from "@/components/Footer"
   export default {
-    components:{Header,Footer},
     data() {
       return {
         detail_id:null,

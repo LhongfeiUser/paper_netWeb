@@ -1,6 +1,5 @@
 <template>
   <div class="vipManage">
-    <Header></Header>
     <main style="display: flex;justify-content: flex-start;align-items: flex-start">
       <div class="aside">
         <img src="../../assets/images/aside_logo.png">
@@ -26,20 +25,15 @@
         <router-view></router-view>
       </div>
     </main>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
-  import Header from '@/components/Header'
-  import Footer from '@/components/Footer'
-
   export default {
     data() {
       return {
       }
     },
-    components: {Header, Footer},
     methods: {
     }
   }

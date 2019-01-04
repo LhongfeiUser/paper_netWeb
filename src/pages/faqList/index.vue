@@ -1,6 +1,5 @@
 <template>
   <div class="faqList">
-    <Header></Header>
     <main>
       <aside>
         <v_aside></v_aside>
@@ -20,13 +19,10 @@
         </ul>
       </div>
     </main>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
-  import Header from '@/components/Header'
-  import Footer from '@/components/Footer'
   import v_aside from '@/components/v-aside'
   import {getListData} from "@/api/getList";
 
@@ -41,7 +37,7 @@
         len:1,
       }
     },
-    components: {Header, Footer, v_aside},
+    components: {v_aside},
     created(){
       this.cat_id=this.$route.query.list_id;
       this.getFaqList(this.cat_id);

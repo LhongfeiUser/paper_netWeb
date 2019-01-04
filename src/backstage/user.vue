@@ -38,11 +38,11 @@
       return {
         labelPosition: 'right',
         formLabelAlign: {
-          userName: '清风扬',
-          nickName: '绿波漾',
-          password: '666',
-          email: '1777@126.com',
-          phone: '15501053721'
+          userName: '加载中...',
+          nickName: '加载中...',
+          password: '加载中...',
+          email: '加载中...',
+          phone: '加载中...'
         },
         user_id:'',
       }
@@ -93,8 +93,7 @@
             this.formLabelAlign.nickName=res.data.wxnickname;
             this.formLabelAlign.password=res.data.password;
             this.formLabelAlign.email=res.data.email;
-            this.formLabelAlign.telphone=res.data.telphone;
-            console.log(res);
+            this.formLabelAlign.phone=res.data.telphone;
           }
         })
       }

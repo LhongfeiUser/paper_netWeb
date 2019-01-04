@@ -3,7 +3,7 @@
     <div class="orderDetail">
       <div class="orderDetail_title">
         <span class="el-icon-document"/>
-        <h5>所有订单详情</h5>
+        <h5>订单列表</h5>
       </div>
       <div style="display:flex;justify-content: end;">
         <el-select v-model="value">
@@ -20,26 +20,26 @@
             range-separator="至"
             start-placeholder="开始日期"
             end-placeholder="结束日期"/>
-          <el-button class="el-button--primary">搜索</el-button>
+          <el-button class="el-button--primary" @click="hh">搜索</el-button>
         </div>
       </div>
     </div>
     <el-table
-      :data="orderList"
+      :data="orderDataList"
       border
       style="width:100%">
       <el-table-column
-        prop="order_num"
+        prop="trade_no"
         label="订单号"
         align="center"
         width=""/>
       <el-table-column
-        prop="name"
+        prop="price"
         label="成交金额"
         align="center"
         width=""/>
       <el-table-column
-        prop="province"
+        prop="type"
         label="检测系统"
         align="center"
         width=""/>
@@ -49,7 +49,7 @@
         align="center"
         width=""/>
       <el-table-column
-        prop="zip"
+        prop="status"
         label="交易状态"
         align="center"
         width=""/>
@@ -59,18 +59,18 @@
         align="center"
         width=""/>
       <el-table-column
-        prop="zip"
+        prop="type"
         label="所属"
         align="center"
         width=""/>
       <el-table-column
-        prop="date"
+        prop="create_time"
         label="创建时间"
         align="center"
         width=""/>
     </el-table>
     <el-pagination
-      :total="num"
+      :total="count"
       background
       layout="prev, pager, next"
       @current-change="changePage"
@@ -79,7 +79,7 @@
 </template>
 
 <script>
-  import {getorderDetail} from '@/api/backstageApi/backstage'
+  import {orderList} from '@/api/backstageApi/backstage'
 
   export default {
     name: "OrderDetails",
@@ -89,45 +89,41 @@
           {
             value: '选项1',
             label: '检测系统1'
-          }, {
-            value: '选项2',
-            label: '检测系统2'
-          }, {
-            value: '选项3',
-            label: '检测系统3'
-          }, {
-            value: '选项4',
-            label: '检测系统4'
-          }, {
-            value: '选项5',
-            label: '检测系统5'
           }],
         value6: '',
-        date: '2016-05-06', value: '所有检测系统',
-        num: null,
-        orderList: null,
-        orderLists: null,
+        date: '2016-05-06',
+        value: '所有检测系统',
+        count: 0,
+        orderDataList: null,
       }
     },
 
     created() {
-      this.getData();
+      this.getData(1);
     },
 
     methods: {
-      getData() {
+      getData(page) {
         let orderData = {
-          order_id: 38
+          agent_id: 1,
+          page:page,
+          size:10,
         };
-        getorderDetail(orderData).then(res => {
-          if (res) {
+        orderList(orderData).then(res => {
+          if (res&&res.code===200) {
             console.log(res);
+            this.count=Math.ceil(res.count/10);
+            this.orderDataList=res.data;
           }
           this.changePage(1);
         })
       },
+      hh(){
+        console.log(this.value6);
+        console.log(this.value6[1].getTime()-this.value6[0].getTime());
+      },
       changePage(page) {
-        this.orderList = this.orderLists.slice((page - 1) * 10, page * 10)
+
       }
     }
   }

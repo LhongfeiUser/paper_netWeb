@@ -1,6 +1,5 @@
 <template>
     <div>
-      <Header></Header>
       <main>
         <aside>
           <v_aside></v_aside>
@@ -13,20 +12,17 @@
           <h2>确认评价</h2>
         </div>
       </main>
-      <Footer></Footer>
     </div>
 </template>
 
 <script>
-  import Header from '@/components/Header'
-  import Footer from '@/components/Footer'
   import v_aside from '@/components/v-aside'
     export default {
         data(){
           return{
           }
         },
-      components:{Header,Footer, v_aside}
+      components:{v_aside}
     }
 </script>
 

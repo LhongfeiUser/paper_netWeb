@@ -5,11 +5,11 @@
       style="width:100%">
       <el-table-column label="收支明细">
         <el-table-column
-          prop="date"
+          prop="create_time"
           label="时间"
           width=""/>
         <el-table-column
-          prop="type"
+          prop="sort"
           label="类型"
           width=""/>
         <el-table-column
@@ -17,7 +17,7 @@
           label="收入（支出）"
           width=""/>
         <el-table-column
-          prop="sum"
+          prop="surplus"
           label="余额"
           width=""/>
         <el-table-column
@@ -27,11 +27,10 @@
       </el-table-column>
     </el-table>
     <el-pagination
-      :total="num"
+      :total="count"
       background
       layout="prev, pager, next"
-      @current-change="changePage"
-    />
+      @current-change="changePage"/>
   </div>
 </template>
 
@@ -42,28 +41,29 @@
     name:'Statement',
     data(){
       return{
-        inComeLists:null,
         inComeList:null,
-        num:0,
+        count:0,
       }
     },
     created(){
-       this.getstatementData();
+       this.getstatementData(1);
     },
     methods:{
-      getstatementData(){
+      getstatementData(page){
         let statementData={
           agent_id:1,
+          page:page,
+          size:10,
         };
         getstatement(statementData).then((res)=>{
-          if(res){
-            console.log(res);
+          if(res&&res.code===200){
+            this.count=Math.ceil(res.count/10);
+            this.inComeList=res.data;
           }
-          this.changePage(1);
         })
       },
       changePage(page){
-        this.inComeList = this.inComeLists.slice((page-1)*10,page*10)
+        this.getstatementData(page);
       }
     }
   }

@@ -94,19 +94,8 @@
       }
     },
     created() {
-      // this.fetchData()
     },
     methods: {
-      fetchData() {
-        this.listLoading = true
-        getList().then((res)=>{
-          this.listNum=res.items;
-          this.today=res.today;
-          this.num = res.items.length;
-          this.changePage(1);
-          this.listLoading = false
-        })
-      },
       changePage(page){
         this.listItem = this.listNum.slice((page-1)*10,page*10)
       }

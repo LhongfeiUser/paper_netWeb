@@ -6,8 +6,8 @@
         <h3>用户列表</h3>
       </div>
       <div style="display:flex;justify-content: end;">
-        <el-input v-model="input" placeholder="输入用户名或ID"/>
-        <el-button class="el-button--primary" style="margin-left:10px;">搜索</el-button>
+        <el-input v-model="searchInput" placeholder="输入用户名或ID"/>
+        <el-button class="el-button--primary" style="margin-left:10px;" @click="userList(1,searchInput)">搜索</el-button>
       </div>
     </div>
     <el-table
@@ -53,7 +53,7 @@
   export default {
     data() {
       return {
-        input: '',
+        searchInput: '',
         tableData: [],
         count:0,
       }
@@ -62,17 +62,18 @@
       this.userList(1);
     },
     methods:{
-      userList(page){
+      userList(page,searchInput){
         let userListData={
           agent_id:1,//sessionStorage.getItem('agent_id'),
           page:page,
-          size:1,
+          size:10,
+          search:searchInput
         };
         getuserList(userListData).then(res=>{
-          if(res){
-            console.log(res);
-            this.count=res.count;
+          if(res&&res.code===200){
+            this.count=Math.ceil(res.count/10);
             this.tableData=res.user_lists;
+            this.tableData.reverse();
           }
         })
       },

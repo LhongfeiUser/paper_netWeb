@@ -9,7 +9,6 @@
         <div class="deposit">
           <span>账户余额</span>
           <span>￥0.00</span>
-          <span @click="deposit()">提现</span>
         </div>
         <el-form :label-position="labelPosition" :model="formLabelAlign" label-width="80px">
           <el-form-item label="提现方式">
@@ -27,10 +26,13 @@
           <el-form-item label="提现姓名">
             <el-input v-model="formLabelAlign.name"/>
           </el-form-item>
+          <el-form-item label="提现金额">
+            <el-input v-model="formLabelAlign.price"/>
+          </el-form-item>
         </el-form>
       </div>
       <div class="save_btn">
-        <el-button class="el-button--primary">保存</el-button>
+        <el-button class="el-button--primary" @click="deposit()">提现</el-button>
       </div>
     </div>
   </div>
@@ -46,7 +48,8 @@
         formLabelAlign: {
           name: '',
           region: '',
-          type: ''
+          type: '',
+          price:''
         },
         options:
           [{
@@ -67,15 +70,17 @@
         console.log(this.value);
         let reqData = {
           token: 'meichenghuilian20181108',
-          member_id: 3,
+          member_id: cookies.get('agent_id'),
           get_money_name: this.formLabelAlign.name,
           get_money_accout: this.value,
-          price: 3,
+          price: this.formLabelAlign.price,
         };
         withdraw(reqData).then(res => {
-          if(res){
+          if(res &&res.code===200){
             console.log(res);
             this.$message.success('提现成功');
+          }else {
+            this.$message.error(res.msg);
           }
         });
       },

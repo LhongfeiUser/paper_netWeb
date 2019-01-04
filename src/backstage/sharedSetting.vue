@@ -33,53 +33,12 @@
         label="备注 "
         align="center"
         width=""/>
-      <!--<el-table-column
-        fixed="right"
-        label="操作"
-        align="center">
-        <template slot-scope="scope">
-          <el-button class="el-button&#45;&#45;primary" size="small" @click="compile(scope.row)"><i class="el-icon-edit" style="padding-right:5px;"></i>编辑
-          </el-button>
-        </template>
-      </el-table-column>-->
     </el-table>
     <el-pagination
       :total="count"
       background
       layout="prev, pager, next"
       @current-change="changPage"/>
-    <el-dialog :visible.sync="dialogFormVisible" title="我的分成">
-      <el-form :model="form" label-position="right" style="padding:5px 50px 5px 10px;">
-        <el-form-item :label-width="formLabelWidth" label="状态">
-          <el-input v-model="form.userType" auto-complete="off"/>
-        </el-form-item>
-        <el-form-item :label-width="formLabelWidth" label="配置">
-          <el-input v-model="form.userType" auto-complete="off"/>
-        </el-form-item>
-        <el-form-item :label-width="formLabelWidth" label="总利润">
-          <el-input v-model="form.their" auto-complete="off"/>
-        </el-form-item>
-        <el-form-item :label-width="formLabelWidth" label="系统类型">
-          <el-input v-model="form.id" auto-complete="off"/>
-        </el-form-item>
-        <el-form-item :label-width="formLabelWidth" label="官网售价">
-          <el-input v-model="form.name" auto-complete="off"/>
-        </el-form-item>
-        <el-form-item :label-width="formLabelWidth" label="下级分成">
-          <el-input v-model="form.phone" auto-complete="off"/>
-        </el-form-item>
-        <el-form-item :label-width="formLabelWidth" label="我的利润">
-          <el-input v-model="form.userType" auto-complete="off"/>
-        </el-form-item>
-        <el-form-item :label-width="formLabelWidth" label="下级利润">
-          <el-input v-model="form.userType" auto-complete="off"/>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="danger" @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 
@@ -92,13 +51,6 @@
         input: '',
         tableData: [],
         formLabelWidth: '120px',
-        form: {
-          name: '',
-          phone: '',
-          userType: '',
-          their: '',
-          id: '',
-        },
         count:1,
       }
     },
@@ -106,20 +58,16 @@
       this.getshareData(1);
     },
     methods:{
-     /* compile(row){
-        this.form = row;
-        this.dialogFormVisible = true
-      },*/
       getshareData(page){
         let shareData={
           agent_id:1,
           page:page,
-          size:1,
+          size:10,
         };
         getprofitSharing(shareData).then(res=>{
           if(res){
-            console.log(res);
-            this.tableData=res.order_lists;
+            this.tableData=res.data;
+            this.count=Math.ceil(res.count/10);
           }
         })
       },

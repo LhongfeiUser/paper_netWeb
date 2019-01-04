@@ -41,27 +41,26 @@
 <script>
   import cookies from 'js-cookie';
   import {login_req} from "../../api/login";
-
+  import md5 from 'md5'
   export default {
     data() {
       return {
         isRemember: false,
         userName: '',
-        password: '',
         agent_id: '',
+        password: '',
       }
     },
     created() {
       let isremove = cookies.get('isRemember');
       let agent_id = cookies.get('agent_id');
       if (isremove ==='false' && agent_id) {
-        sessionStorage.setItem('isLogin', 1);
-        this.$router.push('/backstage?agent_id=' + agent_id)
+        this.$router.push('/backstage')
+        sessionStorage.setItem('isgin', md5('isLogin'));
       }
     },
     methods: {
       remember(isRemove) {
-        console.log(!isRemove);
         if (!isRemove) {
           cookies.set('isRemember', this.isRemember, {expires: 7, path: ''});
         } else {
@@ -75,13 +74,12 @@
           password: this.password,
           token: 'meichenghuilian20181108'
         };
-        sessionStorage.setItem('isLogin', 1);
-        this.$router.push('/backstage');
         login_req(postData).then(res => {
-          if (res.code === 200) {
+          if (res&&res.code === 200) {
+            console.log(res);
             this.agent_id = res.data.id;
             cookies.set('agent_id', this.agent_id, {expires: 7, path: ''});
-            sessionStorage.setItem('isLogin', 1);
+            sessionStorage.setItem('isgin', md5('isLogin'));
             this.$router.push('/backstage')
           } else {
             this.$message.error(res.msg);

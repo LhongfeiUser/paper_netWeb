@@ -1,26 +1,7 @@
 <template>
   <div class="academicList">
-    <Header></Header>
     <main>
       <aside>
-        <!--<img src="../../assets/images/aside_logo.png">
-        <div style="margin:20px 0 20px 20px;font-size:16px;color:#000;">
-          <h3>知网小分解系统 文献库</h3>
-        </div>
-        <ul>
-          <li>中国学术期刊网络出版总库</li>
-          <li>中国博士学位论文全文数据库/中国优秀硕士学位论文全文数据库</li>
-          <li>中国重要会议论文全文数据库</li>
-          <li>中国重要报纸全文数据库</li>
-          <li>中国专利全文数据库</li>
-          <li>互联网资源</li>
-          <li>英文数据库(涵盖期刊、博硕、会议的英文数据以及德国Springer、英国Taylor&Francis 期刊数据库等)</li>
-          <li>港澳台学术文献库</li>
-          <li>优先出版文献库</li>
-          <li>互联网文档资源</li>
-          <li>图书资源</li>
-          <li>个人比对库</li>
-        </ul>-->
         <v_aside></v_aside>
       </aside>
       <div class="academic_list">
@@ -38,13 +19,10 @@
         </ul>
       </div>
     </main>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
-  import Header from '@/components/Header'
-  import Footer from '@/components/Footer'
   import v_aside from '@/components/v-aside'
   import {getListData} from "@/api/getList";
 
@@ -59,7 +37,7 @@
         isData:false,
       }
     },
-    components: {Header, Footer, v_aside},
+    components: {v_aside},
     created(){
       this.cat_id=this.$route.query.list_id;
       this.getacademicList(this.cat_id);

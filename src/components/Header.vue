@@ -6,15 +6,15 @@
         <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140">
         <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/1231.png" width="165">
       </router-link>
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills" v-cloak>
         <li class="nav-item">
           <router-link to="/home" exact active-class="nav-link active">
-            <span>首页</span>
+            <span>{{category[0]}}</span>
           </router-link>
         </li>
         <li class="nav-item">
           <router-link to="/vipManage/upload" active-class="nav-link active">
-            <span>论文查重</span>
+            <span>{{category[1]}}</span>
           </router-link>
         </li>
         <!-- <li class="nav-item">
@@ -24,22 +24,22 @@
          </li>-->
         <li class="nav-item">
           <router-link :to="{path:'/skill', query:{list_id:1}}" active-class="nav-link active">
-            <span>论文查重技巧</span>
+            <span>{{category[2]}}</span>
           </router-link>
         </li>
          <li class="nav-item">
            <router-link :to="{path:'/faq', query:{list_id:2}}" active-class="nav-link active">
-             <span>常见问题</span>
+             <span>{{category[3]}}</span>
            </router-link>
          </li>
          <li class="nav-item">
            <router-link :to="{path:'/academic', query:{list_id:3}}" active-class="nav-link active">
-             <span>学术资讯</span>
+             <span>{{category[4]}}</span>
            </router-link>
          </li>
          <li class="nav-item">
            <router-link to="/login" active-class="nav-link active">
-             <span>登录</span>
+             <span>{{category[5]}}</span>
            </router-link>
          </li>
       </ul>
@@ -52,11 +52,11 @@
   export default {
     data() {
       return {
-        category: null,
+        category: ["首页", "论文查重", "论文查重技巧", "常见问题", "学术资讯", "登录"],
       }
     },
-    created() {
-      // this.getCategoryData();
+    mounted() {
+      this.getCategoryData();
     },
     methods: {
       getCategoryData() {
@@ -65,8 +65,11 @@
         };
         getCategory(categoryData).then(res => {
           if (res) {
-            console.log(res);
-            this.category = res;
+            let arr =[];
+            for(let i=0;i<res.length;i++){
+              arr.push(res[i].category_name)
+            }
+            this.category = arr;
           }
         })
       }
@@ -82,6 +85,9 @@
 
   .navbar {
     padding: 1.5rem 1rem;
+    [v-cloak]{
+      display: none;
+    }
   }
 
   .nav.nav-pills {

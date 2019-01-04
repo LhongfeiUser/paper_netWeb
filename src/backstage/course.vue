@@ -21,7 +21,7 @@
         <template slot-scope="scope">
           <a href="https://www.baidu.com" style="color: #2c63ad">{{scope.row.name}}</a>
         </template>
-     </el-table-column>
+      </el-table-column>
       <el-table-column
         prop="province"
         label="文章类型"

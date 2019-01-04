@@ -25,7 +25,7 @@
           <span>
             <strong>{{item}}</strong>元/篇
           </span>
-          <button class="btn">立即检测</button>
+          <button class="btn" @click="detection(current,selectionData)">立即检测</button>
         </li>
       </transition>
     </div>
@@ -40,7 +40,11 @@
       }
     },
     props: ['selectionData'],
-    methods: {}
+    methods: {
+      detection(cur,list){
+        console.log(cur,list);
+      }
+    }
   }
 </script>
 

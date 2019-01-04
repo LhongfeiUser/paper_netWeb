@@ -25,7 +25,7 @@
             </template>
             <el-menu-item index="/backstage/statistic"><i class="iconfont icon-icon-test"></i>数据统计</el-menu-item>
             <el-menu-item index="/backstage/statement"><i class="iconfont icon-shouzhimingxi"></i>收支明细</el-menu-item>
-            <el-menu-item index="/backstage/orderDetail"><i class="iconfont icon-order"></i>订单详情</el-menu-item>
+            <el-menu-item index="/backstage/orderDetail"><i class="iconfont icon-order"></i>订单列表</el-menu-item>
           </el-submenu>
           <el-menu-item index="/backstage/withdrawDeposit"><i class="iconfont icon-tixian"></i>申请提现</el-menu-item>
           <el-menu-item index="/backstage/generalizeLink"><i class="iconfont icon-share"></i>推广链接</el-menu-item>
@@ -68,7 +68,7 @@
         this.$router.push('/home')
       },
       logout(){
-        sessionStorage.clear('isLogin');
+        sessionStorage.clear('isgin');
         cookies.remove('isRemember');
         cookies.remove('agent_id',);
         this.$router.push('/login')
