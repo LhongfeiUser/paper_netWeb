@@ -68,6 +68,8 @@
           if(res){
             this.tableData=res.data;
             this.count=Math.ceil(res.count/10);
+          }else{
+            this.$message.error(res.msg)
           }
         })
       },

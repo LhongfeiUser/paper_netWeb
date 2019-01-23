@@ -78,7 +78,7 @@
         <button type="button" class="btn btn-outline-warning" @click="upload_sure">确定提交</button>
       </div>
     </form>
-    <Apply_model :stu_id="stu_id" :info="order_info"></Apply_model>
+    <Apply_model :stu_id="stu_id" :order_info="order_info" :order_price="order_price"></Apply_model>
   </div>
 </template>
 
@@ -101,8 +101,9 @@
         single_author:null,
         lunwen_id:null,
         card_id:null,
-        order_info:null,
+        order_price:null,
         stu_id:null,
+        order_info:{},
       }
     },
     methods: {
@@ -131,11 +132,20 @@
         let formdata = new FormData();
         formdata.append('file', file);
         formdata.append('status', 'file');
+        const loading = this.$loading({
+          lock: true,
+          text: '正在上传...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
         studentID(formdata).then(res => {
-          if (res) {
-            console.log(res);
+          if (res&&res.code===200) {
+            loading.close();
             this.card_id=res.card_id;
             this.$message.success('学生证上传成功')
+          }else {
+            loading.close();
+            this.$message.error('上传失败，请刷新重试')
           }
         })
       },
@@ -148,7 +158,7 @@
         }
       },
 
-      getArticle(e) { //获取上传文章
+       getArticle(e) { //获取上传文章
         let file = e.target.files[0];
         let type = file.name.substring(file.name.lastIndexOf('.')),
           ArrType = '.doc|.docx|',
@@ -166,12 +176,22 @@
         let formdata = new FormData();
         formdata.append('file', file);
         formdata.append('status', 'file');
+         const loading = this.$loading({
+           lock: true,
+           text: '正在上传...',
+           spinner: 'el-icon-loading',
+           background: 'rgba(0, 0, 0, 0.7)'
+         });
         uploadArticle(formdata).then(res => {
           if (res) {
             console.log(res);
-            this.order_info=res.order.info;
+            loading.close();
+            this.order_price=res.price;
             this.lunwen_id=res.lunwen_id;
             this.$message.success('论文上传成功');
+          }else {
+            loading.close();
+            this.$message.error('上传失败，请刷新重试')
           }
         })
       },
@@ -196,19 +216,32 @@
       },
 
       upload_sure() {
+        const loading = this.$loading({
+          lock: true,
+          text: '正在上传...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
         let infoData = {
           title: this.single_name,
           tel: this.single_phoneCode,
           student_card_id: this.card_id,
           not_lunwen_id: this.lunwen_id,
           author: this.single_author,
+          price:this.order_price,
+          member_id:1,
+          interface_type:1,
         };
         student_info(infoData).then(res => {
           if (res&&res.code===200) {
+            console.log(res);
             this.stu_id=res.stu_id;
+            this.order_info=res.order;
+            loading.close();
             this.$message.success('学生信息提交成功');
           }else {
-            this.$message.error(res.msg)
+            this.$message.error(res.msg);
+            loading.close();
           }
         })
       },

@@ -74,6 +74,7 @@
           password: this.password,
           token: 'meichenghuilian20181108'
         };
+        console.log(postData);
         login_req(postData).then(res => {
           if (res&&res.code === 200) {
             console.log(res);

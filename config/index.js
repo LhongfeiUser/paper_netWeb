@@ -2,7 +2,7 @@
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   dev: {
@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://www.alibabaphp.com',//http://zhangyucheng.51vip.biz:25743
+        target: 'http://www.alibabaphp.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

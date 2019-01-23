@@ -2,8 +2,8 @@
   <div class="header">
     <nav class="navbar navbar-light">
       <router-link class="navbar-brand" to="/">
-        <!--<img src="../assets/images/logo.png" width="200" height="30" alt="">-->
-        <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140">
+        <img v-if="logoPic" :src="logoPic" width="140">
+        <img v-else src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140">
         <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/1231.png" width="165">
       </router-link>
       <ul class="nav nav-pills" v-cloak>
@@ -48,14 +48,16 @@
 </template>
 <script>
   import {getCategory} from "../api/category";
-
+  import {getLogo} from '../api/get_homeData'
   export default {
     data() {
       return {
         category: ["首页", "论文查重", "论文查重技巧", "常见问题", "学术资讯", "登录"],
+        logoPic:''
       }
     },
     mounted() {
+      console.log(this.logoPic);
       this.getCategoryData();
     },
     methods: {
@@ -71,6 +73,15 @@
             }
             this.category = arr;
           }
+        });
+        let logo_data={
+          username:'',
+          password:'',
+          token:'meichenghuilian20181108'
+        };
+        getLogo(logo_data).then(res=>{
+          let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
+          this.logoPic=res.pic.replace(reg,'http://www.alibabaphp.com');
         })
       }
     }

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import {getQrcode} from "@/api/upload_paper";
+  import {get_payQrcode} from "../../../api/upload_paper";
 
   export default {
     data() {
@@ -52,7 +52,12 @@
         price:0 ,
       }
     },
-    props: ['info','stu_id'],
+    // props: ['order_price','order_info','stu_id'],
+    props:{
+      order_price:Number,
+      stu_id:String,
+      order_info:Object
+    },
     created(){
     },
     methods: {
@@ -60,15 +65,23 @@
         if(this.stu_id){
           this.isApply_show = true;
           this.isImg = num;
-          this.price=this.info.price;
-          let qrcodeData = {
-            agent_id: this.info.id,
-            url: sessionStorage.getItem('generalizeUrl'),
+          this.price=this.order_price;
+          let qrcode_order = {
+            trade_no:this.order_info.info.trade_no,
+            order_id:this.order_info.info.id,
+            total_price:this.order_info.info.price*100,
+            com_name:this.order_info.info.com_name,
           };
-          getQrcode(qrcodeData).then(res => {
+          function transformObj2SearchStr(obj){
+            let arr = [];
+            for(let key in obj){
+              arr.push(key + '='+ obj[key]);
+            }
+            return encodeURI(arr.join('&'))
+          }
+          get_payQrcode(qrcode_order).then(res => {
             if (res) {
-              console.log(res);
-              this.orderImg = res.path;
+              this.orderImg='http://www.alibabaphp.com/return_pay_qrcode?'+transformObj2SearchStr(qrcode_order);
             }
           })
         }else {

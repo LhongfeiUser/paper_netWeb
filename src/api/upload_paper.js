@@ -1,5 +1,7 @@
 import service from "./request";
 
+//上传论文
+
 export const uploadArticle = data => {
   return service({
     url: 'upload_student_lunwen',
@@ -7,6 +9,9 @@ export const uploadArticle = data => {
     data
   })
 };
+
+//上传学生证
+
 export const studentID = data => {
   return service({
     url: 'upload_student_card',
@@ -14,6 +19,9 @@ export const studentID = data => {
     data
   })
 };
+
+//上传学生信息
+
 export const student_info = data => {
   return service({
     url: 'upload_student_info',
@@ -30,10 +38,10 @@ export const getAuth = params => {
 };
 
 //获取支付二维码
-export const getQrcode = data => {
+export const get_payQrcode = params => {
   return service({
-    url: 'get_agent_qrcode',
-    method: 'post',
-    data
+    url: 'return_pay_qrcode',
+    method: 'get',
+    params
   })
 };

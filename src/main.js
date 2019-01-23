@@ -12,6 +12,7 @@ import '@/assets/css/reset.css'
 import '@/assets/css/iconfont.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
+
 Vue.use(ElementUI);
 
 router.beforeEach((to, from, next)=>{

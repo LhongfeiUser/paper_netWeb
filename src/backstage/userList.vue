@@ -6,7 +6,7 @@
         <h3>用户列表</h3>
       </div>
       <div style="display:flex;justify-content: end;">
-        <el-input v-model="searchInput" placeholder="输入用户名或ID"/>
+        <el-input v-model="searchInput" placeholder="输入论文作者名称搜索"/>
         <el-button class="el-button--primary" style="margin-left:10px;" @click="userList(1,searchInput)">搜索</el-button>
       </div>
     </div>

@@ -1,28 +1,12 @@
 <template>
   <div class="home">
     <Header></Header>
-    <div id="banner" class="carousel slide" data-ride="carousel">
-      <!-- 指示符 -->
-      <ul class="carousel-indicators">
-        <li data-target="#banner" data-slide-to="0" class="active"></li>
-        <li data-target="#banner" data-slide-to="1"></li>
-        <li data-target="#banner" data-slide-to="2"></li>
-      </ul>
-      <!-- 轮播图片 -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/345_skjr.png" width="atuo" height="520"
-               style="margin-left:-25%;">
-        </div>
-        <div class="carousel-item">
-          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/234_ykrp.png" width="atuo" height="520"
-               style="margin-left:-25%;">
-        </div>
-        <div class="carousel-item">
-          <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/22_g24d.png" width="atuo" height="520"
-               style="margin-left:-25%;">
-        </div>
-      </div>
+    <div class="block">
+      <el-carousel trigger="click" height="520px">
+        <el-carousel-item v-if="slide_pic" v-for="item in slide_pic" :key="item">
+          <img :src="item" width="100%">
+        </el-carousel-item>
+      </el-carousel>
     </div>
     <marquee behavior="scroll" bgcolor="#fff">
       <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用...</span>
@@ -82,12 +66,12 @@
       </div>
 
       <div class="advantage">
-        <div class="title">
+        <!--<div class="title">
           <h3>论文网优势</h3>
           <span>CORE ADVANTAGE</span>
-        </div>
+        </div>-->
         <div class="advantage_content">
-          <div class="achievement">
+          <!--<div class="achievement">
             <ul class="achievement_top">
               <li>
                 <span><strong>8</strong> 年</span>
@@ -119,7 +103,7 @@
                 <span>行业内最具权威查重</span>
               </li>
             </ul>
-          </div>
+          </div>-->
           <ul class="partner">
             <li v-for="item in sc" :key="item">
               <img :src="item" width="100%">
@@ -137,11 +121,15 @@
   import Header from '@/components/Header'
   import selection_model from './models/selection_model'
   import end_article from './models/end_article'
+
+  import {getSlide_pic} from '../../api/get_homeData'
+
   export default {
     components: {Header, selection_model, end_article, Footer},
     data() {
       return {
-        category: [],
+        loadingImg:['https://img.zcool.cn/community/01ec5a5996ac89a8012156033739b5.gif'],
+        slide_pic: [],
         system_module: [
           {
             module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg',
@@ -205,9 +193,24 @@
         ],
       }
     },
-    created(){
+    created() {
+      this.getInitData();
     },
-    methods:{
+    methods: {
+      getInitData() {
+        let pic_data = {
+          username: '',
+          password: '',
+          token: 'meichenghuilian20181108'
+        };
+        getSlide_pic(pic_data).then(res => {
+          res.forEach((item, index) => {
+            let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
+            let pic = item.pic.replace(reg, 'http://www.alibabaphp.com');
+            this.slide_pic.push(pic);
+          })
+        });
+      }
     },
   }
 </script>
@@ -221,7 +224,7 @@
 
   .header {
     position: absolute !important;
-    z-index: 2;
+    z-index: 99;
     width: 100%;
     background-color: inherit !important;
   }
@@ -374,7 +377,7 @@
     .advantage {
       padding: 0 80px 60px;
       .advantage_content {
-        .achievement {
+        /*.achievement {
           margin-bottom: 20px;
           ul {
             display: flex;
@@ -420,7 +423,7 @@
               }
             }
           }
-        }
+        }*/
         .partner {
           display: flex;
           flex-wrap: wrap;

@@ -6,21 +6,21 @@
         <h5>订单列表</h5>
       </div>
       <div style="display:flex;justify-content: end;">
-        <el-select v-model="value">
+        <el-select v-model="detector_value">
           <el-option
             v-for="item in options"
-            :key="item.value"
+            :key="item.detector_value"
             :label="item.label"
-            :value="item.value"/>
+            :value="item.detector_value"/>
         </el-select>
         <div class="block">
           <el-date-picker
-            v-model="value6"
+            v-model="date_value"
             type="daterange"
             range-separator="至"
             start-placeholder="开始日期"
             end-placeholder="结束日期"/>
-          <el-button class="el-button--primary" @click="hh">搜索</el-button>
+          <el-button class="el-button--primary" @click="getData(1,date_value)">搜索</el-button>
         </div>
       </div>
     </div>
@@ -87,12 +87,12 @@
       return {
         options: [
           {
-            value: '选项1',
+            detector_value: '选项1',
             label: '检测系统1'
           }],
-        value6: '',
+        date_value: [],
         date: '2016-05-06',
-        value: '所有检测系统',
+        detector_value: '所有检测系统',
         count: 0,
         orderDataList: null,
       }
@@ -103,27 +103,32 @@
     },
 
     methods: {
-      getData(page) {
+      getData(page,date_value) {
+        let begin_time='',
+            end_time='';
+        if(date_value){
+           begin_time=date_value[0].getTime();
+           end_time=date_value[1].getTime();
+        }
         let orderData = {
           agent_id: 1,
           page:page,
           size:10,
+          search:'',
+          begin_time:begin_time,
+          end_time:end_time,
         };
+        console.log(orderData);
         orderList(orderData).then(res => {
           if (res&&res.code===200) {
             console.log(res);
             this.count=Math.ceil(res.count/10);
             this.orderDataList=res.data;
           }
-          this.changePage(1);
         })
       },
-      hh(){
-        console.log(this.value6);
-        console.log(this.value6[1].getTime()-this.value6[0].getTime());
-      },
       changePage(page) {
-
+        this.getData(page);
       }
     }
   }

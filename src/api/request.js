@@ -6,7 +6,7 @@ import { Message} from 'element-ui'
 /****** 创建axios实例 ******/
 const service = axios.create({
   baseURL: process.env.BASE_URL,
-  timeout: 5000  // 请求超时时间
+  timeout: 15000  // 请求超时时间
 });
 
 /****** request拦截器==>对请求参数做处理 ******/
@@ -46,11 +46,11 @@ service.interceptors.response.use(
     }
   },
   error => {  //响应错误处理
-    console.log('error');
+    this.$loading().close();
     Message({
       message: '请求超时',
       type: 'error',
-      duration: 2 * 1000
+      duration: 15* 1000
     });
     return Promise.reject(error)
   }

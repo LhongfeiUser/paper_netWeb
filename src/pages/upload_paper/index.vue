@@ -55,7 +55,6 @@
   import Upload_single from './upload_model/upload_single'
   import Upload_more from './upload_model/upload_more'
   import Apply_model from './upload_model/apply_model'
-
   export default {
     components: {Notice, Apply_model, Upload_single, Upload_more},
     data() {
