@@ -46,11 +46,10 @@ service.interceptors.response.use(
     }
   },
   error => {  //响应错误处理
-    this.$loading().close();
     Message({
-      message: '请求超时',
+      message: '请求超时，请刷新重试',
       type: 'error',
-      duration: 15* 1000
+      duration: 2 * 1000
     });
     return Promise.reject(error)
   }

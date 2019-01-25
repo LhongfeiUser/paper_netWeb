@@ -4,10 +4,10 @@
       <span class="naming_rule_title">命名规则</span>
       <div class="naming_rule_detail">
         <span>上传的检测文献文件名请按以下格式命名，有助于系统提取作者姓名。</span> <br>
-        <span class="rule">格式规则：序号_作者姓名_文件标题.doc</span>
+        <span class="rule">格式规则：作者姓名_文件标题.doc</span>
         <p>
-          例如：1_小明_信息管理系统的的设计.doc <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2_小红_人口增长与可持续发展.doc
+          例如：小明_信息管理系统的的设计.doc <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小红_人口增长与可持续发展.doc
         </p>
       </div>
     </div>
@@ -20,20 +20,24 @@
         <div class="">
           <input type="file" ref="more_studentIdUpload" accept="image/gif,image/jpeg,image/jpg,image/png"
                  style="display: none;" @change="more_getStudentID">
-          <button type="button" class="btn btn-outline-warning" @click="more_studentID">上传</button>
+          <button type="button" class="btn btn-outline-warning" @click="more_studentID">上传学生证</button>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label">手机号码</label>
-        <div class="col-sm-5">
+        <div class="col-sm-4">
           <input class="form-control" type="text" v-model="more_phoneCode" maxlength="11"
                  placeholder="请您输入正确的手机号">
         </div>
       </div>
       <div class="form-group">
         <label class=" control-label">手机验证</label>
-        <div class="col-sm-3">
-          <input class="form-control" type="text" v-model="m_authCode" @burl.prevent="" placeholder="请输入收到的验证码">
+        <div class="col-sm-4">
+          <input class="form-control"
+                 type="text"
+                 v-model="m_authCode"
+                 @burl.prevent=""
+                 placeholder="请输入收到的验证码">
         </div>
         <div class="">
           <button type="button" class="btn btn-outline-warning" v-show="more_authCode" @click="more_getAuthCode">
@@ -44,32 +48,51 @@
           </button>
         </div>
       </div>
-    </form>
-    <div class="under_detection">
-      <div class="form-group">
+      <div class="form-group under_detection">
         <label class="control-label">待检论文</label>
-        <div style="padding-left:15px;">
-          <input class="form-control" v-show="isShow" disabled="disabled" type="text"
+        <div class="col-sm-4">
+          <input class="form-control"
+                 v-show="isShow"
+                 disabled="disabled"
+                 type="text"
                  placeholder="仅支持word文档.doc和docx格式">
           <div class="upload_success" v-for="(item,index) in filesList" v-show="!isShow">
-            <input class="form-control" type="text" :value="item.name"> <i class="iconfont icon-shanchu1"
-                                                                           @click="upload_delete(index)"></i>
+            <input class="form-control" type="text" :value="item.name">
+            <i class="iconfont icon-shanchu1"
+               @click="upload_delete(index)">
+            </i>
           </div>
-          <input ref="more_paperUpload" style="display: none;" type="file" accept=".doc,.docx" multiple="multiple"
+          <input ref="more_paperUpload"
+                 style="display: none;"
+                 type="file" accept=".doc,.docx"
+                 multiple="multiple"
                  @change="getMoreArticle">
         </div>
+        <div>
+          <button type="button" class="btn btn-outline-warning" @click="more_upload">上 传 论 文</button>
+        </div>
       </div>
-      <button type="button" class="btn btn-outline-warning" @click="more_upload">上传论文</button>
-    </div>
-    <Apply_model></Apply_model>
+      <div class="form-group" style="margin: 35px 0;">
+        <button type="button"
+                style="margin-left:100px;"
+                class="btn btn-outline-warning"
+                @click="sure_upload">确定上传
+        </button>
+      </div>
+    </form>
+    <Apply_model :stu_id="stu_id[0]"
+                 :order_info="order_info[0]"
+                 :order_price="order_price">
+    </Apply_model>
   </div>
 </template>
 
 <script>
   import {uploadArticle, studentID, student_info, getAuth} from "@/api/upload_paper";
   import Apply_model from './apply_model'
+
   export default {
-    components:{Apply_model},
+    components: {Apply_model},
     data() {
       return {
         isShow: true,
@@ -80,16 +103,24 @@
         filesList: [],
         more_authCode: true,
         more_time: 0,
+        member_id: '',
+        card_id: '',
+        order_price:0,
+        order_info:[],
+        stu_id:[],
       }
+    },
+    created() {
+      this.member_id = this.$route.query.agent_id || '';
     },
     methods: {
       more_studentID() {
         this.$refs.more_studentIdUpload.click();
       },
-      more_getStudentID(e) {
+      more_getStudentID(e) { //上传学生证
         let file = e.target.files[0];
         if (file) {
-          type = file.name.substring(file.name.lastIndexOf('.')),
+          let type = file.name.substring(file.name.lastIndexOf('.')),
             AllImgExt = ".jpg|.jpeg|.gif|.png|",
             upLoadSize = 1024 * 1024;
           if (file.name.lastIndexOf('.') === -1) {
@@ -104,7 +135,26 @@
             this.$message.error('图片过大，请重新上传');
             return false;
           }
-          this.more_studentImgName = file.name
+          this.more_studentImgName = file.name;
+          let formdata = new FormData();
+          formdata.append('file', file);
+          formdata.append('status', 'file');
+          const loading = this.$loading({
+            lock: true,
+            text: '正在上传...',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+          });
+          studentID(formdata).then(res => {
+            if (res && res.code === 200) {
+              loading.close();
+              this.card_id = res.card_id;
+              this.$message.success('学生证上传成功')
+            } else {
+              loading.close();
+              this.$message.error('上传失败，请刷新重试')
+            }
+          })
         } else {
           this.$message.warning('请选择文件')
         }
@@ -132,7 +182,6 @@
 
       getMoreArticle(e) {
         let files = e.target.files;
-        let formdata = new FormData();
         for (let n of files) {
           let type = n.name.substring(n.name.lastIndexOf('.')),
             ArrType = '.doc|.docx|',
@@ -146,18 +195,9 @@
             return false
           }
           this.filesList.push(n);
-          formdata.append('file', n);
-        }
-        formdata.append('status', 'file');
-        if (this.filesList.length > 0) {
-          this.isShow = false;
-          uploadArticle(formdata).then(res => {
-            if (res) {
-              console.log(res);
-              this.$message.success('上传成功');
-              this.$refs.more_paperUpload.value = null;
-            }
-          })
+          if (this.filesList.length > 0) {
+            this.isShow = false;
+          }
         }
       },
 
@@ -177,6 +217,60 @@
         this.filesList = this.filesList.slice();
         console.log(this.filesList);
       },
+
+      async sure_upload() {
+        this.order_price=0;
+        if (this.filesList.length > 0) {
+          const loading = this.$loading({
+            lock: true,
+            text: '正在上传...',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+          });
+          for (let i = 0; i < this.filesList.length; i++) {
+            let formdata = new FormData();
+            formdata.append('file' + i, this.filesList[i]);
+            formdata.append('status', 'file' + i);
+            let nameArr=this.filesList[i].name.split('_');
+            await uploadArticle(formdata).then(res => {
+              console.log(formdata.get('file' + i));
+              if (res) {
+                console.log(res);
+                this.$refs.more_paperUpload.value = null;
+                this.order_price=this.order_price+res.price;
+                let infoData = {
+                  title: nameArr[0],
+                  tel: this.more_phoneCode,
+                  student_card_id: this.card_id,
+                  not_lunwen_id: res.lunwen_id,
+                  author: nameArr[1],
+                  price: res.price,
+                  member_id: this.member_id,
+                  interface_type: 1,
+                };
+                 student_info(infoData).then(res => {
+                  if (res && res.code === 200) {
+                    console.log(res);
+                    this.stu_id.push(res.stu_id);
+                    this.order_info.push(res.order);
+                    loading.close();
+                    this.$message.success('论文信息上传成功');
+                  } else {
+                    this.$message.error(res.msg);
+                    loading.close();
+                  }
+                })
+              } else {
+                loading.close();
+                this.$message.error('上传失败，请刷新重试');
+              }
+            })
+          }
+        } else {
+          this.$message.error('请先上传论文')
+        }
+        console.log(this.order_price,'....',this.order_info,'...',this.stu_id);
+      }
     }
   }
 </script>
@@ -244,44 +338,19 @@
   }
 
   .under_detection {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 40px;
-    button {
-      margin-left: 100px;
-    }
-    .form-group {
-      display: flex;
-      align-items: center;
-      .upload_success {
-        position: relative;
-        input {
-          color: #aab2bd;
-          font-size: 14px;
-          text-align: left;
-        }
-        i {
-          position: absolute;
-          top: 0;
-          right: 0;
-          font-size: 24px;
-          color: #555;
-          cursor: pointer;
-        }
+    .upload_success {
+      position: relative;
+      input {
+        margin: 10px 0;
       }
-      .form-control {
-        margin: 10px auto;
-        padding-right: 25px;
-        color: #888;
-        font-size: 16px;
-      }
-      .form-control:focus {
-        box-shadow: none;
-      }
-      .control-label {
-        margin-right: 20px;
-        color: #888;
+      i {
+        position: absolute;
+        top: 1px;
+        right: 10px;
+        background-color: #fff;
+        font-size: 24px;
       }
     }
+
   }
 </style>

@@ -52,7 +52,6 @@
         price:0 ,
       }
     },
-    // props: ['order_price','order_info','stu_id'],
     props:{
       order_price:Number,
       stu_id:String,
@@ -65,11 +64,11 @@
         if(this.stu_id){
           this.isApply_show = true;
           this.isImg = num;
-          this.price=this.order_price;
+          this.price=this.order_price.toFixed(2); //小数点
           let qrcode_order = {
             trade_no:this.order_info.info.trade_no,
             order_id:this.order_info.info.id,
-            total_price:this.order_info.info.price*100,
+            total_price:this.price*100,
             com_name:this.order_info.info.com_name,
           };
           function transformObj2SearchStr(obj){

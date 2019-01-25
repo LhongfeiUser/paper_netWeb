@@ -55,8 +55,8 @@
       let isremove = cookies.get('isRemember');
       let agent_id = cookies.get('agent_id');
       if (isremove ==='false' && agent_id) {
-        this.$router.push('/backstage')
         sessionStorage.setItem('isgin', md5('isLogin'));
+        this.$router.push('/backstage');
       }
     },
     methods: {
