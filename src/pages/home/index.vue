@@ -204,11 +204,13 @@
           token: 'meichenghuilian20181108'
         };
         getSlide_pic(pic_data).then(res => {
-          res.forEach((item, index) => {
-            let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-            let pic = item.pic.replace(reg, 'http://www.alibabaphp.com');
-            this.slide_pic.push(pic);
-          })
+          if(res){
+            res.forEach((item, index) => {
+              let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
+              let pic = item.pic.replace(reg,'http://admin.yifulunwen.com');
+              this.slide_pic.push(pic);
+            })
+          }
         });
       }
     },

@@ -9,21 +9,21 @@
           <el-form-item label="用户名">
             <el-input disabled v-model="formLabelAlign.userName"></el-input>
           </el-form-item>
-          <el-form-item label="昵 称">
-            <el-input v-model="formLabelAlign.nickName"></el-input>
-          </el-form-item>
-          <el-form-item label="密 码">
-            <el-input type="password" v-model="formLabelAlign.password"></el-input>
-          </el-form-item>
-          <el-form-item label="Email">
-            <el-input type="email" v-model="formLabelAlign.email"></el-input>
-          </el-form-item>
           <el-form-item label="手机号">
             <el-input v-model="formLabelAlign.phone"></el-input>
           </el-form-item>
+          <el-form-item label="昵称">
+            <el-input v-model="formLabelAlign.nickName"></el-input>
+          </el-form-item>
+          <el-form-item label="密码">
+            <el-input type="password" v-model="formLabelAlign.password"></el-input>
+          </el-form-item>
+          <el-form-item label="E m a i l">
+            <el-input type="email" v-model="formLabelAlign.email"></el-input>
+          </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="save">保存</el-button>
-            <el-button type="danger" @click="getinfoData(user_id)">重置</el-button>
+            <el-button type="danger" @click="getinfoData(user_id)">取消</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -119,10 +119,12 @@
         }
         /deep/ label.el-form-item__label {
           font-size: 16px;
-          color: #000;
+          font-weight: 600;
+          color: slategrey;
+          text-align-last: justify;
         }
         /deep/ input.el-input__inner {
-          background-color: #dcdfe6;
+          background-color: aliceblue;
           border: 1px solid #fff;
           font-size: 16px;
           padding-left: 35px !important;

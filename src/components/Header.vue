@@ -2,8 +2,8 @@
   <div class="header">
     <nav class="navbar navbar-light">
       <router-link class="navbar-brand" to="/">
-        <img v-if="logoPic" :src="logoPic" width="140">
-        <img v-else src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140">
+        <img v-if="logoPic" :src="logoPic" width="140" height="52">
+        <img v-else src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140" height="52">
         <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/1231.png" width="165">
       </router-link>
       <ul class="nav nav-pills" v-cloak>
@@ -81,7 +81,7 @@
         };
         getLogo(logo_data).then(res=>{
           let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-          this.logoPic=res.pic.replace(reg,'http://www.alibabaphp.com');
+          this.logoPic=res.pic.replace(reg,'http://admin.yifulunwen.com');
         })
       }
     }
