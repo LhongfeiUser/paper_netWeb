@@ -40,11 +40,11 @@
             <span>{{category[4]}}</span>
           </router-link>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <router-link to="/login" active-class="nav-link ">
             <span>{{category[5]}}</span>
           </router-link>
-        </li>
+        </li>-->
       </ul>
     </nav>
   </div>
