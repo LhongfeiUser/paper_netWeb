@@ -1,25 +1,20 @@
 <template>
   <div class="home">
     <Header></Header>
-    <div class="banner">
-      <el-carousel trigger="click" arrow="never" height="520px">
+    <div class="block">
+      <el-carousel trigger="click" height="520px">
         <el-carousel-item v-if="slide_pic" v-for="item in slide_pic" :key="item">
           <img :src="item" width="100%" height="100%">
         </el-carousel-item>
       </el-carousel>
-      <div class="advertising">
-       <div class="advertising_bg">
-         <i class="trumpet_img"></i>
-         <marquee behavior="scroll" scrollamount="3" scrolldelay="2" direction="up" bgcolor="#fff">
-           <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用。。。</span>
-         </marquee>
-       </div>
-      </div>
     </div>
+    <marquee behavior="scroll" bgcolor="#fff">
+      <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用...</span>
+    </marquee>
     <main>
       <div class="flow">
         <div class="title">
-          <h3>论 文 查 重 流 程</h3>
+          <h3>论文查重流程</h3>
           <span>PAPER DETECTION</span>
         </div>
         <ul>
@@ -28,24 +23,28 @@
               <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/2_492p.png">
               <span>选择查重系统</span>
             </div>
+            <span class="arrows"></span>
           </li>
           <li>
             <div>
               <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/3_p47s.png">
               <span>上传论文</span>
             </div>
+            <span class="arrows"></span>
           </li>
           <li>
             <div>
               <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/4_7dth.png">
               <span>担保交易付款</span>
             </div>
+            <span class="arrows"></span>
           </li>
           <li>
             <div>
               <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/5_dqyy.png">
               <span>下载论文检测报告</span>
             </div>
+            <span class="arrows"></span>
           </li>
           <li>
             <div>
@@ -221,70 +220,32 @@
 <style scoped lang="scss">
   .home {
     font-family: Microsoft YaHei;
-    color: #666;
+    color: rgb(0, 0, 0);
     position: relative;
   }
 
   .header {
     position: absolute !important;
     z-index: 99;
-    width:1260px;
-    left: 50%;
-    margin-left: -630px;
+    width: 100%;
     background-color: inherit !important;
   }
-  /deep/.el-carousel{
-    .el-carousel__indicators{
-      bottom:30px;
-      .el-carousel__button{
-        width:10px;
-        height:10px;
-        border-radius:50%;
-        background-color: #e0af5c;
-      }
-      button:focus{
-        outline: none;
+
+  #banner {
+    .carousel-indicators li {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+    }
+    .carousel-item {
+      height: 520px !important;
+      img {
+        height: 100%;
       }
     }
   }
-  .advertising{
-    height:60px;
-    background-color: #fff;
-    border-bottom:1px double #000;
-    .advertising_bg{
-      position: relative;
-      width: 1260px;
-      height:100%;
-      margin-left: -630px;
-      left: 50%;
-      .trumpet_img{
-        position: absolute;
-        top:17px;
-        left:0;
-        display:block;
-        width:20px;
-        height:20px;
-        z-index: 33;
-        background:url("../../assets/images/trumpet.png");
-        background-size: 100% 100%;
-      }
-      marquee{
-        position: absolute;
-        color:#666666;
-        font-size:15px;
-        top:15px;
-        height:30px;
-        span{
-          display: inline-block;
-          margin-left:30px;
-        }
-      }
-    }
 
-
-  }
   main {
-    background-color: #fff;
     .title {
       display: flex;
       flex-direction: column;
@@ -293,23 +254,22 @@
       padding: 55px 0 40px;
       h3 {
         display: inline-block;
+        color: rgb(0, 0, 0);
         font-size: 25px;
         margin-bottom: 10px;
       }
       span {
         color: rgb(204, 204, 204);
         font-size: 14px;
-        /*font-family: Times New Roman;*/
-        /*font-weight: bold;*/
+        font-family: Times New Roman;
+        font-weight: bold;
       }
     }
     .flow {
-      width:1260px;
-      margin:0 auto;
       display: flex;
       flex-direction: column;
-      background-color: #fafafa;
-      /*padding: 0 80px 60px;*/
+      background-color: #fff;
+      padding: 0 80px 60px;
       ul {
         display: flex;
         justify-content: space-around;
@@ -331,6 +291,14 @@
               margin-top: 25px;
               font-size: 19px;
             }
+          }
+          span.arrows {
+            background: url("http://pmo78af5a.pic41.websiteonline.cn/upload/7.png") no-repeat;
+            background-size: 100% 100%;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-left: 60px;
           }
         }
       }

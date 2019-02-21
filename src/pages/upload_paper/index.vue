@@ -70,7 +70,8 @@
     },
     created() {
       let generalizeUrl =window.location.href;
-      sessionStorage.setItem('generalizeUrl',generalizeUrl)
+      sessionStorage.setItem('generalizeUrl',generalizeUrl);
+      console.log(this.$route);
     },
     mounted() {
       $('#myTab a:first').tab('show')

@@ -8,7 +8,7 @@
       <div class="_apply_content">
         <div class="deposit">
           <span>账户余额</span>
-          <span>￥0.00</span>
+          <span>￥{{surplus}}</span>
         </div>
         <el-form :label-position="labelPosition" :model="formLabelAlign" label-width="80px">
           <el-form-item label="提现方式">
@@ -39,8 +39,9 @@
 </template>
 
 <script>
+  import cookies from 'js-cookie';
   import {withdraw} from "../api/backstageApi/withdraw";
-
+  import {getstatement} from "../api/backstageApi/backstage";
   export default {
     data() {
       return {
@@ -63,9 +64,19 @@
             label: '微信'
           }],
         value: '',
+        surplus:0.00,
       };
     },
+    created(){
+      this.getMoney();
+    },
     methods: {
+      getMoney(){
+        getstatement({agent_id:cookies.get('agent_id')}).then((res)=>{
+          console.log(res);
+          this.surplus=res.data[0].surplus;
+        })
+      },
       deposit() {
         console.log(this.value);
         let reqData = {

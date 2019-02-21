@@ -80,7 +80,9 @@
           }
           get_payQrcode(qrcode_order).then(res => {
             if (res) {
-              this.orderImg='http://www.alibabaphp.com/return_pay_qrcode?'+transformObj2SearchStr(qrcode_order);
+              console.log(res);
+              console.log(qrcode_order);
+              this.orderImg='http://admin.yifulunwen.com/return_pay_qrcode?'+transformObj2SearchStr(qrcode_order);
             }
           })
         }else {

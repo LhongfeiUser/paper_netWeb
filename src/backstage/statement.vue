@@ -36,7 +36,7 @@
 
 <script>
   import {getstatement} from '@/api/backstageApi/backstage'
-
+  import cookies from 'js-cookie';
   export default {
     name:'Statement',
     data(){
@@ -51,7 +51,7 @@
     methods:{
       getstatementData(page){
         let statementData={
-          agent_id:1,
+          agent_id:cookies.get('agent_id'),
           page:page,
           size:10,
         };
