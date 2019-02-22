@@ -4,7 +4,7 @@
     <div class="banner">
       <el-carousel trigger="click" arrow="never" height="520px">
         <el-carousel-item v-if="slide_pic" v-for="item in slide_pic" :key="item">
-          <img :src="item" width="100%" height="100%">
+          <img :src="item" width="120%" height="100%" style="margin-left:-10%;">
         </el-carousel-item>
       </el-carousel>
       <div class="advertising">
@@ -47,80 +47,98 @@
           </ul>
         </div>
       </div>
-
       <div class="system">
         <div class="title">
           <h3>合 作 单 位 检 测 系 统</h3>
           <span>COOPERATIVE UNIT DETECTION SYSTEM</span>
         </div>
         <ul class="system_nav">
-          <li>知网检测系统</li>
-          <li>万方数据检测系统</li>
-          <li>超星大雅检测系统</li>
-          <li>维普数据检测系统</li>
+          <li @click="optionsVersion(1)">知网检测系统</li>
+          <li @click="optionsVersion(2)">万方数据检测系统</li>
+          <li @click="optionsVersion(3)">超星大雅检测系统</li>
+          <li @click="optionsVersion(4)">维普数据检测系统</li>
         </ul>
-        <ul class="system_content">
-          <li>
-            <i></i>
-            <img src="../../assets/images/ver_4.jpg">
-            <div class="system_detail">
-              <h3><strong>70.00</strong>元/1篇</h3>
-              <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-              <span><strong>说明：</strong>评审职称前成果必查</span>
-              <span><strong>已成交：</strong>529510件</span>
-              <button class="btn btn-warning">立即检测</button>
-            </div>
-          </li>
-        </ul>
-        <!-- <div v-for="item in system_module">
-           <selection_model :selectionData="item"></selection_model>
-         </div>-->
+        <div class="system_contentBox">
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===1"  class="system_content">
+              <li v-for="i in 4" :key="i">
+                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                <div class="system_detail">
+                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                  <span><strong>说明：</strong>评审职称前成果必查</span>
+                  <span>已成交：529510件</span>
+                  <button class="btn btn-warning btn-lg">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===2"  class="system_content">
+              <li v-for="i in 3" :key="i">
+                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                <div class="system_detail">
+                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                  <span><strong>说明：</strong>评审职称前成果必查</span>
+                  <span>已成交：529510件</span>
+                  <button class="btn btn-warning btn-lg">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===3"  class="system_content">
+              <li v-for="i in 2" :key="i">
+                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                <div class="system_detail">
+                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                  <span><strong>说明：</strong>评审职称前成果必查</span>
+                  <span>已成交：529510件</span>
+                  <button class="btn btn-warning btn-lg">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===4"  class="system_content">
+              <li v-for="i in 1" :key="i">
+                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                <div class="system_detail">
+                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                  <span><strong>说明：</strong>评审职称前成果必查</span>
+                  <span>已成交：529510件</span>
+                  <button class="btn btn-warning btn-lg">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
+        </div>
       </div>
 
       <div class="advantage">
-        <!--<div class="title">
-          <h3>论文网优势</h3>
-          <span>CORE ADVANTAGE</span>
-        </div>-->
         <div class="advantage_content">
-          <!--<div class="achievement">
-            <ul class="achievement_top">
-              <li>
-                <span><strong>8</strong> 年</span>
-                <span>深耕查重行业</span>
-              </li>
-              <li>
-                <span><strong>800</strong> 所</span>
-                <span>合作高等院校</span>
-              </li>
-              <li>
-                <span><strong>400</strong> 万</span>
-                <span>帮助通过学生</span>
-              </li>
-            </ul>
-            <ul class="achievement_bottom">
-              <li>
-                <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/d0ka.png">
-                <span>安全认证</span>
-                <span>保证论文安全不外泄</span>
-              </li>
-              <li>
-                <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/y29c.png">
-                <span>授权最多</span>
-                <span>获得多家认证机构授权</span>
-              </li>
-              <li>
-                <img src="http://pmo78af5a.pic41.websiteonline.cn/upload/2xk0.png">
-                <span>最具权威</span>
-                <span>行业内最具权威查重</span>
-              </li>
-            </ul>
-          </div>-->
-          <ul class="partner">
-            <li v-for="item in sc" :key="item">
-              <img :src="item" width="100%">
-            </li>
-          </ul>
+          <div class="title">
+            <h3>部 分 合 作 院 校</h3>
+            <span>CORE ADVANTAGE</span>
+          </div>
+          <div style="width:1260px;margin:auto;">
+            <el-carousel trigger="click" arrow="never" height="520px">
+              <el-carousel-item v-for="(itemImg,index) in scImgobj"  :key="index">
+               <ul class="partner">
+                 <li v-for="item in itemImg">
+                   <img :src="item" width="100%">
+                 </li>
+               </ul>
+              </el-carousel-item>
+            </el-carousel>
+          </div>
         </div>
       </div>
       <end_article></end_article>
@@ -142,6 +160,7 @@
       return {
         loadingImg: ['https://img.zcool.cn/community/01ec5a5996ac89a8012156033739b5.gif'],
         slide_pic: [],
+        version_num: 1,
         system_module: [
           {
             module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg',
@@ -186,27 +205,57 @@
         ],
         sc: [
           'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/15_ffuc.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/14_92wx.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/11_1g5h.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
-
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/12_9moo.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/9_zbn4.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/8_066t.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/7_dvh4.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/6_sn0x.png',
-
           'http://pmo78af5a.pic41.websiteonline.cn/upload/5_hzcr.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/3_bohd.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/2_52i8.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png'
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/15_ffuc.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/14_92wx.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/11_1g5h.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/12_9moo.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/9_zbn4.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/8_066t.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/7_dvh4.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/6_sn0x.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/5_hzcr.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/3_bohd.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/2_52i8.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/15_ffuc.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/14_92wx.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/11_1g5h.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/12_9moo.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/9_zbn4.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/8_066t.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/7_dvh4.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/6_sn0x.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/5_hzcr.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/3_bohd.png',
+          'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
         ],
+        scImgobj:{},
       }
     },
     created() {
       this.getInitData();
+      this.getSchoolImg();
     },
     methods: {
       getInitData() {
@@ -219,11 +268,21 @@
           if (res) {
             res.forEach((item, index) => {
               let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-              let pic = item.pic.replace(reg, 'http://admin.yifulunwen.com');
+              let pic = item.pic.replace(reg, 'http://www.yifulunwen.com');
               this.slide_pic.push(pic);
             })
           }
         });
+      },
+      optionsVersion(num) {
+        this.version_num = num;
+      },
+      getSchoolImg(){
+        let page=Math.ceil(this.sc.length/15);
+        for(let i=1;i<=page;i++){
+          this.scImgobj[i]=this.sc.slice((i-1)*15,i*15);
+          console.log(this.scImgobj);
+        }
       }
     },
   }
@@ -236,7 +295,6 @@
     position: relative;
     min-width: 1260px;
   }
-
   .header {
     position: absolute !important;
     z-index: 99;
@@ -245,7 +303,6 @@
     margin-left: -630px;
     background-color: inherit !important;
   }
-
   /deep/ .el-carousel {
     .el-carousel__indicators {
       bottom: 30px;
@@ -260,7 +317,6 @@
       }
     }
   }
-
   .advertising {
     height: 60px;
     background-color: #fafafa;
@@ -348,8 +404,8 @@
       }
     }
     .system {
-      width:1260px;
-      margin:auto;
+      width: 1260px;
+      margin: auto;
       .system_nav {
         display: flex;
         justify-content: center;
@@ -359,38 +415,79 @@
           cursor: pointer;
         }
       }
-      .system_content {
-        li {
+      .system_contentBox{
+        min-height:765px;
+        .system_content {
           display: flex;
-          align-items: center;
-          width: 48%;
-          margin-top: 50px;
-          img {
-            margin-top: 50px;
-            margin-right:50px;
-            width: 110px;
-            height: 110px;
-            border: 2px solid #000;
-            border-radius: 50%;
-          }
-          .system_detail {
+          justify-content: space-between;
+          flex-wrap: wrap;
+          li {
+            position: relative;
             display: flex;
             align-items: flex-start;
-            flex-direction: column;
-            strong{
-              color:#000;
-              font-weight:bold;
+            width: 48%;
+            margin-top: 50px;
+            border: 1px solid #e7e7e7;
+            padding: 45px 0 40px 60px;
+            background: #fafafa;
+            box-shadow: -5px 5px 10px #dedede;
+            cursor: pointer;
+            img.version_img {
+              position: absolute;
+              right: 0;
+              top: 0;
             }
-            h3 {
-              margin-top: 45px;
-              margin-bottom: 25px;
-              font-size:25px;
+            img.leftHead_img {
+              margin-right: 50px;
+              margin-top: 30px;
+              width: 115px;
+              height: 115px;
+              border: 2px solid #000;
+              border-radius: 50%;
+              overflow: hidden;
+            }
+            .system_detail {
+              display: flex;
+              align-items: flex-start;
+              flex-direction: column;
               strong {
-                color: #e29f2b;
+                color: #000;
+                font-weight: bold;
+              }
+              h3 {
+                margin-bottom: 25px;
+                font-size: 25px;
+                strong {
+                  color: #e29f2b;
+                }
+              }
+              span:nth-child(4) {
+                margin: 45px 0 25px;
+              }
+              .btn {
+                background: #e29f2b;
+                color: #000;
               }
             }
           }
+          li:hover{
+            box-shadow: -10px 15px 40px #666;
+          }
         }
+      }
+
+      .system_module:last-child {
+        margin-bottom: 40px;
+      }
+      .fade-enter-active{
+        transition: all 1.5s;
+      }
+      .fade-leave-active {
+        transition: all .7s;
+      }
+      .fade-enter, .fade-leave-to {
+        transform: translateX(100px);
+        opacity: 0;
       }
     }
     .advantage {

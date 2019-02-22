@@ -85,7 +85,7 @@
         };
         getLogo(logo_data).then(res => {
           let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-          this.logoPic = res.pic.replace(reg, 'http://admin.yifulunwen.com');
+          this.logoPic = res.pic.replace(reg, 'http://www.yifulunwen.com');
         })
       }
     }

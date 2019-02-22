@@ -81,8 +81,7 @@
           get_payQrcode(qrcode_order).then(res => {
             if (res) {
               console.log(res);
-              console.log(qrcode_order);
-              this.orderImg='http://admin.yifulunwen.com/return_pay_qrcode?'+transformObj2SearchStr(qrcode_order);
+              this.orderImg='http://www.yifulunwen.com/return_pay_qrcode?'+transformObj2SearchStr(qrcode_order);
             }
           })
         }else {
