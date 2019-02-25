@@ -52,14 +52,14 @@
       margin: auto;
       display: flex;
       justify-content: flex-start;
+      color:#a4a4a4;
       ul {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
         li {
           display: flex;
           flex-direction: column;
           margin:0 40px;
+          line-height: 25px;
         }
       }
       .footer_left {
@@ -89,23 +89,25 @@
           margin-bottom:20px;
           i{
             display: inline-block;
-            width:18px;
+            margin-right:7px;
+            width:20px;
             height:20px;
-            margin-right:10px;
-            background-size:100% 100%;
           }
         }
+        .footer_icon_2{
+          margin-top:25px;
+        }
         .footer_icon_1 i{
-          background:url('../assets/images/organization.png')
+          background:url('../assets/images/organization.png')no-repeat;
         }
         .footer_icon_2 i{
-          background:url('../assets/images/honor.png')
+          background:url('../assets/images/honor.png')no-repeat;
         }
         .footer_icon_3 i{
-          background:url('../assets/images/address.png')
+          background:url('../assets/images/address.png')no-repeat;
         }
         .footer_icon_4 i{
-          background:url('../assets/images/phone.png')
+          background:url('../assets/images/phone.png')no-repeat;
         }
       }
     }

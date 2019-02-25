@@ -391,16 +391,12 @@
           align-items: center;
           flex-direction: column;
           border: 1px solid #e7e7e7;
-          padding: 60px 55px 45px;
+          padding: 60px 50px 45px;
           box-shadow: 5px 5px 5px #dedede;
-          img {
-            width: 50px;
-            height: 56px;
-          }
           span {
             display: inline-block;
             margin-top: 25px;
-            font-size: 19px;
+            font-size: 14px;
           }
         }
       }
@@ -412,6 +408,7 @@
       .system_nav {
         display: flex;
         justify-content: center;
+        margin-bottom:30px;
         li {
           margin: auto 56px;
           font-size: 18px;
