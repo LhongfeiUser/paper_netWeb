@@ -4,7 +4,7 @@
     <div class="banner">
       <el-carousel trigger="click" arrow="never" height="520px">
         <el-carousel-item v-if="slide_pic" v-for="item in slide_pic" :key="item">
-          <img :src="item" width="120%" height="100%" style="margin-left:-10%;">
+          <img :src="item" width="100%" height="100%">
         </el-carousel-item>
       </el-carousel>
       <div class="advertising">
@@ -59,66 +59,66 @@
           <li @click="optionsVersion(4)">维普数据检测系统</li>
         </ul>
         <div class="system_contentBox">
-          <transition name="fade" mode="in-out">
-            <ul v-show="version_num===1"  class="system_content">
-              <li v-for="i in 4" :key="i">
-                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                <div class="system_detail">
-                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                  <span><strong>说明：</strong>评审职称前成果必查</span>
-                  <span>已成交：529510件</span>
-                  <button class="btn btn-warning btn-lg">立即检测</button>
-                </div>
-              </li>
-            </ul>
-          </transition>
-          <transition name="fade" mode="in-out">
-            <ul v-show="version_num===2"  class="system_content">
-              <li v-for="i in 3" :key="i">
-                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                <div class="system_detail">
-                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                  <span><strong>说明：</strong>评审职称前成果必查</span>
-                  <span>已成交：529510件</span>
-                  <button class="btn btn-warning btn-lg">立即检测</button>
-                </div>
-              </li>
-            </ul>
-          </transition>
-          <transition name="fade" mode="in-out">
-            <ul v-show="version_num===3"  class="system_content">
-              <li v-for="i in 2" :key="i">
-                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                <div class="system_detail">
-                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                  <span><strong>说明：</strong>评审职称前成果必查</span>
-                  <span>已成交：529510件</span>
-                  <button class="btn btn-warning btn-lg">立即检测</button>
-                </div>
-              </li>
-            </ul>
-          </transition>
-          <transition name="fade" mode="in-out">
-            <ul v-show="version_num===4"  class="system_content">
-              <li v-for="i in 1" :key="i">
-                <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                <div class="system_detail">
-                  <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                  <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                  <span><strong>说明：</strong>评审职称前成果必查</span>
-                  <span>已成交：529510件</span>
-                  <button class="btn btn-warning btn-lg">立即检测</button>
-                </div>
-              </li>
-            </ul>
-          </transition>
+           <transition name="fade" mode="in-out">
+             <ul v-show="version_num===1"  class="system_content">
+               <li v-for="i in 4" :key="i">
+                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                 <div class="system_detail">
+                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                   <span><strong>说明：</strong>评审职称前成果必查</span>
+                   <span>已成交：529510件</span>
+                   <button class="btn btn-warning btn-lg">立即检测</button>
+                 </div>
+               </li>
+             </ul>
+           </transition>
+           <transition name="fade" mode="in-out">
+             <ul v-show="version_num===2"  class="system_content">
+               <li v-for="i in 3" :key="i">
+                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                 <div class="system_detail">
+                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                   <span><strong>说明：</strong>评审职称前成果必查</span>
+                   <span>已成交：529510件</span>
+                   <button class="btn btn-warning btn-lg">立即检测</button>
+                 </div>
+               </li>
+             </ul>
+           </transition>
+           <transition name="fade" mode="in-out">
+             <ul v-show="version_num===3"  class="system_content">
+               <li v-for="i in 2" :key="i">
+                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                 <div class="system_detail">
+                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                   <span><strong>说明：</strong>评审职称前成果必查</span>
+                   <span>已成交：529510件</span>
+                   <button class="btn btn-warning btn-lg">立即检测</button>
+                 </div>
+               </li>
+             </ul>
+           </transition>
+           <transition name="fade" mode="in-out">
+             <ul v-show="version_num===4"  class="system_content">
+               <li v-for="i in 1" :key="i">
+                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
+                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
+                 <div class="system_detail">
+                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
+                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
+                   <span><strong>说明：</strong>评审职称前成果必查</span>
+                   <span>已成交：529510件</span>
+                   <button class="btn btn-warning btn-lg">立即检测</button>
+                 </div>
+               </li>
+             </ul>
+           </transition>
         </div>
       </div>
 
@@ -128,14 +128,14 @@
             <h3>部 分 合 作 院 校</h3>
             <span>CORE ADVANTAGE</span>
           </div>
-          <div style="width:1260px;margin:auto;">
+          <div style="width:1260px;margin:auto;position: relative;margin-left:-630px;left:50%;">
             <el-carousel trigger="click" arrow="never" height="520px">
-              <el-carousel-item v-for="(itemImg,index) in scImgobj"  :key="index">
-               <ul class="partner">
-                 <li v-for="item in itemImg">
-                   <img :src="item" width="100%">
-                 </li>
-               </ul>
+              <el-carousel-item v-for="(itemImg,index) in scImgobj" :key="index">
+                <ul class="partner">
+                  <li v-for="item in itemImg">
+                    <img :src="item" width="100%">
+                  </li>
+                </ul>
               </el-carousel-item>
             </el-carousel>
           </div>
@@ -250,7 +250,7 @@
           'http://pmo78af5a.pic41.websiteonline.cn/upload/3_bohd.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
         ],
-        scImgobj:{},
+        scImgobj: {},
       }
     },
     created() {
@@ -277,11 +277,10 @@
       optionsVersion(num) {
         this.version_num = num;
       },
-      getSchoolImg(){
-        let page=Math.ceil(this.sc.length/15);
-        for(let i=1;i<=page;i++){
-          this.scImgobj[i]=this.sc.slice((i-1)*15,i*15);
-          console.log(this.scImgobj);
+      getSchoolImg() {
+        let page = Math.ceil(this.sc.length / 15);
+        for (let i = 1; i <= page; i++) {
+          this.scImgobj[i] = this.sc.slice((i - 1) * 15, i * 15);
         }
       }
     },
@@ -295,6 +294,7 @@
     position: relative;
     min-width: 1260px;
   }
+
   .header {
     position: absolute !important;
     z-index: 99;
@@ -303,6 +303,7 @@
     margin-left: -630px;
     background-color: inherit !important;
   }
+
   /deep/ .el-carousel {
     .el-carousel__indicators {
       bottom: 30px;
@@ -317,6 +318,7 @@
       }
     }
   }
+
   .advertising {
     height: 60px;
     background-color: #fafafa;
@@ -406,6 +408,7 @@
     .system {
       width: 1260px;
       margin: auto;
+      padding-bottom:105px;
       .system_nav {
         display: flex;
         justify-content: center;
@@ -415,8 +418,8 @@
           cursor: pointer;
         }
       }
-      .system_contentBox{
-        min-height:765px;
+      .system_contentBox {
+        min-height: 765px;
         .system_content {
           display: flex;
           justify-content: space-between;
@@ -425,8 +428,8 @@
             position: relative;
             display: flex;
             align-items: flex-start;
-            width: 48%;
-            margin-top: 50px;
+            width: 49%;
+            margin-top: 20px;
             border: 1px solid #e7e7e7;
             padding: 45px 0 40px 60px;
             background: #fafafa;
@@ -470,7 +473,7 @@
               }
             }
           }
-          li:hover{
+          li:hover {
             box-shadow: -10px 15px 40px #666;
           }
         }
@@ -479,75 +482,29 @@
       .system_module:last-child {
         margin-bottom: 40px;
       }
-      .fade-enter-active{
+      .fade-enter-active {
         transition: all 1.5s;
       }
       .fade-leave-active {
         transition: all .7s;
       }
       .fade-enter, .fade-leave-to {
-        transform: translateX(100px);
+        transform: translateX(260px);
         opacity: 0;
       }
     }
     .advantage {
-      padding: 0 80px 60px;
+      padding: 0 80px;
+      background-color:#fafafa;
       .advantage_content {
-        /*.achievement {
-          margin-bottom: 20px;
-          ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            li {
-              width: 180px;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              margin: 40px 60px 60px;
-              span {
-                font-size: 18px;
-                color: rgb(102, 102, 102);
-              }
-              img {
-                width: 90px;
-                height: auto;
-              }
-            }
-          }
-          ul.achievement_top {
-            li {
-              span {
-                color: #217FFB;
-                font-size: 18px;
-                strong {
-                  font-size: 35px;
-                  font-weight: bold;
-                }
-              }
-              span:last-child {
-                color: rgb(102, 102, 102);
-              }
-            }
-          }
-          ul.achievement_bottom {
-            li {
-              line-height: 30px;
-              img {
-                margin-bottom: 20px;
-              }
-            }
-          }
-        }*/
         .partner {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           li {
-            width: 17%;
+            width: 18%;
             height: auto;
-            margin: 20px auto
+            margin: 10px auto
           }
         }
       }

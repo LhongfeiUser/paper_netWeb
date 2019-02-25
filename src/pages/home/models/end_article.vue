@@ -1,42 +1,50 @@
 <template>
   <div class="article">
-    <ul class="tabs">
-      <li :class="isTabs===1?'tabs_active':''" @click="goArticleDetail(1)">论文查重技巧</li>
-      <li :class="isTabs===2?'tabs_active':''" @click="goArticleDetail(2)">常见问题</li>
-      <li :class="isTabs===3?'tabs_active':''" @click="goArticleDetail(3)">学术资讯</li>
-    </ul>
-    <ul class="tabs_content">
-      <li v-show="isTabs===1">
-        <div v-if="isData" v-loading="isData" style="height:180px;width:100%;"></div>
-        <div v-else class="article_box" v-for="(item,index) in article_list" :key="index" @click="goDetail(item.id,'skill')">
-          <div class="article_title">
-            <h4>{{item.title}}</h4>
-            <span>{{item.begin_date}}</span>
-          </div>
-          <span class="article_content" v-html="item.content"></span>
-        </div>
-      </li>
-      <li v-show="isTabs===2">
-        <div v-if="isData" v-loading="isData" style="height:180px;width:100%;"></div>
-        <div v-else class="article_box" v-for="(item,index) in article_list" :key="index" @click="goDetail(item.id,'faq')">
-          <div class="article_title">
-            <h4>{{item.title}}</h4>
-            <span>{{item.begin_date}}</span>
-          </div>
-          <span class="article_content" v-html="item.content"></span>
-        </div>
-      </li>
-      <li v-show="isTabs===3">
-        <div v-if="isData" v-loading="isData" style="height:180px;width:100%;"></div>
-        <div v-else class="article_box" v-for="(item,index) in article_list" :key="index" @click="goDetail(item.id,'academic')">
-          <div class="article_title">
-            <h4>{{item.title}}</h4>
-            <span>{{item.begin_date}}</span>
-          </div>
-          <span class="article_content" v-html="item.content"></span>
-        </div>
-      </li>
-    </ul>
+    <div class="article_box">
+      <div class="article_title">
+        <h3>论文查重技巧</h3>
+        <span class="more">更多>></span>
+      </div>
+      <ul>
+        <li>1、论文开题报告写作指南</li>
+        <li>2、三招最有效论文查重修改技巧</li>
+        <li>5、论文查重前必看</li>
+        <li>6、论文查重前必看</li>
+        <li>7、论文查重前必看</li>
+        <li>3、论文查重降低重复率修改技巧的10点建议...</li>
+        <li>4、论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看</li>
+      </ul>
+    </div>
+    <div class="article_box">
+      <div class="article_title">
+        <h3>常见问题</h3>
+        <span class="more">更多>></span>
+      </div>
+      <ul>
+        <li>1、论文开题报告写作指南</li>
+        <li>2、三招最有效论文查重修改技巧</li>
+        <li>3、论文查重降低重复率修改技巧的10点建议...</li>
+        <li>4、论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看</li>
+        <li>5、论文查重前必看</li>
+        <li>6、论文查重前必看</li>
+        <li>7、论文查重前必看</li>
+      </ul>
+    </div>
+    <div class="article_box">
+      <div class="article_title">
+        <h3>学术咨询</h3>
+        <span class="more">更多>></span>
+      </div>
+      <ul>
+        <li>1、论文开题报告写作指南</li>
+        <li>2、三招最有效论文查重修改技巧</li>
+        <li>3、论文查重降低重复率修改技巧的10点建议...</li>
+        <li>4、论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看论文查重前必看</li>
+        <li>5、论文查重前必看</li>
+        <li>6、论文查重前必看</li>
+        <li>7、论文查重前必看</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -45,90 +53,56 @@
 
   export default {
     data() {
-      return {
-        isTabs:1,
-        article_list:null,
-        isData:false, //加载中
-      }
+      return {}
     },
-    created(){
-      this.goArticleDetail(1);
+    created() {
+
     },
-    methods: {
-      goArticleDetail(id) {
-        this.isTabs=id;
-        this.isData =true;
-        const faqData={
-          token:'meichenghuilian20181108',
-          cat_id:id,
-        };
-        getListData(faqData).then(res=>{
-          if(res.code===200){
-            this.isData =false;
-            this.article_list=res.msg;
-          }else {
-            this.$message.error(res.msg);
-            this.isData =false;
-          }
-        })
-      },
-      goDetail(id,name){
-        this.$router.push(`/${name}/detail/${id}`)
-      },
-    }
+    methods: {}
   }
 </script>
 
 <style scoped lang="scss">
   .article {
-    background-color: #fff;
-    padding: 60px 80px 60px;
-    ul.tabs {
+    width:1260px;
+    margin:auto;
+    padding:95px 0 125px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .article_box{
+      width:32%;
+      border:1px solid #e7e7e7;
+      /*box-shadow: 5px 5px 5px #dedede;*/
+      padding:20px 15px;
+    }
+    .article_title{
       display: flex;
-      justify-content: center;
+      justify-content:space-between;
       align-items: center;
-      border-bottom: 3px solid #1754A5;
-      li {
-        width: 33.33%;
-        line-height: 55px;
-        font-size: 18px;
-        text-align: center;
+      border-bottom:1px solid #e1b05d;
+      padding-bottom:20px;
+      margin-bottom:20px;
+      h3{
+        color:#3a3a3a;
+        font-size:20px;
+        font-weight: 500;
+      }
+      .more{
+        color:#999;
+        font-size:12px;
         cursor: pointer;
       }
-      .tabs_active {
-        background-color: #1754a5;
-        color: #fff;
-      }
     }
-    ul.tabs_content {
-      li {
-        margin-top: 35px;
-        color: #5A5A5A;
-        .article_box {
-          margin: 40px 15px;
-          cursor: pointer;
-          .article_title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 18px;
-            margin-bottom: 10px;
-            span {
-              font-family: SimSun;
-              font-size: 14px;
-              color: #acacac;
-            }
-          }
-          .article_content {
-            width: 60%;
-            font-size: 12px;
-            /*overflow: hidden;*/
-            /*text-overflow: ellipsis;*/
-            /*display: -webkit-box;*/
-            /*-webkit-line-clamp: 1;*/
-            /*-webkit-box-orient: vertical;*/
-          }
-        }
+    ul{
+      li{
+        margin:10px 0;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size:14px;
+        color:#999;
+        cursor: pointer;
       }
     }
   }

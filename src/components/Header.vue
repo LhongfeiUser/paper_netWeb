@@ -11,7 +11,7 @@
       </router-link>
       <ul class="nav nav-pills" v-cloak>
         <li class="nav-item">
-          <router-link to="/home" exact active-class="nav-link">
+          <router-link to="/home" active-class="nav-link">
             <span>{{category[0]}}</span>
           </router-link>
         </li>
@@ -61,7 +61,6 @@
       }
     },
     mounted() {
-      console.log(this.logoPic);
       this.getCategoryData();
     },
     methods: {

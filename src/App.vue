@@ -11,4 +11,8 @@ export default {
 </script>
 
 <style>
+  #app{
+    min-width:1260px;
+    margin:auto;
+  }
 </style>
