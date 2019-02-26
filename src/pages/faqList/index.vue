@@ -63,6 +63,7 @@
         };
         getListData(faqData).then(res => {
           if (res.code === 200) {
+            console.log(res);
             this.lists = res.msg;
             this.changePage(1);
             this.isData = false;

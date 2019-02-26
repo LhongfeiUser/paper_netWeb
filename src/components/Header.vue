@@ -2,8 +2,8 @@
   <div class="header">
     <nav class="navbar navbar-light">
       <router-link class="navbar-brand" to="/">
-        <img v-if="logoPic" :src="logoPic" width="140" height="52">
-        <img v-else src="http://pmo78af5a.pic41.websiteonline.cn/upload/logo2.png" width="140" height="52">
+        <img v-if="logoPic" :src="logoPic" width="150" height="50">
+        <img v-else src="../assets/images/footer_logo.png" width="150" height="50">
         <div class="header_title">
           <span>湖南省出版物发行业协会</span>
           <span>科研诚信建设工作委员会</span>
@@ -56,7 +56,7 @@
   export default {
     data() {
       return {
-        category: ["首页", "论文查重", "论文查重技巧", "常见问题", "学术资讯", "登录"],
+        category: ["首页", "论文查重", "查重技巧", "常见问题", "学术资讯", "登录"],
         logoPic: ''
       }
     },

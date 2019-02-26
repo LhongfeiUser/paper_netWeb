@@ -55,10 +55,28 @@
     data() {
       return {}
     },
-    created() {
-
+    created(){
+      this.goArticleDetail(2);
     },
-    methods: {}
+    methods: {
+      goArticleDetail(id) {
+        const faqData={
+          token:'meichenghuilian20181108',
+          cat_id:id,
+        };
+        getListData(faqData).then(res=>{
+          if(res.code===200){
+            console.log(res);
+          }else {
+            this.$message.error(res.msg);
+            this.isData =false;
+          }
+        })
+      },
+      goDetail(id,name){
+        this.$router.push(`/${name}/detail/${id}`)
+      },
+    }
   }
 </script>
 
@@ -73,7 +91,7 @@
     .article_box{
       width:32%;
       border:1px solid #e7e7e7;
-      /*box-shadow: 5px 5px 5px #dedede;*/
+      box-shadow: 5px 5px 5px #dedede;
       padding:20px 15px;
     }
     .article_title{

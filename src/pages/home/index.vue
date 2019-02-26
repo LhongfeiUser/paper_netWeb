@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <Header></Header>
+    <div class="header_bg">
+      <Header></Header>
+    </div>
     <div class="banner">
       <el-carousel trigger="click" arrow="never" height="520px">
         <el-carousel-item v-if="slide_pic" v-for="item in slide_pic" :key="item">
@@ -24,23 +26,23 @@
             <span>PAPER DETECTION</span>
           </div>
           <ul>
-            <li>
+            <li class="paper_bg_1">
               <img src="../../assets/images/duplicate_icon_01.png">
               <span>选择查重系统</span>
             </li>
-            <li>
+            <li class="paper_bg_2">
               <img src="../../assets/images/duplicate_icon_02.png">
               <span>上传论文</span>
             </li>
-            <li>
+            <li class="paper_bg_3">
               <img src="../../assets/images/duplicate_icon_03.png">
               <span>担保交易付款</span>
             </li>
-            <li>
+            <li class="paper_bg_4">
               <img src="../../assets/images/duplicate_icon_04.png">
               <span>下载论文检测报告</span>
             </li>
-            <li>
+            <li class="paper_bg_5">
               <img src="../../assets/images/duplicate_icon_05.png">
               <span>确认评价</span>
             </li>
@@ -158,51 +160,8 @@
     components: {Header, selection_model, end_article, Footer},
     data() {
       return {
-        loadingImg: ['https://img.zcool.cn/community/01ec5a5996ac89a8012156033739b5.gif'],
         slide_pic: [],
         version_num: 1,
-        system_module: [
-          {
-            module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_4.jpg',
-            detecting_system: '知网检测系统',
-            range: '高校硕士、博士、在职研究生论文查重检测',
-            products: '独有《学术论文联合对比库》，支持官网验证，硕博定稿前必查',
-            S_versions: ['硕博VIP5.1', '本科PMLC', '期刊', '人事版', '科研版', '图书专著版'],
-            price: ['280', '222', '331', '433', '111', '323'],
-          },
-          {
-            module_img: 'http://www.lunwenjc.com/Uploads/Content/2017-08-18/59965b22bb567.png',
-            detecting_system: 'Turnitin国际版论文查重系统',
-            range: '适用于美洲、澳洲、香港、韩国等国家留学生或发表投稿使用。',
-            products: 'Turnitin国际版领先全球的防范剽窃与提供丰富反馈的技术',
-            S_versions: ['大学论文', '学位论文', '会议论文', '期刊论文', '毕业论文', '硕博论文'],
-            price: ['1.00', '2.00', '3.00', '4.00', '5.00', '6.00'],
-          },
-          {
-            module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_1.jpg',
-            detecting_system: '万方数据检测系统',
-            range: '全科可查，查重产品优势为医学学科',
-            products: '中国科学技术部下属企业研发而成，全程自动检测，性价比高',
-            S_versions: [],
-            price: ['2.00'],
-          },
-          {
-            module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/2222.png',
-            detecting_system: '超星大雅检测系统',
-            range: '有图书专著，对比资源全',
-            products: '有图书专著对比资源全，价格相对较低，全程自助检测',
-            S_versions: [],
-            price: ['2.00'],
-          },
-          {
-            module_img: 'http://pmo78af5a.pic41.websiteonline.cn/upload/ver_3.jpg',
-            detecting_system: '维普数据检测系统',
-            range: '可测中英文，查重范围广',
-            products: '有图书专著对比资源全，价格相对较低，全程自助检测',
-            S_versions: [],
-            price: ['2.00'],
-          },
-        ],
         sc: [
           'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
           'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
@@ -303,7 +262,14 @@
     margin-left: -630px;
     background-color: inherit !important;
   }
-
+  .header_bg{
+    width:100%;
+    height:100px;
+    background-color:#131516;
+    position: absolute;
+    z-index: 111;
+    opacity: .9;
+  }
   /deep/ .el-carousel {
     .el-carousel__indicators {
       bottom: 30px;
@@ -398,6 +364,26 @@
             margin-top: 25px;
             font-size: 14px;
           }
+        }
+        .paper_bg_1{
+          background:url("../../assets/images/a1.png")no-repeat;
+          background-position: -7px;
+        }
+        .paper_bg_2{
+          background:url("../../assets/images/a2.png")no-repeat;
+          background-position: -7px;
+        }
+        .paper_bg_3{
+          background:url("../../assets/images/a3.png")no-repeat;
+          background-position: -7px;
+        }
+        .paper_bg_4{
+          background:url("../../assets/images/a4.png")no-repeat;
+          background-position: -7px;
+        }
+        .paper_bg_5{
+          background:url("../../assets/images/a5.png")no-repeat;
+          background-position: -7px;
         }
       }
     }
