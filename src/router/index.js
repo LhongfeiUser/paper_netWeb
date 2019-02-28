@@ -10,8 +10,14 @@ export default new Router({
   routes: [
     {
       path: '/home',
-      name: 'home',
-      component: ()=>import('@/pages/home/index'),
+      redirect: '/home',
+      component: Layout,
+      children:[
+        {
+          path:'',
+          component:()=>import('@/pages/home/index'),
+        }
+      ]
     },
     {
       path: '/login',

@@ -1,6 +1,6 @@
 <template>
-  <div class="header">
-    <nav class="navbar navbar-light">
+  <div class="header" :style="styleObj===0?isStyleA:''">
+    <nav class="navbar navbar-light" :style="styleObj===0?isStyleB:''">
       <router-link class="navbar-brand" to="/">
         <img v-if="logoPic" :src="logoPic" width="150" height="50">
         <img v-else src="../assets/images/footer_logo.png" width="150" height="50">
@@ -10,73 +10,47 @@
         </div>
       </router-link>
       <ul class="nav nav-pills" v-cloak>
-        <li class="nav-item">
-          <router-link to="/home" active-class="nav-link">
-            <span>{{category[0]}}</span>
+        <li class="nav-item" v-for="(item,index) in category" :key="index" @click="getStyle(category,item)">
+          <router-link :to="{path:routeArr[index], query:{list_id:item.id}}">
+            <span>{{item.category_name}}</span>
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/vipManage/upload" active-class="nav-link">
-            <span>{{category[1]}}</span>
-          </router-link>
-        </li>
-        <!-- <li class="nav-item">
-           <router-link to="/process" active-class="nav-link">
-             <span>论文查重流程</span>
-           </router-link>
-         </li>-->
-        <li class="nav-item">
-          <router-link :to="{path:'/skill', query:{list_id:1}}" active-class="nav-link">
-            <span>{{category[2]}}</span>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{path:'/faq', query:{list_id:2}}" active-class="nav-link">
-            <span>{{category[3]}}</span>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{path:'/academic', query:{list_id:3}}" active-class="nav-link">
-            <span>{{category[4]}}</span>
-          </router-link>
-        </li>
-        <!--<li class="nav-item">
-          <router-link to="/login" active-class="nav-link ">
-            <span>{{category[5]}}</span>
-          </router-link>
-        </li>-->
       </ul>
     </nav>
   </div>
 </template>
 <script>
-  import {getCategory} from "../api/category";
   import {getLogo} from '../api/get_homeData'
 
   export default {
     data() {
       return {
-        category: ["首页", "论文查重", "查重技巧", "常见问题", "学术资讯", "登录"],
-        logoPic: ''
+        logoPic: '',
+        routeArr: ['/home', '/vipManage/upload', '/skill', '/faq', '/academic', '/login'],
+        styleObj:0,
+        isStyleA:{
+          position: 'absolute',
+          zIndex: '99',
+          backgroundColor: '#131516',
+          width:'100%'
+        },
+        isStyleB:{
+          width: '1260px',
+          margin:'auto'
+        }
       }
     },
-    mounted() {
+    created(){
       this.getCategoryData();
+      if(this.$route.path!=='/home'){
+        this.styleObj=1;
+      }
+    },
+    props:{
+      category:Array,
     },
     methods: {
       getCategoryData() {
-        let categoryData = {
-          token: 'meichenghuilian20181108',
-        };
-        getCategory(categoryData).then(res => {
-          if (res) {
-            let arr = [];
-            for (let i = 0; i < res.length; i++) {
-              arr.push(res[i].category_name)
-            }
-            this.category = arr;
-          }
-        });
         let logo_data = {
           username: '',
           password: '',
@@ -86,6 +60,13 @@
           let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
           this.logoPic = res.pic.replace(reg, 'http://www.yifulunwen.com');
         })
+      },
+      getStyle(category,item){
+        if(category[0]===item){
+          this.styleObj=0;
+        }else {
+          this.styleObj=1;
+        }
       }
     }
   }
@@ -96,7 +77,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height:100px;
+    height: 100px;
     margin-bottom: 10px;
     background-color: #000;
   }

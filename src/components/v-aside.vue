@@ -6,19 +6,9 @@
             <span>论文查重流程</span>
           </router-link>
         </li>-->
-        <li class="nav-item">
-          <router-link :to="{path:'/skill', query:{list_id:1}}" active-class="nav-link active">
-            <span>论文查重技巧</span>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{path:'/faq', query:{list_id:2}}" active-class="nav-link active">
-            <span>常见问题</span>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{path:'/academic', query:{list_id:3}}" active-class="nav-link active">
-            <span>学术资讯</span>
+        <li class="nav-item" v-for="(item,index) in category">
+          <router-link :to="{path:routeArr[index], query:{list_id:item.id}}" active-class="nav-link active">
+            <span>{{item.category_name}}</span>
           </router-link>
         </li>
       </ul>
@@ -26,17 +16,44 @@
 </template>
 
 <script>
+  import {getCategory} from "../api/category";
     export default {
       data(){
         return{
+          category:'',
+          routeArr:['/skill','/faq','/academic']
         }
       },
-
-      created(){
-
+       created(){
+         this.bus.$on('toChangeTitle', function (arr) {
+           this.category=arr.slice(2,5);
+         });
+         this.getRouteArr();
       },
-
-      methods:{},
+      mounted(){
+      },
+      methods:{
+        getRouteArr(){
+          let categoryData = {
+            token: 'meichenghuilian20181108',
+          };
+          getCategory(categoryData).then(res => {
+            if (res) {
+              let arr = [];
+              for (let i = 0; i < res.length; i++) {
+                let obj = {};
+                obj.category_name = res[i].category_name;
+                obj.id = res[i].id;
+                arr.push(obj)
+              }
+              this.category = arr.slice(2,5);
+            }
+            else {
+              this.$message.error(res.msg)
+            }
+          });
+        }
+      },
     }
 </script>
 
@@ -50,11 +67,11 @@
       li{
         width:100%;
         margin:15px 0;
-        font-size:16px;
+        font-size:20px;
         text-align: left;
         a{
-          padding:20px 0 20px 5vw;
-          color:#000;
+          padding:20px 0 20px 4vw;
+          color:#888;
         }
       }
     }

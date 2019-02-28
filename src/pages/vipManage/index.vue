@@ -1,6 +1,6 @@
 <template>
   <div class="vipManage">
-    <main style="display: flex;justify-content: flex-start;align-items: flex-start">
+    <main style="display: flex;justify-content: flex-start;align-items: flex-start;width:1260px;margin:auto;">
       <div class="aside">
         <img src="../../assets/images/aside_logo.png">
         <div style="margin:20px 0 20px 20px;font-size:16px;color:#000;">

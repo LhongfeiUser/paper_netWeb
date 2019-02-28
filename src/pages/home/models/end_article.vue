@@ -66,7 +66,6 @@
         };
         getListData(faqData).then(res=>{
           if(res.code===200){
-            console.log(res);
           }else {
             this.$message.error(res.msg);
             this.isData =false;

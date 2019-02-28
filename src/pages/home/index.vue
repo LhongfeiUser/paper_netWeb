@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <div class="header_bg">
-      <Header></Header>
-    </div>
     <div class="banner">
       <el-carousel trigger="click" arrow="never" height="520px">
         <el-carousel-item v-if="slide_pic" v-for="item in slide_pic" :key="item">
@@ -123,7 +120,6 @@
            </transition>
         </div>
       </div>
-
       <div class="advantage">
         <div class="advantage_content">
           <div class="title">
@@ -145,7 +141,6 @@
       </div>
       <end_article></end_article>
     </main>
-    <Footer></Footer>
   </div>
 </template>
 <script>
@@ -216,6 +211,9 @@
       this.getInitData();
       this.getSchoolImg();
     },
+    props:{
+      category:Array,
+    },
     methods: {
       getInitData() {
         let pic_data = {
@@ -241,7 +239,7 @@
         for (let i = 1; i <= page; i++) {
           this.scImgobj[i] = this.sc.slice((i - 1) * 15, i * 15);
         }
-      }
+      },
     },
   }
 </script>
@@ -252,15 +250,6 @@
     color: #666;
     position: relative;
     min-width: 1260px;
-  }
-
-  .header {
-    position: absolute !important;
-    z-index: 99;
-    width: 1260px;
-    left: 50%;
-    margin-left: -630px;
-    background-color: inherit !important;
   }
   .header_bg{
     width:100%;
