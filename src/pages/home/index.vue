@@ -146,13 +146,11 @@
 <script>
   import Footer from '@/components/Footer'
   import Header from '@/components/Header'
-  import selection_model from './models/selection_model'
   import end_article from './models/end_article'
-
   import {getSlide_pic} from '../../api/get_homeData'
 
   export default {
-    components: {Header, selection_model, end_article, Footer},
+    components: {Header, end_article, Footer},
     data() {
       return {
         slide_pic: [],

@@ -55,6 +55,7 @@ export default new Router({
     {
       path: '/detail/:id',
       redirect: '/detail/:id',
+      name:'detail',
       component: Layout,
       children:[
         {

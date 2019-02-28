@@ -9,7 +9,7 @@
         <div v-if="isData" v-loading="isData" style="height:80px;width:100%;"></div>
         <ul v-else class="list_content">
           <li v-for="(item,index) in list" :key="index" @click="goDetail(item.id)">
-            {{item.title}}
+            {{index+1+(page-1)*3}}、{{item.title}}
           </li>
         </ul>
         <ul class="pagination pagination-sm">
@@ -39,6 +39,7 @@
   import {getListData} from "@/api/getList";
 
   export default {
+    components: {v_aside},
     data() {
       return {
         list: [],
@@ -51,17 +52,16 @@
         resTitle:[],
       }
     },
-    components: {v_aside},
-    created() {
-      this.cat_id = this.$route.query.list_id;
-      this.param_id=this.$route.params.params_id;
-      this.getFaqList(this.cat_id);
-    },
     watch:{
       '$route'(to,form){
         this.getFaqList(to.query.list_id);
         this.param_id=to.params.params_id;
       }
+    },
+    created() {
+      this.cat_id = this.$route.query.list_id;
+      this.param_id=this.$route.params.params_id;
+      this.getFaqList(this.cat_id);
     },
     methods: {
       getFaqList(id) {
@@ -89,8 +89,8 @@
           this.$message.info('已经是第一页了');
           page = 1;
         }
-        if (this.lists.length > 6) {
-          this.len = Math.ceil(this.list.length / 6);
+        if (this.lists.length > 3) {
+          this.len = Math.ceil(this.lists.length / 3);
           if (page > this.len) {
             this.$message.info('已经是最后一页了');
             page = this.len;
@@ -99,7 +99,14 @@
           this.len = page = 1;
         }
         this.page = page;
-        this.list = this.lists.slice((page - 1) * 6, page * 6)
+        this.list = this.lists.slice((page - 1) * 3, page * 3);
+        console.log(this.list);
+        let c=[];
+        for(let i=0;i<this.list.length;i++){
+           c.push(this.list[i].id)
+        }
+        let catObj=JSON.stringify(c);
+        sessionStorage.setItem('catObj',catObj)
       }
     }
   }
@@ -145,10 +152,10 @@
         }
         .list_content {
           counter-reset: sectioncounter;
-          li:before {
+          /*li:before {
             content: counter(sectioncounter) "、";
             counter-increment: sectioncounter;
-          }
+          }*/
           li:hover {
             color: orangered;
             cursor: pointer;

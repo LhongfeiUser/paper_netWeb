@@ -4,18 +4,23 @@
       <h3>检测系统选择</h3>
       <div class="option_content">
         <ul>
-          <li>知网系统</li>
+          <li>知网数据检测系统</li>
           <li><a href="javascript:void(0)">知网小分解系统</a></li>
           <li><a href="javascript:void(0)">知网大分解系统</a></li>
           <li><a href="javascript:void(0)">知网本科PMLC系统</a></li>
           <li><a href="javascript:void(0)">知网硕博VIP系统</a></li>
         </ul>
         <ul>
-          <li>修改系统</li>
+          <li>万方数据检测系统</li>
           <li><a href="javascript:void(0)">CheckPass检测系统</a></li>
-          <li><a href="javascript:void(0)">PaperPass检测系统</a></li>
-          <li><a href="javascript:void(0)">维普论文检测系统</a></li>
-          <li><a href="javascript:void(0)">Gocheck论文检测系统</a></li>
+        </ul>
+        <ul>
+          <li>超星大雅检测系统</li>
+          <li><a href="javascript:void(0)">CheckPass检测系统</a></li>
+        </ul>
+        <ul>
+          <li>维普数据检测系统</li>
+          <li><a href="javascript:void(0)">CheckPass检测系统</a></li>
         </ul>
       </div>
     </div>
@@ -111,7 +116,7 @@
         ul {
           display: flex;
           justify-content: flex-start;
-          margin: 20px 0 0;
+          margin: 15px 0 0;
           li {
             margin-left: 40px;
             a {

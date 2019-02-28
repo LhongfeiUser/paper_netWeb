@@ -25,34 +25,44 @@
       return {
         detail_id:null,
         content_arr:[],
+        article_id_index:null,
+        article_id_arr:[],
       }
     },
 
     created() {
+      this.article_id_arr =JSON.parse(sessionStorage.getItem('catObj'));
       this.detail_id=this.$route.params.id;
+      this.article_id_index=this.article_id_arr.indexOf(Number(this.detail_id));
       this.getFaqDetailData(this.detail_id)
     },
 
     methods: {
 
       detail_prev(){ //上一页
-        let next_id =this.detail_id=parseInt(this.detail_id)-1;
-        if(next_id<0){
-          next_id=this.detail_id=0;
+        let prev_id=null;
+        if(this.article_id_index!==0){
+          prev_id = this.article_id_arr[this.article_id_index-1];
+          this.article_id_index=this.article_id_index-1;
+          this.getFaqDetailData(prev_id);
+          this.$router.push(`/detail/${prev_id}`)
+        }else {
           return this.$message.info('已经是第一篇文章了')
         }
-        this.getFaqDetailData(next_id);
-        this.$router.push(`/faq/detail/${next_id}`)
+
       },
 
       detail_next(){ //下一页
-        let next_id =this.detail_id=parseInt(this.detail_id)+1;
-        if(next_id>9){
-          next_id=this.detail_id=9;
+        let next_id=null;
+        if(this.article_id_index!==this.article_id_arr.length-1){
+          next_id = this.article_id_arr[this.article_id_index+1];
+          this.article_id_index=this.article_id_index+1;
+          this.getFaqDetailData(next_id);
+          this.$router.push(`/detail/${next_id}`)
+        }else {
+          next_id=this.article_id_arr.length-1;
           return this.$message.info('已经是最后一篇文章了')
         }
-        this.getFaqDetailData(next_id);
-        this.$router.push(`/faq/detail/${next_id}`)
       },
 
       getFaqDetailData(id) {
@@ -76,6 +86,7 @@
   main{
     background:#fff;
     padding:0 40px 80px;
+    min-height: 100vh;
     h2{
       text-align: center;
       padding:20px 0;
