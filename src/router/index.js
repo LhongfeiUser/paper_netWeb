@@ -39,74 +39,28 @@ export default new Router({
             },
           ]
         },
-
-       /* {
-          path:'order',
-          component:()=>import('@/pages/orderList/index')
-        }*/
       ]
     },
     {
-      path: '/process',
-      redirect: '/process',
-      component: Layout,
-      children:[
-        {
-          path:'',
-          component:()=>import('@/pages/checkProcessList/index')
-        },
-        {
-          path:'detail',
-          component:()=>import('@/pages/checkProcessDetail/index')
-        }
-      ]
-    },
-    {
-      path: '/skill',
-      redirect: '/skill',
-      component: Layout,
-      children:[
-        {
-          path:'',
-          component:()=>import('@/pages/checkSkillList/index')
-        },
-        {
-          path:'detail/:id',
-          name:'detail',
-          component:()=>import('@/pages/checkSkillDetail/index')
-        }
-      ]
-    },
-    {
-      path: '/faq',
-      redirect: '/faq',
+      path: '/article/:params_id',
+      redirect: '/article/:params_id',
       component: Layout,
       children:[
         {
           path:'',
           component:()=>import('@/pages/faqList/index')
         },
-        {
-          path:'detail/:id',
-          name:'fqaDetail',
-          component:()=>import('@/pages/faqDetail/index')
-        }
       ]
     },
     {
-      path: '/academic',
-      redirect: '/academic',
+      path: '/detail/:id',
+      redirect: '/detail/:id',
       component: Layout,
       children:[
         {
           path:'',
-          component:()=>import('@/pages/academicList/index')
+          component:()=>import('@/pages/faqDetail/index')
         },
-        {
-          path:'detail/:id',
-          name:'academicDetail',
-          component:()=>import('@/pages/academicDetail/index')
-        }
       ]
     },
     /*代理商后台*/

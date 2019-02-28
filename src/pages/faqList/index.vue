@@ -47,12 +47,21 @@
         isData: false,
         page: 1,
         len: 1,
+        param_id:null,
+        resTitle:[],
       }
     },
     components: {v_aside},
     created() {
       this.cat_id = this.$route.query.list_id;
+      this.param_id=this.$route.params.params_id;
       this.getFaqList(this.cat_id);
+    },
+    watch:{
+      '$route'(to,form){
+        this.getFaqList(to.query.list_id);
+        this.param_id=to.params.params_id;
+      }
     },
     methods: {
       getFaqList(id) {
@@ -63,7 +72,6 @@
         };
         getListData(faqData).then(res => {
           if (res.code === 200) {
-            console.log(res);
             this.lists = res.msg;
             this.changePage(1);
             this.isData = false;
@@ -74,7 +82,7 @@
         })
       },
       goDetail(id) {
-        this.$router.push(`/faq/detail/${id}`)
+        this.$router.push(`/detail/${id}`)
       },
       changePage(page) {
         if (page < 1) {

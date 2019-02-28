@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <Header :category="category"></Header>
-    <router-view :category="category"></router-view>
+    <router-view></router-view>
     <Footer></Footer>
   </div>
 </template>
@@ -41,12 +41,5 @@
 </script>
 
 <style scoped>
-  .eader{
-    position: absolute!important;
-    z-index: 99;
-    width: 1260px;
-    left: 50%;
-    margin-left: -630px;
-    background-color: inherit!important;
-  }
+
 </style>

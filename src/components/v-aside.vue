@@ -21,13 +21,10 @@
       data(){
         return{
           category:'',
-          routeArr:['/skill','/faq','/academic']
+          routeArr:['/article/1','/article/2','/article/3']
         }
       },
        created(){
-         this.bus.$on('toChangeTitle', function (arr) {
-           this.category=arr.slice(2,5);
-         });
          this.getRouteArr();
       },
       mounted(){
@@ -47,6 +44,7 @@
                 arr.push(obj)
               }
               this.category = arr.slice(2,5);
+              this.$emit('articleTitle',this.category)
             }
             else {
               this.$message.error(res.msg)

@@ -26,7 +26,7 @@
     data() {
       return {
         logoPic: '',
-        routeArr: ['/home', '/vipManage/upload', '/skill', '/faq', '/academic', '/login'],
+        routeArr: ['/home', '/vipManage/upload', '/article/1', '/article/2', '/article/3', '/login'],
         styleObj:0,
         isStyleA:{
           position: 'absolute',
