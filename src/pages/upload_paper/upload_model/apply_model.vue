@@ -49,41 +49,58 @@
           wx_01: require('../../../assets/images/wx_01.png'),
         },
         orderImg: '',
-        price:0 ,
+        price: 0,
+        zfbHref: '',
       }
     },
-    props:{
-      order_price:Number,
-      stu_id:String,
-      order_info:Object
+    props: {
+      order_price: Number,
+      stu_id: String,
+      order_info: Object
     },
-    created(){
+    created() {
     },
     methods: {
       isApply(num) {
-        if(this.stu_id){
+        if (this.stu_id) {
           this.isApply_show = true;
           this.isImg = num;
-          this.price=this.order_price.toFixed(2); //小数点
-          let qrcode_order = {
-            trade_no:this.order_info.info.trade_no,
-            order_id:this.order_info.info.id,
-            total_price:this.price*100,
-            com_name:this.order_info.info.com_name,
-          };
-          function transformObj2SearchStr(obj){
+          this.price = this.order_price.toFixed(2); //小数点
+          function transformObj2SearchStr(obj) {
             let arr = [];
-            for(let key in obj){
-              arr.push(key + '='+ obj[key]);
+            for (let key in obj) {
+              arr.push(key + '=' + obj[key]);
             }
             return encodeURI(arr.join('&'))
           }
-          get_payQrcode(qrcode_order).then(res => {
+
+          if (num === 0) {
+            let qrcode_order = {
+              trade_no: this.order_info.info.trade_no,
+              total_price: this.price,
+              com_name: this.order_info.info.com_name,
+            };
+
+            window.location.href='http://www.yifulunwen.com/alipay?' + transformObj2SearchStr(qrcode_order);
+            console.log('http://www.yifulunwen.com/alipay?' + transformObj2SearchStr(qrcode_order));
+            // this.zfbHref ='###' ;
+          }
+          if (num === 1) {
+            let qrcode_order = {
+              trade_no: this.order_info.info.trade_no,
+              order_id: this.order_info.info.id,
+              total_price: this.price * 100,
+              com_name: this.order_info.info.com_name,
+            };
+            this.orderImg = 'http://www.yifulunwen.com/return_pay_qrcode?' + transformObj2SearchStr(qrcode_order);
+          }
+
+          /*get_payQrcode(qrcode_order).then(res => {
             if (res) {
               this.orderImg='http://www.yifulunwen.com/return_pay_qrcode?'+transformObj2SearchStr(qrcode_order);
             }
-          })
-        }else {
+          })*/
+        } else {
           this.$message.info('请提交论文相关信息')
         }
       }

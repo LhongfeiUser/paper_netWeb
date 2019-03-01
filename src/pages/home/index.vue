@@ -151,60 +151,14 @@
   import Footer from '@/components/Footer'
   import Header from '@/components/Header'
   import end_article from './models/end_article'
-  import {getSlide_pic, getInterfaces} from '../../api/get_homeData'
+  import {getSlide_pic, getInterfaces,get_Partners} from '../../api/get_homeData'
   export default {
     components: {Header, end_article, Footer},
     data() {
       return {
         slide_pic: [],
         version_num: 1,
-        sc: [
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/15_ffuc.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/14_92wx.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/11_1g5h.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/12_9moo.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/9_zbn4.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/8_066t.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/7_dvh4.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/6_sn0x.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/5_hzcr.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/3_bohd.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/2_52i8.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/15_ffuc.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/14_92wx.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/11_1g5h.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/12_9moo.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/9_zbn4.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/8_066t.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/7_dvh4.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/6_sn0x.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/5_hzcr.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/3_bohd.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/2_52i8.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/1_ejjs.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/4_pm8w.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/15_ffuc.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/14_92wx.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/11_1g5h.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/10_zm7d.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/12_9moo.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/9_zbn4.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/8_066t.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/7_dvh4.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/6_sn0x.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/5_hzcr.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/3_bohd.png',
-          'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
-        ],
+        sc: [],
         scImgobj: {},
         classifyA:[],
         classifyB:[],
@@ -215,7 +169,6 @@
     },
     created() {
       this.getInitData();
-      this.getSchoolImg();
     },
     props: {
       category: Array,
@@ -236,7 +189,7 @@
             })
           }
         });
-        getInterfaces().then(res => {
+        getInterfaces(pic_data).then(res => {
           res.forEach((item)=>{
             item.pic='http://www.yifulunwen.com'+item.pic;
             item.label_url='http://www.yifulunwen.com'+item.label_url;
@@ -258,18 +211,23 @@
             }
           }
         });
+        get_Partners(pic_data).then(res=>{
+          if(res){
+            res.forEach((item)=>{
+              this.sc.push('http://www.yifulunwen.com'+item.pic);
+            });
+            let page = Math.ceil(this.sc.length / 15);
+            for (let i = 1; i <= page; i++) {
+              this.scImgobj[i-1]= this.sc.slice((i - 1) * 15, i * 15);
+            }
+          }
+        })
       },
       optionsVersion(num) {
         this.version_num = num;
       },
-      getSchoolImg() {
-        let page = Math.ceil(this.sc.length / 15);
-        for (let i = 1; i <= page; i++) {
-          this.scImgobj[i] = this.sc.slice((i - 1) * 15, i * 15);
-        }
-      },
       goUpload(cate,id){
-        this.$router.push({path:'/vipManage/upload'})
+        this.$router.push({path:'/vipManage/upload',query:{cate:cate,id:id}})
       }
     },
   }
