@@ -17,11 +17,11 @@
       }
     },
     components: {Footer,Header},
-    created() {
+    async created() {
       let categoryData = {
         token: 'meichenghuilian20181108',
       };
-      getCategory(categoryData).then(res => {
+     await getCategory(categoryData).then(res => {
         if (res) {
           let arr = [];
           for (let i = 0; i < res.length; i++) {
@@ -31,6 +31,7 @@
             arr.push(obj)
           }
           this.category = arr;
+          sessionStorage.setItem('article_id',JSON.stringify(arr))
         }
         else {
           this.$message.error(res.msg)

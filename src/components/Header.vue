@@ -49,6 +49,15 @@
     props:{
       category:Array,
     },
+    watch:{
+      '$route':function (to) {
+        if(to.path==='/home'){
+          this.styleObj=0;
+        }else {
+          this.styleObj=1;
+        }
+      }
+    },
     methods: {
       getCategoryData() {
         let logo_data = {

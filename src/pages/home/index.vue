@@ -58,66 +58,66 @@
           <li @click="optionsVersion(4)">维普数据检测系统</li>
         </ul>
         <div class="system_contentBox">
-           <transition name="fade" mode="in-out">
-             <ul v-show="version_num===1"  class="system_content">
-               <li v-for="i in 4" :key="i">
-                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                 <div class="system_detail">
-                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                   <span><strong>说明：</strong>评审职称前成果必查</span>
-                   <span>已成交：529510件</span>
-                   <button class="btn btn-warning btn-lg">立即检测</button>
-                 </div>
-               </li>
-             </ul>
-           </transition>
-           <transition name="fade" mode="in-out">
-             <ul v-show="version_num===2"  class="system_content">
-               <li v-for="i in 3" :key="i">
-                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                 <div class="system_detail">
-                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                   <span><strong>说明：</strong>评审职称前成果必查</span>
-                   <span>已成交：529510件</span>
-                   <button class="btn btn-warning btn-lg">立即检测</button>
-                 </div>
-               </li>
-             </ul>
-           </transition>
-           <transition name="fade" mode="in-out">
-             <ul v-show="version_num===3"  class="system_content">
-               <li v-for="i in 2" :key="i">
-                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                 <div class="system_detail">
-                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                   <span><strong>说明：</strong>评审职称前成果必查</span>
-                   <span>已成交：529510件</span>
-                   <button class="btn btn-warning btn-lg">立即检测</button>
-                 </div>
-               </li>
-             </ul>
-           </transition>
-           <transition name="fade" mode="in-out">
-             <ul v-show="version_num===4"  class="system_content">
-               <li v-for="i in 1" :key="i">
-                 <img class="version_img" src="../../assets/images/version_icon_01.png" alt="">
-                 <img class="leftHead_img" src="../../assets/images/ver_4.jpg">
-                 <div class="system_detail">
-                   <h3><strong>7{{i}}.00</strong>元/1篇</h3>
-                   <span><strong>适用范围：</strong>人事职称评审、人才引进成果检测</span>
-                   <span><strong>说明：</strong>评审职称前成果必查</span>
-                   <span>已成交：529510件</span>
-                   <button class="btn btn-warning btn-lg">立即检测</button>
-                 </div>
-               </li>
-             </ul>
-           </transition>
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===1" class="system_content">
+              <li v-for="(item,index) in classifyA" :key="index">
+                <img class="version_img" :src='item.label_url'  alt="">
+                <img class="leftHead_img" :src="item.pic">
+                <div class="system_detail">
+                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>{{item.apply}}</span>
+                  <span><strong>说明：</strong>{{item.desc}}</span>
+                  <span>已成交：529510件</span>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===2" class="system_content">
+              <li v-for="(item,index) in classifyB" :key="index">
+                <img class="version_img" :src='item.label_url'  alt="">
+                <img class="leftHead_img" :src="item.pic">
+                <div class="system_detail">
+                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>{{item.apply}}</span>
+                  <span><strong>说明：</strong>{{item.desc}}</span>
+                  <span>已成交：529510件</span>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===3" class="system_content">
+              <li v-for="(item,index) in classifyC" :key="index">
+                <img class="version_img" :src='item.label_url'  alt="">
+                <img class="leftHead_img" :src="item.pic">
+                <div class="system_detail">
+                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>{{item.apply}}</span>
+                  <span><strong>说明：</strong>{{item.desc}}</span>
+                  <span>已成交：529510件</span>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
+          <transition name="fade" mode="in-out">
+            <ul v-show="version_num===4" class="system_content">
+              <li v-for="(item,index) in classifyD" :key="index">
+                <img class="version_img" :src='item.label_url'  alt="">
+                <img class="leftHead_img" :src="item.pic">
+                <div class="system_detail">
+                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
+                  <span><strong>适用范围：</strong>{{item.apply}}</span>
+                  <span><strong>说明：</strong>{{item.desc}}</span>
+                  <span>已成交：529510件</span>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                </div>
+              </li>
+            </ul>
+          </transition>
         </div>
       </div>
       <div class="advantage">
@@ -141,14 +141,17 @@
       </div>
       <end_article></end_article>
     </main>
+    <div style="position: fixed;right:20px;bottom:120px;z-index: 999;display: flex;flex-direction: column;align-items: center">
+      <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3506464470&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3506464470:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+      <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2108064819&site=qq&menu=yes"><img border="0"  src="http://wpa.qq.com/pa?p=2:2108064819:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+    </div>
   </div>
 </template>
 <script>
   import Footer from '@/components/Footer'
   import Header from '@/components/Header'
   import end_article from './models/end_article'
-  import {getSlide_pic} from '../../api/get_homeData'
-
+  import {getSlide_pic, getInterfaces} from '../../api/get_homeData'
   export default {
     components: {Header, end_article, Footer},
     data() {
@@ -203,14 +206,19 @@
           'http://pmo78af5a.pic41.websiteonline.cn/upload/xl26.png',
         ],
         scImgobj: {},
+        classifyA:[],
+        classifyB:[],
+        classifyC:[],
+        classifyD:[],
+        url_pic:process.env.BASE_URL,
       }
     },
     created() {
       this.getInitData();
       this.getSchoolImg();
     },
-    props:{
-      category:Array,
+    props: {
+      category: Array,
     },
     methods: {
       getInitData() {
@@ -228,6 +236,28 @@
             })
           }
         });
+        getInterfaces().then(res => {
+          res.forEach((item)=>{
+            item.pic='http://www.yifulunwen.com'+item.pic;
+            item.label_url='http://www.yifulunwen.com'+item.label_url;
+          });
+          if (res) {
+            for(let i=0;i<res.length;i++){
+              if(res[i].cate==='1'){
+                this.classifyA.push(res[i]);
+              }
+              if(res[i].cate==='2'){
+                this.classifyB.push(res[i]);
+              }
+              if(res[i].cate==='3'){
+                this.classifyC.push(res[i]);
+              }
+              if(res[i].cate==='4'){
+                this.classifyD.push(res[i])
+              }
+            }
+          }
+        });
       },
       optionsVersion(num) {
         this.version_num = num;
@@ -238,6 +268,9 @@
           this.scImgobj[i] = this.sc.slice((i - 1) * 15, i * 15);
         }
       },
+      goUpload(cate,id){
+        this.$router.push({path:'/vipManage/upload'})
+      }
     },
   }
 </script>
@@ -249,14 +282,16 @@
     position: relative;
     min-width: 1260px;
   }
-  .header_bg{
-    width:100%;
-    height:100px;
-    background-color:#131516;
+
+  .header_bg {
+    width: 100%;
+    height: 100px;
+    background-color: #131516;
     position: absolute;
     z-index: 111;
     opacity: .9;
   }
+
   /deep/ .el-carousel {
     .el-carousel__indicators {
       bottom: 30px;
@@ -352,24 +387,24 @@
             font-size: 14px;
           }
         }
-        .paper_bg_1{
-          background:url("../../assets/images/a1.png")no-repeat;
+        .paper_bg_1 {
+          background: url("../../assets/images/a1.png") no-repeat;
           background-position: -7px;
         }
-        .paper_bg_2{
-          background:url("../../assets/images/a2.png")no-repeat;
+        .paper_bg_2 {
+          background: url("../../assets/images/a2.png") no-repeat;
           background-position: -7px;
         }
-        .paper_bg_3{
-          background:url("../../assets/images/a3.png")no-repeat;
+        .paper_bg_3 {
+          background: url("../../assets/images/a3.png") no-repeat;
           background-position: -7px;
         }
-        .paper_bg_4{
-          background:url("../../assets/images/a4.png")no-repeat;
+        .paper_bg_4 {
+          background: url("../../assets/images/a4.png") no-repeat;
           background-position: -7px;
         }
-        .paper_bg_5{
-          background:url("../../assets/images/a5.png")no-repeat;
+        .paper_bg_5 {
+          background: url("../../assets/images/a5.png") no-repeat;
           background-position: -7px;
         }
       }
@@ -377,11 +412,11 @@
     .system {
       width: 1260px;
       margin: auto;
-      padding-bottom:105px;
+      padding-bottom: 105px;
       .system_nav {
         display: flex;
         justify-content: center;
-        margin-bottom:30px;
+        margin-bottom: 30px;
         li {
           margin: auto 56px;
           font-size: 18px;
@@ -399,6 +434,7 @@
             display: flex;
             align-items: flex-start;
             width: 49%;
+            height: 382px;
             margin-top: 20px;
             border: 1px solid #e7e7e7;
             padding: 45px 0 40px 60px;
@@ -409,6 +445,8 @@
               position: absolute;
               right: 0;
               top: 0;
+              width: 75px;
+              height: 75px;
             }
             img.leftHead_img {
               margin-right: 50px;
@@ -423,6 +461,7 @@
               display: flex;
               align-items: flex-start;
               flex-direction: column;
+              width: 370px;
               strong {
                 color: #000;
                 font-weight: bold;
@@ -435,9 +474,12 @@
                 }
               }
               span:nth-child(4) {
-                margin: 45px 0 25px;
+                position: absolute;
+                bottom: 110px;
               }
               .btn {
+                position: absolute;
+                bottom: 40px;
                 background: #e29f2b;
                 color: #000;
               }
@@ -465,7 +507,7 @@
     }
     .advantage {
       padding: 0 80px;
-      background-color:#fafafa;
+      background-color: #fafafa;
       .advantage_content {
         .partner {
           display: flex;

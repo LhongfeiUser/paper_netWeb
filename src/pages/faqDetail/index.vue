@@ -29,16 +29,15 @@
         article_id_arr:[],
       }
     },
-
     created() {
       this.article_id_arr =JSON.parse(sessionStorage.getItem('catObj'));
       this.detail_id=this.$route.params.id;
       this.article_id_index=this.article_id_arr.indexOf(Number(this.detail_id));
-      this.getFaqDetailData(this.detail_id)
+      this.getFaqDetailData(this.detail_id);
+      this.bus.$emit('shuaxin',1)
     },
 
     methods: {
-
       detail_prev(){ //上一页
         let prev_id=null;
         if(this.article_id_index!==0){

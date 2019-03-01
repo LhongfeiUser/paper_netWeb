@@ -1,7 +1,7 @@
 <template>
   <div class="upload_paper">
     <div class="system_option">
-      <h3>检测系统选择</h3>
+      <h3>检测系统选择<!-- <a href="http://www.yifulunwen.com/alipay?trade_no=20190123211&total_price=1&com_name=asdasdasd">zhifu </a>--></h3>
       <div class="option_content">
         <ul>
           <li>知网数据检测系统</li>

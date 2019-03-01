@@ -9,7 +9,7 @@
         <div v-if="isData" v-loading="isData" style="height:80px;width:100%;"></div>
         <ul v-else class="list_content">
           <li v-for="(item,index) in list" :key="index" @click="goDetail(item.id)">
-            {{index+1+(page-1)*3}}、{{item.title}}
+            {{index+1+(page-1)*10}}、{{item.title}}
           </li>
         </ul>
         <ul class="pagination pagination-sm">
@@ -89,8 +89,8 @@
           this.$message.info('已经是第一页了');
           page = 1;
         }
-        if (this.lists.length > 3) {
-          this.len = Math.ceil(this.lists.length / 3);
+        if (this.lists.length > 10) {
+          this.len = Math.ceil(this.lists.length / 10);
           if (page > this.len) {
             this.$message.info('已经是最后一页了');
             page = this.len;
@@ -99,11 +99,10 @@
           this.len = page = 1;
         }
         this.page = page;
-        this.list = this.lists.slice((page - 1) * 3, page * 3);
-        console.log(this.list);
+        this.list = this.lists.slice((page - 1) * 10, page * 10);
         let c=[];
-        for(let i=0;i<this.list.length;i++){
-           c.push(this.list[i].id)
+        for(let i=0;i<this.lists.length;i++){
+           c.push(this.lists[i].id)
         }
         let catObj=JSON.stringify(c);
         sessionStorage.setItem('catObj',catObj)

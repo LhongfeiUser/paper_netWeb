@@ -15,3 +15,11 @@ export const getLogo = data => {
     data
   })
 };
+
+export const getInterfaces = data => {
+  return service({
+    url: 'get_Interfaces',
+    method: 'post',
+    data
+  })
+};
