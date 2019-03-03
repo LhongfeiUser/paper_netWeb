@@ -113,6 +113,7 @@
     created() {
       this.member_id = this.$route.query.agent_id || '';
     },
+    props:['cate_id'],
     methods: {
       more_studentID() {
         this.$refs.more_studentIdUpload.click();
@@ -246,7 +247,7 @@
                   author: nameArr[1],
                   price: res.price,
                   member_id: this.member_id,
-                  interface_type: 1,
+                  interface_type: this.cate_id,
                 };
                  student_info(infoData).then(res => {
                   if (res && res.code === 200) {

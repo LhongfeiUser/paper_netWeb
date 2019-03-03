@@ -1,26 +1,26 @@
 <template>
   <div class="upload_paper">
     <div class="system_option">
-      <h3>检测系统选择<!-- <a href="http://www.yifulunwen.com/alipay?trade_no=20190123211&total_price=1&com_name=asdasdasd">zhifu </a>--></h3>
+      <h3>检测系统选择</h3>
       <div class="option_content">
         <ul>
           <li>知网数据检测系统</li>
-          <li><a href="javascript:void(0)">知网小分解系统</a></li>
-          <li><a href="javascript:void(0)">知网大分解系统</a></li>
-          <li><a href="javascript:void(0)">知网本科PMLC系统</a></li>
-          <li><a href="javascript:void(0)">知网硕博VIP系统</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">知网小分解系统</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">知网大分解系统</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">知网本科PMLC系统</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">知网硕博VIP系统</a></li>
         </ul>
         <ul>
           <li>万方数据检测系统</li>
-          <li><a href="javascript:void(0)">CheckPass检测系统</a></li>
+          <li @click="cate_id=2"><a href="javascript:void(0)">CheckPass检测系统</a></li>
         </ul>
         <ul>
           <li>超星大雅检测系统</li>
-          <li><a href="javascript:void(0)">CheckPass检测系统</a></li>
+          <li @click="cate_id=3"><a href="javascript:void(0)">CheckPass检测系统</a></li>
         </ul>
         <ul>
           <li>维普数据检测系统</li>
-          <li><a href="javascript:void(0)">CheckPass检测系统</a></li>
+          <li @click="cate_id=4"><a href="javascript:void(0)">CheckPass检测系统</a></li>
         </ul>
       </div>
     </div>
@@ -32,10 +32,10 @@
       </ul>
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="single">
-          <Upload_single></Upload_single>
+          <Upload_single :cate_id="cate_id"></Upload_single>
         </div>
         <div class="tab-pane fade" id="More_than">
-          <Upload_more></Upload_more>
+          <Upload_more :cate_id="cate_id"></Upload_more>
         </div>
         <div class="tab-pane fade" id="download" @click="isOrder=false">
           <div class="form-group">
@@ -71,17 +71,17 @@
         isOrder: false,
         currentNum: '',
         orderCode: null,
+        cate_id:1
       }
     },
     created() {
       let generalizeUrl =window.location.href;
       sessionStorage.setItem('generalizeUrl',generalizeUrl);
-      console.log(this.$route);
+      this.cate_id=this.$route.query.cate;
     },
     mounted() {
       $('#myTab a:first').tab('show')
     },
-
     methods: {
       //下载报告
       userClick(num) {

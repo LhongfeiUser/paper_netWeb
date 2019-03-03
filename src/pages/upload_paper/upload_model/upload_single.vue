@@ -109,11 +109,11 @@
     created() {
       this.member_id = this.$route.query.agent_id || '';
     },
+    props:['cate_id'],
     methods: {
       single_studentID() { //学生证上传
         this.$refs.single_studentIdUpload.click();
       },
-
       single_getStudentID(e) { //获取学生证
         let file = e.target.files[0],
           type = file.name.substring(file.name.lastIndexOf('.')),
@@ -225,6 +225,7 @@
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
+        console.log(typeof this.cate_id);
         let infoData = {
           title: this.single_name,
           tel: this.single_phoneCode,
