@@ -79,7 +79,7 @@
                 <img class="version_img" :src='item.label_url'  alt="">
                 <img class="leftHead_img" :src="item.pic">
                 <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
+                  <h3><strong>{{item.price}}</strong>元/千字符</h3>
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
@@ -94,7 +94,7 @@
                 <img class="version_img" :src='item.label_url'  alt="">
                 <img class="leftHead_img" :src="item.pic">
                 <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
+                  <h3><strong>{{item.price}}</strong>元/千字符</h3>
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
@@ -109,7 +109,7 @@
                 <img class="version_img" :src='item.label_url'  alt="">
                 <img class="leftHead_img" :src="item.pic">
                 <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
+                  <h3><strong>{{item.price}}</strong>元/千字符<</h3>
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>

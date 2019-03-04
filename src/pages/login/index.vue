@@ -6,7 +6,7 @@
       <div class="container justify-content-end" style="display: flex">
         <div class="form row">
           <div class="form-horizontal">
-            <h3 class="form-title text-center">长沙升华数字技术有限公司</h3>
+            <h3 class="form-title text-center">湖南逸夫图情教育科技有限公司</h3>
             <div class="col-md-9">
               <div class="form-group">
                 <i class="fa fa-user fa-lg"></i>

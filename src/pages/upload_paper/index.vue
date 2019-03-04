@@ -43,7 +43,8 @@
             <input type="text" class="form-control col-sm-4" v-model="orderCode" placeholder="点击橙色字，查看在哪里找到订单号">
             <button type="button" class="btn btn-outline-warning" @click="searchResult">查询结果</button>
           </div>
-          <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)" @click.stop="userClick(1)">【微信】</a>订单编号？</span>
+          <span>什么是 <a href="javascript:void (0)" @click.stop="userClick(0)">【支付宝】</a> <a href="javascript:void(0)"
+                                                                                          @click.stop="userClick(1)">【微信】</a>订单编号？</span>
           <div v-show="isOrder" style="width:200px;" @click.stop="isOrder=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
           </div>
@@ -60,6 +61,7 @@
   import Upload_single from './upload_model/upload_single'
   import Upload_more from './upload_model/upload_more'
   import Apply_model from './upload_model/apply_model'
+
   export default {
     components: {Notice, Apply_model, Upload_single, Upload_more},
     data() {
@@ -71,13 +73,13 @@
         isOrder: false,
         currentNum: '',
         orderCode: null,
-        cate_id:1
+        cate_id: 1
       }
     },
     created() {
-      let generalizeUrl =window.location.href;
-      sessionStorage.setItem('generalizeUrl',generalizeUrl);
-      this.cate_id=this.$route.query.cate;
+      let generalizeUrl = window.location.href;
+      sessionStorage.setItem('generalizeUrl', generalizeUrl);
+      this.cate_id = this.$route.query.cate || 1;
     },
     mounted() {
       $('#myTab a:first').tab('show')

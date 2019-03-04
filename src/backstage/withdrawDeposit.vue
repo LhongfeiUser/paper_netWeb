@@ -58,9 +58,6 @@
             label: '支付宝'
           }, {
             value: '1',
-            label: '银行卡'
-          }, {
-            value: '2',
             label: '微信'
           }],
         value: '',

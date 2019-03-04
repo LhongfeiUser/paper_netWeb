@@ -225,7 +225,7 @@
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
-        console.log(typeof this.cate_id);
+        console.log(this.cate_id);
         let infoData = {
           title: this.single_name,
           tel: this.single_phoneCode,
@@ -234,11 +234,10 @@
           author: this.single_author,
           price: this.order_price,
           member_id: this.member_id,
-          interface_type: 1,
+          interface_type: this.cate_id,
         };
-        student_info(infoData).then(res => {
+        student_info(infoData).then((res) => {
           if (res && res.code === 200) {
-            console.log(res);
             this.stu_id = res.stu_id;
             this.order_info = res.order;
             loading.close();
