@@ -211,9 +211,9 @@
             }
           }
         });
-        get_Partners(pic_data).then(res=>{
+         get_Partners(pic_data).then(res=>{
           if(res){
-            res.forEach((item)=>{
+             res.forEach((item)=>{
               this.sc.push('http://www.yifulunwen.com'+item.pic);
             });
             let page = Math.ceil(this.sc.length / 15);

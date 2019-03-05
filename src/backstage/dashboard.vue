@@ -30,6 +30,8 @@
           <el-menu-item index="/backstage/withdrawDeposit"><i class="iconfont icon-tixian"></i>申请提现</el-menu-item>
           <el-menu-item index="/backstage/generalizeLink"><i class="iconfont icon-share"></i>推广链接</el-menu-item>
           <el-menu-item index="/backstage/course"><i class="iconfont icon-jiaocheng"></i>操作教程</el-menu-item>
+          <el-menu-item index="/backstage/uploadArticle"><i class="iconfont icon-share"></i>上传报告</el-menu-item>
+          <el-menu-item index="/backstage/downArticle"><i class="iconfont icon-jiaocheng"></i>下载文档</el-menu-item>
         </el-menu>
       </el-aside>
       <el-aside width="200px"></el-aside>

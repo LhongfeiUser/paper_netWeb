@@ -120,6 +120,16 @@ export default new Router({
           path:'course',
           component:()=>import('@/backstage/course'),
           meta: {requireAuth: true}
+        },
+        {
+          path:'uploadArticle',
+          component:()=>import('@/backstage/uploadArticle'),
+          meta: {requireAuth: true}
+        },
+        {
+          path:'downArticle',
+          component:()=>import('@/backstage/downArticle'),
+          meta: {requireAuth: true}
         }
       ]
     },

@@ -16,17 +16,20 @@
           <li class="page-item">
             <a class="page-link text-black-50"
                href="javascript:void(0)"
-               @click="changePage(page-1)">上一页</a>
+               @click="changePage(page-1)">上一页
+            </a>
           </li>
           <li :class="item===page?'page-item active':'page-item'" v-for="item in len" :key="item">
             <a class="page-link text-black-50"
                href="javascript:void(0)"
-               @click="changePage(page)">{{item}}</a>
+               @click="changePage(page)">{{item}}
+            </a>
           </li>
           <li class="page-item">
             <a class="page-link text-black-50"
                href="javascript:void(0)"
-               @click="changePage(page+1)">下一页</a>
+               @click="changePage(page+1)">下一页
+            </a>
           </li>
         </ul>
       </div>
