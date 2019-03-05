@@ -60,7 +60,7 @@
         <div class="system_contentBox">
           <transition name="fade" mode="in-out">
             <ul v-show="version_num===1" class="system_content">
-              <li v-for="(item,index) in classifyA" :key="index">
+              <li v-for="(item,index) in classify_zw" :key="index">
                 <img class="version_img" :src='item.label_url'  alt="">
                 <img class="leftHead_img" :src="item.pic">
                 <div class="system_detail">
@@ -75,7 +75,7 @@
           </transition>
           <transition name="fade" mode="in-out">
             <ul v-show="version_num===2" class="system_content">
-              <li v-for="(item,index) in classifyB" :key="index">
+              <li v-for="(item,index) in classify_wf" :key="index">
                 <img class="version_img" :src='item.label_url'  alt="">
                 <img class="leftHead_img" :src="item.pic">
                 <div class="system_detail">
@@ -83,14 +83,14 @@
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.price)">立即检测</button>
                 </div>
               </li>
             </ul>
           </transition>
           <transition name="fade" mode="in-out">
             <ul v-show="version_num===3" class="system_content">
-              <li v-for="(item,index) in classifyC" :key="index">
+              <li v-for="(item,index) in classify_cx" :key="index">
                 <img class="version_img" :src='item.label_url'  alt="">
                 <img class="leftHead_img" :src="item.pic">
                 <div class="system_detail">
@@ -105,11 +105,11 @@
           </transition>
           <transition name="fade" mode="in-out">
             <ul v-show="version_num===4" class="system_content">
-              <li v-for="(item,index) in classifyD" :key="index">
+              <li v-for="(item,index) in classify_wp" :key="index">
                 <img class="version_img" :src='item.label_url'  alt="">
                 <img class="leftHead_img" :src="item.pic">
                 <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/千字符<</h3>
+                  <h3><strong>{{item.price}}</strong>元/千字符</h3>
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
@@ -160,10 +160,10 @@
         version_num: 1,
         sc: [],
         scImgobj: {},
-        classifyA:[],
-        classifyB:[],
-        classifyC:[],
-        classifyD:[],
+        classify_wf:[],
+        classify_cx:[],
+        classify_wp:[],
+        classify_zw:[],
         url_pic:process.env.BASE_URL,
       }
     },
@@ -197,16 +197,16 @@
           if (res) {
             for(let i=0;i<res.length;i++){
               if(res[i].cate==='1'){
-                this.classifyA.push(res[i]);
+                this.classify_wf.push(res[i]);
               }
               if(res[i].cate==='2'){
-                this.classifyB.push(res[i]);
+                this.classify_cx.push(res[i]);
               }
               if(res[i].cate==='3'){
-                this.classifyC.push(res[i]);
+                this.classify_wp.push(res[i]);
               }
               if(res[i].cate==='4'){
-                this.classifyD.push(res[i])
+                this.classify_zw.push(res[i])
               }
             }
           }

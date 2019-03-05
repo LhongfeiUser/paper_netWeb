@@ -5,22 +5,22 @@
       <div class="option_content">
         <ul>
           <li>知网数据检测系统</li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">知网小分解系统</a></li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">知网大分解系统</a></li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">知网本科PMLC系统</a></li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">知网硕博VIP系统</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">人事版</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">硕博VIP</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">本科PMLC</a></li>
+          <li @click="cate_id=1"><a href="javascript:void(0)">期刊版</a></li>
         </ul>
         <ul>
           <li>万方数据检测系统</li>
-          <li @click="cate_id=2"><a href="javascript:void(0)">CheckPass检测系统</a></li>
+          <li @click="cate_id=2"><a href="javascript:void(0)">人事版</a></li>
         </ul>
         <ul>
           <li>超星大雅检测系统</li>
-          <li @click="cate_id=3"><a href="javascript:void(0)">CheckPass检测系统</a></li>
+          <li @click="cate_id=3"><a href="javascript:void(0)">人事版</a></li>
         </ul>
         <ul>
           <li>维普数据检测系统</li>
-          <li @click="cate_id=4"><a href="javascript:void(0)">CheckPass检测系统</a></li>
+          <li @click="cate_id=4"><a href="javascript:void(0)">人事版</a></li>
         </ul>
       </div>
     </div>
