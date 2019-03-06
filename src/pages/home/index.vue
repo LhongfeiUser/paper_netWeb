@@ -68,7 +68,7 @@
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
                 </div>
               </li>
             </ul>
@@ -83,7 +83,7 @@
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.price)">立即检测</button>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
                 </div>
               </li>
             </ul>
@@ -98,7 +98,7 @@
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
                 </div>
               </li>
             </ul>
@@ -113,7 +113,7 @@
                   <span><strong>适用范围：</strong>{{item.apply}}</span>
                   <span><strong>说明：</strong>{{item.desc}}</span>
                   <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item.cate,item.id)">立即检测</button>
+                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
                 </div>
               </li>
             </ul>
@@ -226,8 +226,9 @@
       optionsVersion(num) {
         this.version_num = num;
       },
-      goUpload(cate,id){
-        this.$router.push({path:'/vipManage/upload',query:{cate:cate,id:id}})
+      goUpload(item){
+        this.$router.push({path:'/vipManage/upload'});
+        sessionStorage.setItem('systemItem',JSON.stringify(item));
       }
     },
   }

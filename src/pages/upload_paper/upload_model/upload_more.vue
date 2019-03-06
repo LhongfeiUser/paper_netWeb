@@ -108,12 +108,13 @@
         order_price:0,
         order_info:[],
         stu_id:[],
+        lw_cate:'',
       }
     },
     created() {
       this.member_id = this.$route.query.agent_id || '';
     },
-    props:['cate_id'],
+    props:['cate_id','_orderPrice'],
     methods: {
       more_studentID() {
         this.$refs.more_studentIdUpload.click();
@@ -216,7 +217,6 @@
           this.isShow = true;
         }
         this.filesList = this.filesList.slice();
-        console.log(this.filesList);
       },
 
       async sure_upload() {
@@ -232,22 +232,39 @@
             let formdata = new FormData();
             formdata.append('file' + i, this.filesList[i]);
             formdata.append('status', 'file' + i);
+            formdata.append('interface_type', this.cate_id);
             let nameArr=this.filesList[i].name.split('_');
             await uploadArticle(formdata).then(res => {
-              console.log(formdata.get('file' + i));
               if (res) {
-                console.log(res);
                 this.$refs.more_paperUpload.value = null;
-                this.order_price=this.order_price+res.price;
+                let n=Number(this.cate_id);
+                switch (n) {
+                  case 1:
+                    this.lw_cate='万方';
+                    this.order_price=this.order_price+res.price;
+                    break;
+                  case 2:
+                    this.lw_cate='超星';
+                    this.order_price=this.order_price+res.price;
+                    break;
+                  case 3:
+                    this.lw_cate='维普';
+                    this.order_price=this.order_price+Number(this._orderPrice);
+                    break;
+                  default:
+                    this.lw_cate='知网';
+                    this.order_price=this.order_price+Number(this._orderPrice);
+                }
                 let infoData = {
                   title: nameArr[0],
                   tel: this.more_phoneCode,
                   student_card_id: this.card_id,
                   not_lunwen_id: res.lunwen_id,
                   author: nameArr[1],
-                  price: res.price,
+                  price: this.order_price,
                   member_id: this.member_id,
                   interface_type: this.cate_id,
+                  lw_cate:this.lw_cate
                 };
                  student_info(infoData).then(res => {
                   if (res && res.code === 200) {
@@ -260,7 +277,9 @@
                     this.$message.error(res.msg);
                     loading.close();
                   }
-                })
+                }).catch(error=>{
+                   loading.close();
+                 })
               } else {
                 loading.close();
                 this.$message.error('上传失败，请刷新重试');
@@ -270,7 +289,6 @@
         } else {
           this.$message.error('请先上传论文')
         }
-        console.log(this.order_price,'....',this.order_info,'...',this.stu_id);
       }
     }
   }

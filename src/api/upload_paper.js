@@ -1,5 +1,15 @@
 import service from "./request";
 
+//检测系统分类
+
+export const systemClassify = data => {
+  return service({
+    url: 'get_min_cate',
+    method: 'post',
+    data
+  })
+};
+
 //上传论文
 
 export const uploadArticle = data => {

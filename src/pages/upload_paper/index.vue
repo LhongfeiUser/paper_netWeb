@@ -3,24 +3,11 @@
     <div class="system_option">
       <h3>检测系统选择</h3>
       <div class="option_content">
-        <ul>
-          <li>知网数据检测系统</li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">人事版</a></li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">硕博VIP</a></li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">本科PMLC</a></li>
-          <li @click="cate_id=1"><a href="javascript:void(0)">期刊版</a></li>
-        </ul>
-        <ul>
-          <li>万方数据检测系统</li>
-          <li @click="cate_id=2"><a href="javascript:void(0)">人事版</a></li>
-        </ul>
-        <ul>
-          <li>超星大雅检测系统</li>
-          <li @click="cate_id=3"><a href="javascript:void(0)">人事版</a></li>
-        </ul>
-        <ul>
-          <li>维普数据检测系统</li>
-          <li @click="cate_id=4"><a href="javascript:void(0)">人事版</a></li>
+        <ul v-for="(item,index) in systemList" :key="index" :class="fcssId===index?'fhasActive':''">
+          <li>{{item.title}}检测系统</li>
+          <li @click="changeCate_id(itemData,itemIndex,index)" v-for="(itemData,itemIndex) in item.data">
+            <a href="javascript:void(0)" :class="cssId===itemIndex?'hasActive':''">{{itemData.title}}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -32,10 +19,10 @@
       </ul>
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="single">
-          <Upload_single :cate_id="cate_id"></Upload_single>
+          <Upload_single :_orderPrice="_orderPrice" :cate_id="cate_id"></Upload_single>
         </div>
         <div class="tab-pane fade" id="More_than">
-          <Upload_more :cate_id="cate_id"></Upload_more>
+          <Upload_more :_orderPrice="_orderPrice" :cate_id="cate_id"></Upload_more>
         </div>
         <div class="tab-pane fade" id="download" @click="isOrder=false">
           <div class="form-group">
@@ -61,6 +48,7 @@
   import Upload_single from './upload_model/upload_single'
   import Upload_more from './upload_model/upload_more'
   import Apply_model from './upload_model/apply_model'
+  import {systemClassify} from '@/api/upload_paper'
 
   export default {
     components: {Notice, Apply_model, Upload_single, Upload_more},
@@ -73,13 +61,21 @@
         isOrder: false,
         currentNum: '',
         orderCode: null,
-        cate_id: 1
+        cate_id: 1,
+        systemList: [],
+        _orderPrice: '',
+        cssId:0,
+        fcssId:0,
       }
     },
     created() {
       let generalizeUrl = window.location.href;
       sessionStorage.setItem('generalizeUrl', generalizeUrl);
-      this.cate_id = this.$route.query.cate || 1;
+      if (JSON.parse(sessionStorage.getItem('systemItem'))) {
+        this.cate_id = JSON.parse(sessionStorage.getItem('systemItem')).cate;
+        this._orderPrice = JSON.parse(sessionStorage.getItem('systemItem')).price;
+      }
+      this.getClassify();
     },
     mounted() {
       $('#myTab a:first').tab('show')
@@ -98,6 +94,19 @@
         this.$alert(' <a href="http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg" download="w3logo">下载保存</a>', 'HTML 片段', {
           dangerouslyUseHTMLString: true
         });
+      },
+      getClassify() {
+        systemClassify().then(res => {
+          if (res) {
+            this.systemList = res.result;
+          }
+        })
+      },
+      changeCate_id(item,itemIndex,findex) {
+        this.cssId=itemIndex;
+        this.fcssId=findex;
+        this.cate_id = item.cate;
+        this._orderPrice = item.price;
       }
     },
   }
@@ -128,14 +137,14 @@
             a:hover {
               color: orangered;
             }
-            a:focus {
-              border-bottom: 2px solid orangered;
-            }
           }
           li:nth-child(1) {
             color: #d2d2d2;
             padding-right: 10px;
           }
+        }
+        .fhasActive .hasActive {
+          border-bottom: 2px solid orangered;
         }
       }
     }

@@ -104,12 +104,13 @@
         stu_id: null,
         order_info: {},
         member_id: '',
+        lw_cate:'',
       }
     },
     created() {
       this.member_id = this.$route.query.agent_id || '';
     },
-    props:['cate_id'],
+    props:['cate_id','_orderPrice'],
     methods: {
       single_studentID() { //学生证上传
         this.$refs.single_studentIdUpload.click();
@@ -179,6 +180,7 @@
         let formdata = new FormData();
         formdata.append('file', file);
         formdata.append('status', 'file');
+        formdata.append('interface_type', this.cate_id);
         const loading = this.$loading({
           lock: true,
           text: '正在上传...',
@@ -187,7 +189,6 @@
         });
         uploadArticle(formdata).then(res => {
           if (res) {
-            console.log(res);
             loading.close();
             this.order_price = res.price;
             this.lunwen_id = res.lunwen_id;
@@ -225,7 +226,22 @@
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
-        console.log(this.cate_id);
+        let n=Number(this.cate_id);
+        switch (n) {
+          case 1:
+            this.lw_cate='万方';
+            break;
+          case 2:
+            this.lw_cate='超星';
+            break;
+          case 3:
+            this.lw_cate='维普';
+            this.order_price=Number(this._orderPrice);
+            break;
+          default:
+            this.lw_cate='知网';
+            this.order_price=Number(this._orderPrice);
+        }
         let infoData = {
           title: this.single_name,
           tel: this.single_phoneCode,
@@ -235,6 +251,7 @@
           price: this.order_price,
           member_id: this.member_id,
           interface_type: this.cate_id,
+          lw_cate:this.lw_cate
         };
         student_info(infoData).then((res) => {
           if (res && res.code === 200) {
@@ -246,6 +263,8 @@
             this.$message.error(res.msg);
             loading.close();
           }
+        }).catch(error=>{
+          loading.close();
         })
       },
     }
