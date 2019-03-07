@@ -83,9 +83,11 @@
 
 <style scoped lang="scss">
   main{
-    background:#fff;
-    padding:0 40px 80px;
+    background: #fff;
+    padding: 0 100px 80px;
     min-height: 100vh;
+    width: 1260px;
+    margin: auto;
     h2{
       text-align: center;
       padding:20px 0;

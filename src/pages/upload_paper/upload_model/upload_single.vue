@@ -151,6 +151,8 @@
             loading.close();
             this.$message.error('上传失败，请刷新重试')
           }
+        }).catch(error=>{
+          loading.close();
         })
       },
 

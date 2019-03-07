@@ -59,64 +59,88 @@
         </ul>
         <div class="system_contentBox">
           <transition name="fade" mode="in-out">
-            <ul v-show="version_num===1" class="system_content">
-              <li v-for="(item,index) in classify_zw" :key="index">
-                <img class="version_img" :src='item.label_url'  alt="">
-                <img class="leftHead_img" :src="item.pic">
-                <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/1篇</h3>
-                  <span><strong>适用范围：</strong>{{item.apply}}</span>
-                  <span><strong>说明：</strong>{{item.desc}}</span>
-                  <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
-                </div>
-              </li>
-            </ul>
+            <div v-show="version_num===1">
+              <el-carousel trigger="click" :autoplay="false" arrow="never" height="782px">
+                <el-carousel-item v-for="(item,index) in zw" :key="index">
+                  <ul class="system_content">
+                    <li v-for="(itemData,_index) in item">
+                      <img class="version_img" :src='itemData.label_url'  alt="">
+                      <img class="leftHead_img" :src="itemData.pic">
+                      <div class="system_detail">
+                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <span><strong>适用范围：</strong>{{itemData.apply}}</span>
+                        <span><strong>说明：</strong>{{itemData.desc}}</span>
+                        <span>已成交：529510件</span>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                      </div>
+                    </li>
+                  </ul>
+                </el-carousel-item>
+              </el-carousel>
+            </div>
           </transition>
           <transition name="fade" mode="in-out">
-            <ul v-show="version_num===2" class="system_content">
-              <li v-for="(item,index) in classify_wf" :key="index">
-                <img class="version_img" :src='item.label_url'  alt="">
-                <img class="leftHead_img" :src="item.pic">
-                <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/千字符</h3>
-                  <span><strong>适用范围：</strong>{{item.apply}}</span>
-                  <span><strong>说明：</strong>{{item.desc}}</span>
-                  <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
-                </div>
-              </li>
-            </ul>
+            <div v-show="version_num===2">
+              <el-carousel trigger="click" :autoplay="false" arrow="never" height="782px">
+                <el-carousel-item v-for="(item,index) in wf" :key="index">
+                  <ul class="system_content">
+                    <li v-for="(itemData,_index) in item">
+                      <img class="version_img" :src='itemData.label_url'  alt="">
+                      <img class="leftHead_img" :src="itemData.pic">
+                      <div class="system_detail">
+                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <span><strong>适用范围：</strong>{{itemData.apply}}</span>
+                        <span><strong>说明：</strong>{{itemData.desc}}</span>
+                        <span>已成交：529510件</span>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                      </div>
+                    </li>
+                  </ul>
+                </el-carousel-item>
+              </el-carousel>
+            </div>
           </transition>
           <transition name="fade" mode="in-out">
-            <ul v-show="version_num===3" class="system_content">
-              <li v-for="(item,index) in classify_cx" :key="index">
-                <img class="version_img" :src='item.label_url'  alt="">
-                <img class="leftHead_img" :src="item.pic">
-                <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/千字符</h3>
-                  <span><strong>适用范围：</strong>{{item.apply}}</span>
-                  <span><strong>说明：</strong>{{item.desc}}</span>
-                  <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
-                </div>
-              </li>
-            </ul>
+            <div v-show="version_num===3">
+              <el-carousel trigger="click" :autoplay="false" arrow="never" height="782px">
+                <el-carousel-item v-for="(item,index) in cx" :key="index">
+                  <ul class="system_content">
+                    <li v-for="(itemData,_index) in item">
+                      <img class="version_img" :src='itemData.label_url'  alt="">
+                      <img class="leftHead_img" :src="itemData.pic">
+                      <div class="system_detail">
+                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <span><strong>适用范围：</strong>{{itemData.apply}}</span>
+                        <span><strong>说明：</strong>{{itemData.desc}}</span>
+                        <span>已成交：529510件</span>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                      </div>
+                    </li>
+                  </ul>
+                </el-carousel-item>
+              </el-carousel>
+            </div>
           </transition>
           <transition name="fade" mode="in-out">
-            <ul v-show="version_num===4" class="system_content">
-              <li v-for="(item,index) in classify_wp" :key="index">
-                <img class="version_img" :src='item.label_url'  alt="">
-                <img class="leftHead_img" :src="item.pic">
-                <div class="system_detail">
-                  <h3><strong>{{item.price}}</strong>元/千字符</h3>
-                  <span><strong>适用范围：</strong>{{item.apply}}</span>
-                  <span><strong>说明：</strong>{{item.desc}}</span>
-                  <span>已成交：529510件</span>
-                  <button type="button" class="btn btn-warning btn-lg" @click="goUpload(item)">立即检测</button>
-                </div>
-              </li>
-            </ul>
+            <div v-show="version_num===4">
+              <el-carousel trigger="click" :autoplay="false" arrow="never" height="782px">
+                <el-carousel-item v-for="(item,index) in wp" :key="index">
+                  <ul class="system_content">
+                    <li v-for="(itemData,_index) in item">
+                      <img class="version_img" :src='itemData.label_url'  alt="">
+                      <img class="leftHead_img" :src="itemData.pic">
+                      <div class="system_detail">
+                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <span><strong>适用范围：</strong>{{itemData.apply}}</span>
+                        <span><strong>说明：</strong>{{itemData.desc}}</span>
+                        <span>已成交：529510件</span>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                      </div>
+                    </li>
+                  </ul>
+                </el-carousel-item>
+              </el-carousel>
+            </div>
           </transition>
         </div>
       </div>
@@ -159,12 +183,15 @@
         slide_pic: [],
         version_num: 1,
         sc: [],
-        scImgobj: {},
+        scImgobj: [],
         classify_wf:[],
         classify_cx:[],
         classify_wp:[],
         classify_zw:[],
-        url_pic:process.env.BASE_URL,
+        zw:[],
+        wf:[],
+        cx:[],
+        wp:[],
       }
     },
     created() {
@@ -174,7 +201,7 @@
       category: Array,
     },
     methods: {
-      getInitData() {
+      async getInitData() {
         let pic_data = {
           username: '',
           password: '',
@@ -210,16 +237,17 @@
               }
             }
           }
+          this.carouselClassify(this.zw,this.classify_zw,4);
+          this.carouselClassify(this.wp,this.classify_wp,4);
+          this.carouselClassify(this.wf,this.classify_wf,4);
+          this.carouselClassify(this.cx,this.classify_cx,4);
         });
-         get_Partners(pic_data).then(res=>{
+        await get_Partners(pic_data).then(res=>{
           if(res){
-             res.forEach((item)=>{
+            res.forEach((item)=>{
               this.sc.push('http://www.yifulunwen.com'+item.pic);
             });
-            let page = Math.ceil(this.sc.length / 15);
-            for (let i = 1; i <= page; i++) {
-              this.scImgobj[i-1]= this.sc.slice((i - 1) * 15, i * 15);
-            }
+            this.carouselClassify(this.scImgobj,this.sc,15);
           }
         })
       },
@@ -227,9 +255,16 @@
         this.version_num = num;
       },
       goUpload(item){
+        // index  cate-1
         this.$router.push({path:'/vipManage/upload'});
         sessionStorage.setItem('systemItem',JSON.stringify(item));
-      }
+      },
+      carouselClassify(overallArr,dataArr,numbers){
+        let page = Math.ceil(dataArr.length / numbers);
+        for (let i = 1; i <= page; i++) {
+          overallArr.push(dataArr.slice((i - 1) * numbers, i * numbers));
+        }
+      },
     },
   }
 </script>
@@ -301,7 +336,6 @@
     }
 
   }
-
   main {
     background-color: #fff;
     .title {
@@ -371,7 +405,7 @@
     .system {
       width: 1260px;
       margin: auto;
-      padding-bottom: 105px;
+      padding-bottom: 70px;
       .system_nav {
         display: flex;
         justify-content: center;
@@ -386,14 +420,16 @@
         min-height: 765px;
         .system_content {
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           flex-wrap: wrap;
           li {
             position: relative;
             display: flex;
             align-items: flex-start;
-            width: 49%;
-            height: 382px;
+            width: 45%;
+            margin-left: 1%;
+            margin-right: 1%;
+            height: 325px;
             margin-top: 20px;
             border: 1px solid #e7e7e7;
             padding: 45px 0 40px 60px;
@@ -410,8 +446,8 @@
             img.leftHead_img {
               margin-right: 50px;
               margin-top: 30px;
-              width: 115px;
-              height: 115px;
+              width: 100px;
+              height: 100px;
               border: 2px solid #000;
               border-radius: 50%;
               overflow: hidden;
@@ -445,7 +481,7 @@
             }
           }
           li:hover {
-            box-shadow: -10px 15px 40px #666;
+            //box-shadow: -10px 15px 40px #666;
           }
         }
       }
@@ -474,8 +510,11 @@
           justify-content: center;
           li {
             width: 18%;
-            height: auto;
-            margin: 10px auto
+            height: 108px;
+            margin: 10px auto;
+            img{
+              height:100%;
+            }
           }
         }
       }

@@ -64,8 +64,8 @@
         cate_id: 1,
         systemList: [],
         _orderPrice: '',
-        cssId:0,
-        fcssId:0,
+        cssId: 0,
+        fcssId: 0,
       }
     },
     created() {
@@ -102,9 +102,9 @@
           }
         })
       },
-      changeCate_id(item,itemIndex,findex) {
-        this.cssId=itemIndex;
-        this.fcssId=findex;
+      changeCate_id(item, itemIndex, findex) {
+        this.cssId = itemIndex;
+        this.fcssId = findex;
         this.cate_id = item.cate;
         this._orderPrice = item.price;
       }
