@@ -55,3 +55,12 @@ export const get_payQrcode = params => {
     params
   })
 };
+
+// 获取报告结果
+export const reportResult = data => {
+  return service({
+    url: 'down_lunwen',
+    method: 'post',
+    data
+  })
+};

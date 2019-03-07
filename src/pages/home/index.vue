@@ -9,8 +9,8 @@
       <div class="advertising">
         <div class="advertising_bg">
           <i class="trumpet_img"></i>
-          <marquee behavior="scroll" scrollamount="3" scrolldelay="2" direction="up" bgcolor="#fafafa">
-            <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用。。。</span>
+          <marquee behavior="scroll" scrollamount="2" scrolldelay="2" direction="up" bgcolor="#fafafa">
+            <span>本平台所有检测系统均直接调用官方的检测引擎和数据库，通过本平台检测结果与官方一致，得出的检测报告均可在各官方查验真伪。请同学们放心使用</span>
           </marquee>
         </div>
       </div>
@@ -304,13 +304,13 @@
   .advertising {
     height: 60px;
     background-color: #fafafa;
-    border-bottom: 1px double #000;
+    border-bottom: 1px double #e5e5e5;
     .advertising_bg {
       position: relative;
       width: 1260px;
       height: 100%;
       margin-left: -630px;
-      left: 50%;
+      left: 56%;
       .trumpet_img {
         position: absolute;
         top: 17px;
@@ -420,7 +420,8 @@
         min-height: 765px;
         .system_content {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
+          padding-left: 3%;
           flex-wrap: wrap;
           li {
             position: relative;
@@ -460,12 +461,20 @@
               strong {
                 color: #000;
                 font-weight: bold;
+                font-size:16px;
+              }
+              span{
+                color:#7e7e7e;
+                font-size:15px;
               }
               h3 {
                 margin-bottom: 25px;
                 font-size: 25px;
                 strong {
                   color: #e29f2b;
+                  font-size: 26px;
+                  display: inline-block;
+                  margin-right: 5px;
                 }
               }
               span:nth-child(4) {

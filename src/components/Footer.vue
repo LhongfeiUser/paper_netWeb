@@ -50,7 +50,7 @@
     background-color: #323232;
     border-top: 4px solid #e1b05d;
     padding: 70px 0 35px;
-    font-family: 'SourceHanSansSC Light';
+    font-family: "Microsoft Yahei";
     .footer_content {
       width: 1260px;
       margin: auto;
@@ -87,7 +87,7 @@
       .footer_right{
         ul{
           position: relative;
-          font-size:12px;
+          font-size:13px;
           .footer-title{
             font-size:16px;
             display: flex;

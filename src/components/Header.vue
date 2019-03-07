@@ -90,7 +90,9 @@
     margin-bottom: 10px;
     background-color: #000;
   }
-
+  .nav.nav-pills{
+    margin-left: 296px;
+  }
   .header_title {
     display: flex;
     justify-content: center;

@@ -35,6 +35,12 @@
           <div v-show="isOrder" style="width:200px;" @click.stop="isOrder=true">
             <img :src="currentNum===0?orderImg.zfb:orderImg.wx">
           </div>
+          <el-dialog
+            title="论文查重报告"
+            :visible.sync="dialogVisible"
+            width="30%">
+            <a :href="reportUrl" download="报告" style="color:#0000ff">下载报告</a>
+          </el-dialog>
         </div>
         <div class="line"></div>
         <Notice></Notice>
@@ -48,7 +54,7 @@
   import Upload_single from './upload_model/upload_single'
   import Upload_more from './upload_model/upload_more'
   import Apply_model from './upload_model/apply_model'
-  import {systemClassify} from '@/api/upload_paper'
+  import {systemClassify, reportResult} from '@/api/upload_paper'
 
   export default {
     components: {Notice, Apply_model, Upload_single, Upload_more},
@@ -66,6 +72,8 @@
         _orderPrice: '',
         cssId: 0,
         fcssId: 0,
+        dialogVisible:false,
+        reportUrl:'',
       }
     },
     created() {
@@ -91,8 +99,16 @@
           this.$message.error('订单号不能为空');
           return false
         }
-        this.$alert(' <a href="http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg" download="w3logo">下载保存</a>', 'HTML 片段', {
-          dangerouslyUseHTMLString: true
+        this.dialogVisible=true;
+        let formdata = new FormData();
+        formdata.append('token', 'meichenghuilian20181108');
+        formdata.append('trade_no', this.orderCode);
+        reportResult(formdata).then(res => {
+          if (res) {
+            this.reportUrl= `http://www.yifulunwen.com/${res.url}`;
+          }else {
+            this.$message.error(res.msg)
+          }
         });
       },
       getClassify() {
