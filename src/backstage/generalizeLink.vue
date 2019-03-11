@@ -85,7 +85,7 @@
 <script>
   import {getQrcode} from '@/api/backstageApi/backstage'
   import poster from '@/backstage/poster'
-
+  import cookies from 'js-cookie';
   export default {
     data() {
       return {
@@ -105,7 +105,7 @@
       getQrcodeData() {
         let qrcodeData = {
           url: sessionStorage.getItem('generalizeUrl'),
-          agent_id: 1,
+          agent_id: cookies.get('agent_id'),
         };
         getQrcode(qrcodeData).then(res => {
           if (res) {

@@ -67,11 +67,11 @@
                       <img class="version_img" :src='itemData.label_url'  alt="">
                       <img class="leftHead_img" :src="itemData.pic">
                       <div class="system_detail">
-                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <h3><strong>{{itemData.price}}</strong>元/篇</h3>
                         <span><strong>适用范围：</strong>{{itemData.apply}}</span>
                         <span><strong>说明：</strong>{{itemData.desc}}</span>
-                        <span>已成交：529510件</span>
-                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                        <span>已成交：{{dealArr1[_index]}}件</span>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData,_index)">立即检测</button>
                       </div>
                     </li>
                   </ul>
@@ -88,11 +88,11 @@
                       <img class="version_img" :src='itemData.label_url'  alt="">
                       <img class="leftHead_img" :src="itemData.pic">
                       <div class="system_detail">
-                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <h3><strong>{{itemData.price}}</strong>元/千字符</h3>
                         <span><strong>适用范围：</strong>{{itemData.apply}}</span>
                         <span><strong>说明：</strong>{{itemData.desc}}</span>
                         <span>已成交：529510件</span>
-                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData,_index)">立即检测</button>
                       </div>
                     </li>
                   </ul>
@@ -109,11 +109,11 @@
                       <img class="version_img" :src='itemData.label_url'  alt="">
                       <img class="leftHead_img" :src="itemData.pic">
                       <div class="system_detail">
-                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <h3><strong>{{itemData.price}}</strong>元/千字符</h3>
                         <span><strong>适用范围：</strong>{{itemData.apply}}</span>
                         <span><strong>说明：</strong>{{itemData.desc}}</span>
                         <span>已成交：529510件</span>
-                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData,_index)">立即检测</button>
                       </div>
                     </li>
                   </ul>
@@ -130,11 +130,11 @@
                       <img class="version_img" :src='itemData.label_url'  alt="">
                       <img class="leftHead_img" :src="itemData.pic">
                       <div class="system_detail">
-                        <h3><strong>{{itemData.price}}</strong>元/1篇</h3>
+                        <h3><strong>{{itemData.price}}</strong>元/千字符</h3>
                         <span><strong>适用范围：</strong>{{itemData.apply}}</span>
                         <span><strong>说明：</strong>{{itemData.desc}}</span>
                         <span>已成交：529510件</span>
-                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData)">立即检测</button>
+                        <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData,_index)">立即检测</button>
                       </div>
                     </li>
                   </ul>
@@ -192,6 +192,7 @@
         wf:[],
         cx:[],
         wp:[],
+        dealArr1:['539611','520314','328517','429610','524530','459560','432118','726413']
       }
     },
     created() {
@@ -254,9 +255,8 @@
       optionsVersion(num) {
         this.version_num = num;
       },
-      goUpload(item){
-        // index  cate-1
-        this.$router.push({path:'/vipManage/upload'});
+      goUpload(item,_index){
+        this.$router.push({path:'/vipManage/upload',query:{system_index:_index,fcss_cateId:item.cate}});
         sessionStorage.setItem('systemItem',JSON.stringify(item));
       },
       carouselClassify(overallArr,dataArr,numbers){
@@ -447,8 +447,8 @@
             img.leftHead_img {
               margin-right: 50px;
               margin-top: 30px;
-              width: 100px;
-              height: 100px;
+              width: 90px;
+              height: 90px;
               border: 2px solid #000;
               border-radius: 50%;
               overflow: hidden;

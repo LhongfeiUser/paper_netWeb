@@ -72,16 +72,19 @@
         _orderPrice: '',
         cssId: 0,
         fcssId: 0,
-        dialogVisible:false,
-        reportUrl:'',
+        dialogVisible: false,
+        reportUrl: '',
       }
     },
     created() {
       let generalizeUrl = window.location.href;
       sessionStorage.setItem('generalizeUrl', generalizeUrl);
-      if (JSON.parse(sessionStorage.getItem('systemItem'))) {
-        this.cate_id = JSON.parse(sessionStorage.getItem('systemItem')).cate;
-        this._orderPrice = JSON.parse(sessionStorage.getItem('systemItem')).price;
+      this.cssId = Number(this.$route.query.system_index) || 0;
+      this.fcssId = this.$route.query.fcss_cateId-1 || 0;
+      let home_data = JSON.parse(sessionStorage.getItem('systemItem'));
+      if (home_data) {
+        this.cate_id = home_data.cate;
+        this._orderPrice = home_data.price;
       }
       this.getClassify();
     },
@@ -99,14 +102,14 @@
           this.$message.error('订单号不能为空');
           return false
         }
-        this.dialogVisible=true;
+        this.dialogVisible = true;
         let formdata = new FormData();
         formdata.append('token', 'meichenghuilian20181108');
         formdata.append('trade_no', this.orderCode);
         reportResult(formdata).then(res => {
           if (res) {
-            this.reportUrl= `http://www.yifulunwen.com/${res.url}`;
-          }else {
+            this.reportUrl = `http://www.yifulunwen.com/${res.url}`;
+          } else {
             this.$message.error(res.msg)
           }
         });
@@ -123,6 +126,7 @@
         this.fcssId = findex;
         this.cate_id = item.cate;
         this._orderPrice = item.price;
+        this.$emit('childIndex',findex);
       }
     },
   }

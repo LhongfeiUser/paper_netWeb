@@ -13,7 +13,7 @@
           label="类型"
           width=""/>
         <el-table-column
-          prop="statement"
+          prop="price"
           label="收入（支出）"
           width=""/>
         <el-table-column
@@ -21,7 +21,7 @@
           label="余额"
           width=""/>
         <el-table-column
-          prop="remark"
+          prop="get_money_name"
           label="备注"
           width=""/>
       </el-table-column>
@@ -58,6 +58,7 @@
         getstatement(statementData).then((res)=>{
           if(res&&res.code===200){
             this.count=Math.ceil(res.count/10);
+            console.log(res.data);
             this.inComeList=res.data;
           }
         })

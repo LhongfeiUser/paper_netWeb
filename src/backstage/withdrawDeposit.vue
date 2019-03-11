@@ -75,7 +75,6 @@
         })
       },
       deposit() {
-        console.log(this.value);
         let reqData = {
           token: 'meichenghuilian20181108',
           member_id: cookies.get('agent_id'),
@@ -85,7 +84,6 @@
         };
         withdraw(reqData).then(res => {
           if(res &&res.code===200){
-            console.log(res);
             this.$message.success('提现成功');
           }else {
             this.$message.error(res.msg);

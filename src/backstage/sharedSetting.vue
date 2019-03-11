@@ -44,6 +44,7 @@
 
 <script>
   import {getprofitSharing} from '@/api/backstageApi/backstage'
+  import cookies from 'js-cookie';
   export default {
     data() {
       return {
@@ -60,7 +61,7 @@
     methods:{
       getshareData(page){
         let shareData={
-          agent_id:1,
+          agent_id:cookies.get('agent_id'),
           page:page,
           size:10,
         };

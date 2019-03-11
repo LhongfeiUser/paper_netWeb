@@ -9,12 +9,12 @@ export default new Router({
   // mode: 'history',
   routes: [
     {
-      path: '/home',
+      path: '/',
       redirect: '/home',
       component: Layout,
       children:[
         {
-          path:'',
+          path:'home',
           component:()=>import('@/pages/home/index'),
         }
       ]

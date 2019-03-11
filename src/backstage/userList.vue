@@ -50,6 +50,7 @@
 
 <script>
   import {getuserList} from '@/api/backstageApi/backstage'
+  import cookies from 'js-cookie';
   export default {
     data() {
       return {
@@ -64,7 +65,7 @@
     methods:{
       userList(page,searchInput){
         let userListData={
-          agent_id:1,//sessionStorage.getItem('agent_id'),
+          agent_id:cookies.get('agent_id'),
           page:page,
           size:10,
           search:searchInput

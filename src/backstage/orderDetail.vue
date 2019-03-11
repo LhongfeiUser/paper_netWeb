@@ -80,7 +80,7 @@
 
 <script>
   import {orderList} from '@/api/backstageApi/backstage'
-
+  import cookies from 'js-cookie';
   export default {
     name: "OrderDetails",
     data() {
@@ -111,17 +111,15 @@
            end_time=date_value[1].getTime();
         }
         let orderData = {
-          agent_id: 1,
+          agent_id: cookies.get('agent_id'),
           page:page,
           size:10,
           search:'',
           begin_time:begin_time,
           end_time:end_time,
         };
-        console.log(orderData);
         orderList(orderData).then(res => {
           if (res&&res.code===200) {
-            console.log(res);
             this.count=Math.ceil(res.count/10);
             this.orderDataList=res.data;
           }
