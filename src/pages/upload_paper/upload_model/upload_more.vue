@@ -31,6 +31,13 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="control-label">图片验证</label>
+        <div class="col-sm-5" style="display: flex;">
+          <input type="text" class="form-control" v-model="verifyData" @blur="isverify" @keyup.enter="isverify" placeholder="请输入图片验证码" style="margin-right:10px;">
+          <img :src="pic_yzm" width="30%" height="40px" style="cursor: pointer;" @click="get_pic">
+        </div>
+      </div>
+      <div class="form-group">
         <label class=" control-label">手机验证</label>
         <div class="col-sm-4">
           <input class="form-control"
@@ -88,7 +95,7 @@
 </template>
 
 <script>
-  import {uploadArticle, studentID, student_info, getAuth} from "@/api/upload_paper";
+  import {uploadArticle, studentID, student_info, getAuth,getVerify} from "@/api/upload_paper";
   import Apply_model from './apply_model'
 
   export default {
@@ -109,6 +116,8 @@
         order_info:[],
         stu_id:[],
         lw_cate:'',
+        pic_yzm:'http://www.yifulunwen.com/verify',
+        verifyData:'',
       }
     },
     created() {
@@ -289,6 +298,22 @@
         } else {
           this.$message.error('请先上传论文')
         }
+      },
+      
+      get_pic(){ //图片验证码
+        let num = Math.random();
+        this.pic_yzm='http://www.yifulunwen.com/verify?m='+num;
+      },
+      isverify(){
+        getVerify({param:this.verifyData}).then(res=>{
+          console.log(res);
+          if(res.code===0){
+            console.log(res);
+            this.$message.success(res.msg)
+          }else {
+            this.$message.error(res.msg)
+          }
+        })
       }
     }
   }

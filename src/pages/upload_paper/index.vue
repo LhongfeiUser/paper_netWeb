@@ -69,7 +69,7 @@
         orderCode: null,
         cate_id: 1,
         systemList: [],
-        _orderPrice: '',
+        _orderPrice: null,
         cssId: 0,
         fcssId: 0,
         dialogVisible: false,
@@ -89,7 +89,7 @@
       this.getClassify();
     },
     mounted() {
-      $('#myTab a:first').tab('show')
+      $('#myTab a:first').tab('show');
     },
     methods: {
       //下载报告

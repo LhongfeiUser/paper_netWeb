@@ -445,7 +445,7 @@
               height: 75px;
             }
             img.leftHead_img {
-              margin-right: 50px;
+              margin-right: 30px;
               margin-top: 30px;
               width: 90px;
               height: 90px;

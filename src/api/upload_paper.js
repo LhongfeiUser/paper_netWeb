@@ -64,3 +64,13 @@ export const reportResult = data => {
     data
   })
 };
+
+//校验图片验证码
+
+export const getVerify = params => {
+  return service({
+    url: 'validation',
+    method: 'get',
+    params
+  })
+};
