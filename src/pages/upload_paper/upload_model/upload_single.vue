@@ -35,7 +35,7 @@
       <div class="form-group">
         <label class="control-label">图片验证</label>
         <div class="col-sm-5" style="display: flex;">
-          <input type="text" class="form-control" v-model="verifyData" @blur="isverify" @keyup.enter="isverify" placeholder="请输入图片验证码" style="margin-right:10px;">
+          <input type="text" class="form-control" v-model="verifyData" placeholder="请输入图片验证码" style="margin-right:10px;">
           <img :src="pic_yzm" width="30%" height="40px" style="cursor: pointer;" @click="get_pic">
         </div>
       </div>
@@ -114,6 +114,7 @@
         lw_cate:'',
         verifyData:'',
         pic_yzm:'http://www.yifulunwen.com/verify',
+        hasverify:false,
       }
     },
     created() {
@@ -212,21 +213,24 @@
       },
 
       single_getAuthCode() { //获取手机验证
-        if (/^1(3|4|5|6|8)\d{9}$/.test(this.single_phoneCode)) {
-          this.single_authCode = false;
-          this.single_time = 30;
-          let single_timetimer = setInterval(() => {
-            this.single_time--;
-            if (this.single_time <= 0) {
-              this.single_authCode = true;
-              clearInterval(single_timetimer);
-            }
-          }, 1000);
-          getAuth({phone_num: this.single_phoneCode}).then(res => {
-            console.log(res.auth);
-          })
-        } else {
-          this.$message.error('手机号码有误，请重新输入')
+        this.isverify();
+        if(this.hasverify){
+          if (/^1(3|4|5|6|8)\d{9}$/.test(this.single_phoneCode)) {
+            this.single_authCode = false;
+            this.single_time = 30;
+            let single_timetimer = setInterval(() => {
+              this.single_time--;
+              if (this.single_time <= 0) {
+                this.single_authCode = true;
+                clearInterval(single_timetimer);
+              }
+            }, 1000);
+           /* getAuth({phone_num: this.single_phoneCode}).then(res => {
+              console.log(res.auth);
+            })*/
+          } else {
+            this.$message.error('手机号码有误，请重新输入')
+          }
         }
       },
 
@@ -285,12 +289,13 @@
       },
       isverify(){
         getVerify({param:this.verifyData}).then(res=>{
-          console.log(res);
           if(res.code===0){
-            console.log(res);
-            this.$message.success(res.msg)
+            this.$message.success('验证成功');
+            this.hasverify=true;
           }else {
-            this.$message.error(res.msg)
+            this.$message.error(res.msg);
+            this.hasverify=false;
+            this.get_pic();
           }
         })
       }

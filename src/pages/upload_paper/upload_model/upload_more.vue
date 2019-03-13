@@ -33,7 +33,7 @@
       <div class="form-group">
         <label class="control-label">图片验证</label>
         <div class="col-sm-5" style="display: flex;">
-          <input type="text" class="form-control" v-model="verifyData" @blur="isverify" @keyup.enter="isverify" placeholder="请输入图片验证码" style="margin-right:10px;">
+          <input type="text" class="form-control" v-model="verifyData" placeholder="请输入图片验证码" style="margin-right:10px;">
           <img :src="pic_yzm" width="30%" height="40px" style="cursor: pointer;" @click="get_pic">
         </div>
       </div>
@@ -118,6 +118,7 @@
         lw_cate:'',
         pic_yzm:'http://www.yifulunwen.com/verify',
         verifyData:'',
+        m_hasverify:false,
       }
     },
     created() {
@@ -172,18 +173,21 @@
       },
 
       more_getAuthCode() {
-        if (/^1(3|4|5|6|8)\d{9}$/.test(this.more_phoneCode)) {
-          this.more_authCode = false;
-          this.more_time = 30;
-          let single_timetimer = setInterval(() => {
-            this.more_time--;
-            if (this.more_time <= 0) {
-              this.more_authCode = true;
-              clearInterval(single_timetimer);
-            }
-          }, 1000);
-        } else {
-          this.$message.error('手机号码有误，请重新输入')
+        this.isverify();
+        if(this.m_hasverify){
+          if (/^1(3|4|5|6|8)\d{9}$/.test(this.more_phoneCode)) {
+            this.more_authCode = false;
+            this.more_time = 30;
+            let single_timetimer = setInterval(() => {
+              this.more_time--;
+              if (this.more_time <= 0) {
+                this.more_authCode = true;
+                clearInterval(single_timetimer);
+              }
+            }, 1000);
+          } else {
+            this.$message.error('手机号码有误，请重新输入')
+          }
         }
       },
 
@@ -299,19 +303,20 @@
           this.$message.error('请先上传论文')
         }
       },
-      
+
       get_pic(){ //图片验证码
         let num = Math.random();
         this.pic_yzm='http://www.yifulunwen.com/verify?m='+num;
       },
       isverify(){
         getVerify({param:this.verifyData}).then(res=>{
-          console.log(res);
           if(res.code===0){
-            console.log(res);
-            this.$message.success(res.msg)
+            this.$message.success('验证成功');
+            this.m_hasverify=true;
           }else {
-            this.$message.error(res.msg)
+            this.$message.error(res.msg);
+            this.m_hasverify=false;
+            this.get_pic();
           }
         })
       }
