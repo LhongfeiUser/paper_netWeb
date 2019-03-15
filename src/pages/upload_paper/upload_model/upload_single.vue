@@ -47,7 +47,8 @@
             type="text"
             v-model="s_authCode"
             @burl.prevent=""
-            placeholder="请输入收到的验证码">
+            maxlength="6"
+            placeholder="请输入收到的六位验证码">
         </div>
         <div>
           <button type="button" class="btn btn-outline-warning" v-show="single_authCode"
@@ -212,26 +213,8 @@
         })
       },
 
-      single_getAuthCode() { //获取手机验证
-        this.isverify();
-        if(this.hasverify){
-          if (/^1(3|4|5|6|8)\d{9}$/.test(this.single_phoneCode)) {
-            this.single_authCode = false;
-            this.single_time = 30;
-            let single_timetimer = setInterval(() => {
-              this.single_time--;
-              if (this.single_time <= 0) {
-                this.single_authCode = true;
-                clearInterval(single_timetimer);
-              }
-            }, 1000);
-           /* getAuth({phone_num: this.single_phoneCode}).then(res => {
-              console.log(res.auth);
-            })*/
-          } else {
-            this.$message.error('手机号码有误，请重新输入')
-          }
-        }
+      async single_getAuthCode() { //获取手机验证
+       await this.isverify();
       },
 
       upload_sure() {
@@ -266,7 +249,8 @@
           price: this.order_price,
           member_id: this.member_id,
           interface_type: this.cate_id,
-          lw_cate:this.lw_cate
+          lw_cate:this.lw_cate,
+          yzm:this.s_authCode,
         };
         student_info(infoData).then((res) => {
           if (res && res.code === 200) {
@@ -292,6 +276,26 @@
           if(res.code===0){
             this.$message.success('验证成功');
             this.hasverify=true;
+            if(this.hasverify){
+              if (/^1(3|4|5|6|8)\d{9}$/.test(this.single_phoneCode)) {
+                this.single_authCode = false;
+                this.single_time = 30;
+                let single_timetimer = setInterval(() => {
+                  this.single_time--;
+                  if (this.single_time <= 0) {
+                    this.single_authCode = true;
+                    clearInterval(single_timetimer);
+                  }
+                }, 1000);
+                 getAuth({telphone: this.single_phoneCode}).then(res => {
+                   if(res.code===0){
+                     this.$message.success(res.msg)
+                   }
+                 })
+              } else {
+                this.$message.error('手机号码有误，请重新输入')
+              }
+            }
           }else {
             this.$message.error(res.msg);
             this.hasverify=false;

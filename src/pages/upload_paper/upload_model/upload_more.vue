@@ -172,23 +172,8 @@
         }
       },
 
-      more_getAuthCode() {
-        this.isverify();
-        if(this.m_hasverify){
-          if (/^1(3|4|5|6|8)\d{9}$/.test(this.more_phoneCode)) {
-            this.more_authCode = false;
-            this.more_time = 30;
-            let single_timetimer = setInterval(() => {
-              this.more_time--;
-              if (this.more_time <= 0) {
-                this.more_authCode = true;
-                clearInterval(single_timetimer);
-              }
-            }, 1000);
-          } else {
-            this.$message.error('手机号码有误，请重新输入')
-          }
-        }
+     async more_getAuthCode() {
+       await this.isverify();
       },
 
       more_upload() {
@@ -277,7 +262,8 @@
                   price: this.order_price,
                   member_id: this.member_id,
                   interface_type: this.cate_id,
-                  lw_cate:this.lw_cate
+                  lw_cate:this.lw_cate,
+                  yzm:this.m_authCode,
                 };
                  student_info(infoData).then(res => {
                   if (res && res.code === 200) {
@@ -311,8 +297,28 @@
       isverify(){
         getVerify({param:this.verifyData}).then(res=>{
           if(res.code===0){
-            this.$message.success('验证成功');
             this.m_hasverify=true;
+            this.$message.success('验证成功');
+            if(this.m_hasverify){
+              if (/^1(3|4|5|6|8)\d{9}$/.test(this.more_phoneCode)) {
+                this.more_authCode = false;
+                this.more_time = 30;
+                let single_timetimer = setInterval(() => {
+                  this.more_time--;
+                  if (this.more_time <= 0) {
+                    this.more_authCode = true;
+                    clearInterval(single_timetimer);
+                  }
+                }, 1000);
+                getAuth({telphone: this.more_phoneCode}).then(res => {
+                  if(res.code===0){
+                    this.$message.success(res.msg)
+                  }
+                })
+              } else {
+                this.$message.error('手机号码有误，请重新输入')
+              }
+            }
           }else {
             this.$message.error(res.msg);
             this.m_hasverify=false;

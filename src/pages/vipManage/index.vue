@@ -2,7 +2,7 @@
   <div class="vipManage">
     <main style="display: flex;justify-content: flex-start;align-items: flex-start;width:1260px;margin:auto;">
       <div v-show="typeIndex===1" class="aside">
-        <img src="../../assets/images/aside_logo.png">
+        <img src="../../assets/images/aside_wf.png">
         <div style="margin:20px 0 20px 20px;font-size:16px;color:#000;">
           <h3>万方检测系统 文献库</h3>
         </div>
@@ -23,7 +23,7 @@
         </ul>
       </div>
       <div v-show="typeIndex===2" class="aside">
-        <img src="../../assets/images/aside_logo.png">
+        <img src="../../assets/images/aside_cx.png">
         <div style="margin:20px 0 20px 20px;font-size:16px;color:#000;">
           <h3>超星检测系统 文献库</h3>
         </div>
@@ -44,7 +44,7 @@
         </ul>
       </div>
       <div v-show="typeIndex===3" class="aside">
-        <img src="../../assets/images/aside_wp.png">
+        <img src="../../assets/images/aside_wp1.png">
         <div style="margin:20px 0 20px 20px;font-size:16px;color:#000;">
           <h3>维普检测系统 文献库</h3>
         </div>
@@ -127,26 +127,13 @@
       padding: 30px 40px;
     }
     .aside {
-      /*width: 200px;
-      text-align: center;
-      font-size: 16px;
-      padding-bottom: 200px;
-      .nav-item {
-        margin: 10px auto;
-      }
-      .item_active {
-        border-right: 5px solid red;
-        margin: auto 10px;
-        margin-right: 0;
-      }
-      .active {
-        background-color: orangered;
-        color: #fff;
-        margin: auto 25px;
-      }*/
       width:15%;
       background-color: #fff;
       margin:0 20px 40px;
+      img{
+        display: block;
+        margin:auto;
+      }
       ul{
         padding:0 20px;
         li{

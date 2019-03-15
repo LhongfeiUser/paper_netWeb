@@ -39,11 +39,11 @@ export const student_info = data => {
     data
   })
 };
-export const getAuth = params => {
+export const getAuth = data => {
   return service({
-    url: 'upload/sing_auth',
-    method: 'get',
-    params
+    url: 'sms_check',
+    method: 'post',
+    data
   })
 };
 

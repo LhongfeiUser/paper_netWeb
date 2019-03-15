@@ -91,7 +91,7 @@
                         <h3><strong>{{itemData.price}}</strong>元/千字符</h3>
                         <span><strong>适用范围：</strong>{{itemData.apply}}</span>
                         <span><strong>说明：</strong>{{itemData.desc}}</span>
-                        <span>已成交：529510件</span>
+                        <span>已成交：{{dealArr2[_index]}}件</span>
                         <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData,_index)">立即检测</button>
                       </div>
                     </li>
@@ -112,7 +112,7 @@
                         <h3><strong>{{itemData.price}}</strong>元/千字符</h3>
                         <span><strong>适用范围：</strong>{{itemData.apply}}</span>
                         <span><strong>说明：</strong>{{itemData.desc}}</span>
-                        <span>已成交：529510件</span>
+                        <span>已成交：{{dealArr3[_index]}}件</span>
                         <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData,_index)">立即检测</button>
                       </div>
                     </li>
@@ -133,7 +133,7 @@
                         <h3><strong>{{itemData.price}}</strong>元/千字符</h3>
                         <span><strong>适用范围：</strong>{{itemData.apply}}</span>
                         <span><strong>说明：</strong>{{itemData.desc}}</span>
-                        <span>已成交：529510件</span>
+                        <span>已成交：{{dealArr4[_index]}}件</span>
                         <button type="button" class="btn btn-warning btn-lg" @click="goUpload(itemData,_index)">立即检测</button>
                       </div>
                     </li>
@@ -165,9 +165,44 @@
       </div>
       <end_article></end_article>
     </main>
-    <div style="position: fixed;right:20px;bottom:120px;z-index: 999;display: flex;flex-direction: column;align-items: center">
-      <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3506464470&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3506464470:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-      <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2108064819&site=qq&menu=yes"><img border="0"  src="http://wpa.qq.com/pa?p=2:2108064819:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+    <div id="floatTools" class="rides-cs">
+      <div class="floatL">
+        <a style="display: block" id="aFloatTools_Show" class="btnOpen" title="查看在线客服" @click="kefu_open" href="javascript:void(0);">
+          展开</a>
+        <a style="display: none" id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" @click="kefu_close" href="javascript:void(0);">
+          收缩</a> </div>
+      <div id="divFloatToolsView" class="floatR" style="display: none">
+        <div class="cn">
+          <h3 class="titZx">销售客服</h3>
+          <ul>
+            <li><span>昭君</span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2954356724&site=qq&menu=yes">
+                <img border="0" src="http://wpa.qq.com/pa?p=2:2954356724:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              </a>
+            </li>
+            <li><span>满天星</span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3003415856&site=qq&menu=yes">
+                <img border="0" src="http://wpa.qq.com/pa?p=2:3003415856:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              </a>
+            </li>
+            <li><span>芒果</span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1905359604&site=qq&menu=yes">
+                <img border="0" src="http://wpa.qq.com/pa?p=2:1905359604:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              </a>
+            </li>
+            <li><span>张彩</span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2649034547&site=qq&menu=yes">
+                <img border="0" src="http://wpa.qq.com/pa?p=2:2649034547:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              </a>
+            </li>
+            <li><span>海珠</span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=368947306&site=qq&menu=yes">
+                <img border="0" src="http://wpa.qq.com/pa?p=2:368947306:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -192,7 +227,10 @@
         wf:[],
         cx:[],
         wp:[],
-        dealArr1:['539611','520314','328517','429610','524530','459560','432118','726413']
+        dealArr1:['539611','520314','328517','429610','524530','459560','432118','726413'],
+        dealArr2:['539631','231312','65464','156454','875416','154656','5641654','15634'],
+        dealArr3:['95655','165456','95454','14554','65545','789545','52411','15454'],
+        dealArr4:['216554','89765','64566','98566','524530','459560','432118','788654'],
       }
     },
     created() {
@@ -264,6 +302,15 @@
         for (let i = 1; i <= page; i++) {
           overallArr.push(dataArr.slice((i - 1) * numbers, i * numbers));
         }
+      },
+      //客服
+      kefu_open(){
+        $('#divFloatToolsView').animate({width: 'show',height:'show', opacity: 'show'},
+          function(){ $('#divFloatToolsView').show();});
+        $('#aFloatTools_Show').attr('style','display:none');$('#aFloatTools_Hide').attr('style','display:block');
+      },
+      kefu_close(){
+        $('#divFloatToolsView').animate({width: 'hide',height:'hide', opacity: 'hide'},function(){ $('#divFloatToolsView').hide(); });$('#aFloatTools_Show').attr('style','display:block');$('#aFloatTools_Hide').attr('style','display:none');
       },
     },
   }
@@ -529,6 +576,26 @@
       }
     }
   }
+
+  /*在线客服代码*/
+  .rides-cs { background:rgba(51,51,51,0.9); position: fixed; bottom: 130px; right: 1px; _position: absolute; z-index: 999; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#E5333333', endColorstr='#E5333333');}
+  .rides-cs a { color: #00A0E9;}
+  .rides-cs a:hover { color: #ff8100; text-decoration: none;}
+  .rides-cs .floatL { width: 36px; float:left; position: relative; z-index:1;}
+  .rides-cs .floatL a { font-size:0; text-indent: -999em; display: block;}
+  .rides-cs .floatR { width: 130px; float: left; padding: 5px; overflow:hidden;}
+  .rides-cs .floatR .cn { background: #F7F7F7; }
+  .rides-cs .cn h3 { font-size: 14px; color: #333; font-weight:600; line-height: 24px; padding: 5px}
+  .rides-cs .cn ul { padding: 0 0 0 8px;}
+  .rides-cs .cn ul li { line-height: 38px; height:38px; border-bottom: solid 1px #E6E4E4; overflow: hidden;
+    display: flex;justify-content:space-between;align-items: center}
+  .rides-cs .cn ul li span { color: #777;}
+  .rides-cs .cn ul li img { vertical-align: middle;width:55px;}
+  .rides-cs .btnOpen, .rides-cs .btnCtn {  position: relative; z-index:9; top:0; left: 0;  background-image: url('../../assets/images/shopnc.png'); background-repeat: no-repeat; display:block; width: 32px; height: 155px; padding: 8px;}
+  .rides-cs .btnOpen { background-position: -410px 0;}
+  .rides-cs .btnCtn { background-position: -450px 0;}
+  .rides-cs ul li.top { border-bottom: solid #ACE5F9 1px;}
+  .rides-cs ul li.bot { border-bottom: none;}
 
   @media screen and (min-width: 1440px) {
     #banner {
