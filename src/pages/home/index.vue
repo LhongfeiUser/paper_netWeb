@@ -250,15 +250,15 @@
           if (res) {
             res.forEach((item, index) => {
               let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-              let pic = item.pic.replace(reg, 'http://www.yifulunwen.com');
+              let pic = item.pic.replace(reg, 'https://www.yifulunwen.com');
               this.slide_pic.push(pic);
             })
           }
         });
         getInterfaces(pic_data).then(res => {
           res.forEach((item)=>{
-            item.pic='http://www.yifulunwen.com'+item.pic;
-            item.label_url='http://www.yifulunwen.com'+item.label_url;
+            item.pic='https://www.yifulunwen.com'+item.pic;
+            item.label_url='https://www.yifulunwen.com'+item.label_url;
           });
           if (res) {
             for(let i=0;i<res.length;i++){

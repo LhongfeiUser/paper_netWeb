@@ -59,9 +59,11 @@
       if(sessionStorage.getItem('article_id')){
         this.article_id = JSON.parse(sessionStorage.getItem('article_id')).slice(2, 5);
       }
-      this.article_id.forEach((item, index) => {
-        this.goArticleDetail(item.id, index);
-      });
+      if(this.article_id){
+        this.article_id.forEach((item, index) => {
+          this.goArticleDetail(item.id, index);
+        });
+      }
     },
     methods: {
       async goArticleDetail(id, index) {

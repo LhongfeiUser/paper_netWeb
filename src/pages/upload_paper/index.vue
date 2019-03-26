@@ -81,6 +81,8 @@
       sessionStorage.setItem('generalizeUrl', generalizeUrl);
       this.cssId = Number(this.$route.query.system_index) || 0;
       this.fcssId = this.$route.query.fcss_cateId-1 || 0;
+      let c = this.fcssId;
+      this.$emit('childIndex',c);
       let home_data = JSON.parse(sessionStorage.getItem('systemItem'));
       if (home_data) {
         this.cate_id = home_data.cate;
@@ -108,7 +110,7 @@
         formdata.append('trade_no', this.orderCode);
         reportResult(formdata).then(res => {
           if (res) {
-            this.reportUrl = `http://www.yifulunwen.com/${res.url}`;
+            this.reportUrl = `https://www.yifulunwen.com/${res.url}`;
           } else {
             this.$message.error(res.msg)
           }
