@@ -284,7 +284,7 @@
         await get_Partners(pic_data).then(res=>{
           if(res){
             res.forEach((item)=>{
-              this.sc.push('http://www.yifulunwen.com'+item.pic);
+              this.sc.push('https://www.yifulunwen.com'+item.pic);
             });
             this.carouselClassify(this.scImgobj,this.sc,15);
           }

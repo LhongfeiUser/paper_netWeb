@@ -26,7 +26,7 @@
     data() {
       return {
         logoPic: '',
-        routeArr: ['/home', '/vipManage/upload', '/article/1', '/article/2', '/article/3', '/login'],
+        routeArr: ['/homepage', '/vipManage/upload', '/article/1', '/article/2', '/article/3', '/login'],
         styleObj:0,
         isStyleA:{
           position: 'absolute',
@@ -42,7 +42,7 @@
     },
     created(){
       this.getCategoryData();
-      if(this.$route.path!=='/home'){
+      if(this.$route.path!=='/homepage'){
         this.styleObj=1;
       }
     },
@@ -51,7 +51,7 @@
     },
     watch:{
       '$route':function (to) {
-        if(to.path==='/home'){
+        if(to.path==='/homepage'){
           this.styleObj=0;
         }else {
           this.styleObj=1;
@@ -67,7 +67,7 @@
         };
         getLogo(logo_data).then(res => {
           let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-          this.logoPic = res.pic.replace(reg, 'http://www.yifulunwen.com');
+          this.logoPic = res.pic.replace(reg, 'https://www.yifulunwen.com');
         })
       },
       getStyle(category,item){

@@ -6,15 +6,15 @@ import Dashboard from '@/backstage/dashboard'
 Vue.use(Router);
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/homepage',
       component: Layout,
       children:[
         {
-          path:'home',
+          path:'homepage',
           component:()=>import('@/pages/home/index'),
         }
       ]
@@ -123,6 +123,6 @@ export default new Router({
         },
       ]
     },
-    {path: '*', redirect: '/home', hidden: true},
+    {path: '*', redirect: '/homepage', hidden: true},
   ]
 })

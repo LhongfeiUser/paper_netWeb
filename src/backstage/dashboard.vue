@@ -65,7 +65,7 @@
     },
     methods:{
       goHome(){
-        this.$router.push('/home')
+        this.$router.push('/homepage')
       },
       logout(){
         sessionStorage.clear('isgin');

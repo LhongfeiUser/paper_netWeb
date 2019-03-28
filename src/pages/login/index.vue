@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="bg">
-      <a href="/home"><i class="iconfont icon-fanhui"
+      <a href="/homepage"><i class="iconfont icon-fanhui"
                          style="font-size:26px;position: absolute;top:0;left:10px; color:#fff;"></i></a>
       <div class="container justify-content-end" style="display: flex">
         <div class="form row">
@@ -74,10 +74,8 @@
           password: this.password,
           token: 'meichenghuilian20181108'
         };
-        console.log(postData);
         login_req(postData).then(res => {
           if (res&&res.code === 200) {
-            console.log(res);
             this.agent_id = res.data.id;
             cookies.set('agent_id', this.agent_id, {expires: 7, path: ''});
             sessionStorage.setItem('isgin', md5('isLogin'));
