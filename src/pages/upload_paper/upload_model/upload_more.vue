@@ -116,7 +116,7 @@
         order_info:[],
         stu_id:[],
         lw_cate:'',
-        pic_yzm:'http://www.yifulunwen.com/verify',
+        pic_yzm:'https://www.yifulunwen.com/verify',
         verifyData:'',
         m_hasverify:false,
       }
@@ -292,7 +292,7 @@
 
       get_pic(){ //图片验证码
         let num = Math.random();
-        this.pic_yzm='http://www.yifulunwen.com/verify?m='+num;
+        this.pic_yzm='https://www.yifulunwen.com/verify?m='+num;
       },
       isverify(){
         getVerify({param:this.verifyData}).then(res=>{

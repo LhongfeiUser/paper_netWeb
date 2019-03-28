@@ -176,28 +176,28 @@
           <h3 class="titZx">销售客服</h3>
           <ul>
             <li><span>昭君</span>
-              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2954356724&site=qq&menu=yes">
-                <img border="0" src="http://wpa.qq.com/pa?p=2:2954356724:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=2954356724&site=qq&menu=yes">
+                <img border="0" src="../../assets/images/qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
               </a>
             </li>
             <li><span>满天星</span>
-              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3003415856&site=qq&menu=yes">
-                <img border="0" src="http://wpa.qq.com/pa?p=2:3003415856:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=3003415856&site=qq&menu=yes">
+                <img border="0" src="../../assets/images/qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
               </a>
             </li>
             <li><span>芒果</span>
-              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1905359604&site=qq&menu=yes">
-                <img border="0" src="http://wpa.qq.com/pa?p=2:1905359604:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=1905359604&site=qq&menu=yes">
+                <img border="0" src="../../assets/images/qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
               </a>
             </li>
             <li><span>张彩</span>
-              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2649034547&site=qq&menu=yes">
-                <img border="0" src="http://wpa.qq.com/pa?p=2:2649034547:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=2649034547&site=qq&menu=yes">
+                <img border="0" src="../../assets/images/qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
               </a>
             </li>
             <li><span>海珠</span>
-              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=368947306&site=qq&menu=yes">
-                <img border="0" src="http://wpa.qq.com/pa?p=2:368947306:41" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+              <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=368947306&site=qq&menu=yes">
+                <img border="0" src="../../assets/images/qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/>
               </a>
             </li>
           </ul>
