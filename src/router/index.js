@@ -20,7 +20,7 @@ export default new Router({
       ]
     },
     {
-      path: '/login',
+      path: '/loginId',
       name: 'login',
       component: ()=>import('@/pages/login/index'),
     },

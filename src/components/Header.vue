@@ -37,7 +37,8 @@
         isStyleB:{
           width: '1260px',
           margin:'auto'
-        }
+        },
+        url_:process.env.BASE_URL,
       }
     },
     created(){
@@ -67,7 +68,7 @@
         };
         getLogo(logo_data).then(res => {
           let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-          this.logoPic = res.pic.replace(reg, 'https://www.yifulunwen.com');
+          this.logoPic = res.pic.replace(reg, this.url_);
         })
       },
       getStyle(category,item){

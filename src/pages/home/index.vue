@@ -231,6 +231,7 @@
         dealArr2:['539631','231312','65464','156454','875416','154656','5641654','15634'],
         dealArr3:['95655','165456','95454','14554','65545','789545','52411','15454'],
         dealArr4:['216554','89765','64566','98566','524530','459560','432118','788654'],
+        url_: process.env.BASE_URL,//https://www.yifulunwen.com
       }
     },
     created() {
@@ -250,15 +251,15 @@
           if (res) {
             res.forEach((item, index) => {
               let reg = /D:\\(WWW)\\(lunwen)\\(public)\\/;
-              let pic = item.pic.replace(reg, 'https://www.yifulunwen.com');
+              let pic = item.pic.replace(reg, this.url_);
               this.slide_pic.push(pic);
             })
           }
         });
         getInterfaces(pic_data).then(res => {
           res.forEach((item)=>{
-            item.pic='https://www.yifulunwen.com'+item.pic;
-            item.label_url='https://www.yifulunwen.com'+item.label_url;
+            item.pic=this.url_+item.pic;
+            item.label_url=this.url_+item.label_url;
           });
           if (res) {
             for(let i=0;i<res.length;i++){
@@ -284,7 +285,7 @@
         await get_Partners(pic_data).then(res=>{
           if(res){
             res.forEach((item)=>{
-              this.sc.push('https://www.yifulunwen.com'+item.pic);
+              this.sc.push(this.url_+item.pic);
             });
             this.carouselClassify(this.scImgobj,this.sc,15);
           }

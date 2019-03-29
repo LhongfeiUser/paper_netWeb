@@ -7,7 +7,7 @@
           <h5>您的专属推广网址:</h5>
         </div>
         <div class="generalizeLink_count link">
-          <span>推广网址：<a href="http://www.baidu.com">www.baidu.com</a></span>
+          <span>推广网址：<a href="https://www.baidu.com">www.baidu.com</a></span>
           <span>使用推广渠道：QQ/QQ群/微信/朋友圈等</span>
           <span>跟踪原理：<el-button type="primary" size="mini" @click="hh">点击了解</el-button></span>
         </div>
