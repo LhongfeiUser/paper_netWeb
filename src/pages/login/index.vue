@@ -27,9 +27,6 @@
               <div class="form-group">
                 <button type="button" class="btn btn-primary" @click="login">登录</button>
               </div>
-              <!--<div class="text-right">-->
-              <!--<a href="#">忘记密码？</a>-->
-              <!--</div>-->
             </div>
           </div>
         </div>

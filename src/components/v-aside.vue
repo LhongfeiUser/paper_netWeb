@@ -1,11 +1,6 @@
 <template>
     <div class="aside">
       <ul class="nav nav-pills">
-        <!--<li class="nav-item">
-          <router-link to="/process" active-class="nav-link active">
-            <span>论文查重流程</span>
-          </router-link>
-        </li>-->
         <li class="nav-item" v-for="(item,index) in category">
           <router-link :to="{path:routeArr[index], query:{list_id:item.id}}" active-class="nav-link active">
             <span>{{item.category_name}}</span>
@@ -44,7 +39,6 @@
                 arr.push(obj)
               }
               this.category = arr.slice(2,5);
-              this.$emit('articleTitle',this.category)
             }
             else {
               this.$message.error(res.msg)

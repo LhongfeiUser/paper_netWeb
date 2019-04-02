@@ -77,6 +77,7 @@
       }
     },
     created() {
+      this.getClassify();
       let generalizeUrl = window.location.href;
       sessionStorage.setItem('generalizeUrl', generalizeUrl);
       this.cssId = Number(this.$route.query.system_index) || 0;
@@ -88,7 +89,6 @@
         this.cate_id = home_data.cate;
         this._orderPrice = home_data.price;
       }
-      this.getClassify();
     },
     mounted() {
       $('#myTab a:first').tab('show');

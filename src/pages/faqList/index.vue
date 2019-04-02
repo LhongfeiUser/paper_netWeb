@@ -5,7 +5,7 @@
         <v_aside></v_aside>
       </aside>
       <div class="faqList_list">
-        <h3>常见问题</h3>
+        <h3>{{titleName}}</h3>
         <div v-if="isData" v-loading="isData" style="height:80px;width:100%;"></div>
         <ul v-else class="list_content">
           <li v-for="(item,index) in list" :key="index" @click="goDetail(item.id)">
@@ -53,6 +53,7 @@
         len: 1,
         param_id:null,
         resTitle:[],
+        titleName:'常见问题',
       }
     },
     watch:{
@@ -82,6 +83,12 @@
             this.$message.error(res.msg);
             this.isData = false;
           }
+        });
+        let headAry= JSON.parse(sessionStorage.getItem('article_id'));
+        headAry.forEach((item,index)=>{
+          if(item.id===Number(id)){
+            this.titleName=item.category_name;
+          }
         })
       },
       goDetail(id) {
@@ -109,7 +116,7 @@
         }
         let catObj=JSON.stringify(c);
         sessionStorage.setItem('catObj',catObj)
-      }
+      },
     }
   }
 </script>
