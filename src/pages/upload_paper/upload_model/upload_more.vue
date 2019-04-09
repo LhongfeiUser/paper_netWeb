@@ -116,9 +116,10 @@
         order_info:[],
         stu_id:[],
         lw_cate:'',
-        pic_yzm:'https://yifulunwen.com/verify',
+        pic_yzm: process.env.BASE_URL+'/verify',
         verifyData:'',
         m_hasverify:false,
+        _url: process.env.BASE_URL,
       }
     },
     created() {

@@ -40,7 +40,6 @@
 <script>
   import v_aside from '@/components/v-aside'
   import {getListData} from "@/api/getList";
-
   export default {
     components: {v_aside},
     data() {

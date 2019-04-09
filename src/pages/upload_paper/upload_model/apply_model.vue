@@ -36,7 +36,7 @@
 
 <script>
   import {get_payQrcode} from "../../../api/upload_paper";
-
+  import axios from 'axios'
   export default {
     data() {
       return {
@@ -51,6 +51,7 @@
         orderImg: '',
         price: 0,
         zfbHref: '',
+        _url: process.env.BASE_URL,
       }
     },
     props: {
@@ -81,9 +82,7 @@
               com_name: this.order_info.info.com_name,
             };
 
-            window.location.href='http://www.yifulunwen.com/alipay?' + transformObj2SearchStr(qrcode_order);
-            console.log('http://www.yifulunwen.com/alipay?' + transformObj2SearchStr(qrcode_order));
-            // this.zfbHref ='###' ;
+            window.location.href='https://yifulunwen.com/alipay?' + transformObj2SearchStr(qrcode_order);
           }
           if (num === 1) {
             let qrcode_order = {
@@ -92,14 +91,10 @@
               total_price: this.price * 100,
               com_name: this.order_info.info.com_name,
             };
-            this.orderImg = 'http://www.yifulunwen.com/return_pay_qrcode?' + transformObj2SearchStr(qrcode_order);
+            axios.get('https://yifulunwen.com/return_pay_qrcode',{params:{...qrcode_order}}).then(res=>{
+              this.orderImg=res.data.path;
+            })
           }
-
-          /*get_payQrcode(qrcode_order).then(res => {
-            if (res) {
-              this.orderImg='http://www.yifulunwen.com/return_pay_qrcode?'+transformObj2SearchStr(qrcode_order);
-            }
-          })*/
         } else {
           this.$message.info('请提交论文相关信息')
         }

@@ -114,7 +114,8 @@
         member_id: '',
         lw_cate:'',
         verifyData:'',
-        pic_yzm:'https://yifulunwen.com/verify',
+        pic_yzm: process.env.BASE_URL+'/verify',
+        _url: process.env.BASE_URL,
         hasverify:false,
       }
     },
