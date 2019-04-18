@@ -33,7 +33,7 @@
           </li>
         </ul>
         <div class="line"></div>
-        <span class="footer_version">Copyright©2019-2020 Lifesonic All Right Reserved 逸夫论文版权所有 湘ICP备17138594号-1</span>
+        <span class="footer_version"><a href="http://www.beian.miit.gov.cn">Copyright©2019-2020 Lifesonic All Right Reserved 逸夫论文版权所有 湘ICP备17138594号-1</a></span>
       </div>
     </div>
   </div>
